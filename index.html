@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>市场资讯观察周报 - 索引</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background:#f5f6fa; color:#2c3e50; line-height:1.8; }
+  .container { max-width:800px; margin:0 auto; padding:40px 20px; }
+  h1 { font-size:1.8em; margin-bottom:8px; color:#1a1a2e; }
+  .subtitle { color:#666; margin-bottom:30px; font-size:0.95em; }
+  .week-list { list-style:none; }
+  .week-item { display:flex; align-items:center; padding:16px 20px; background:#fff; border-radius:8px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.06); transition:box-shadow .2s; }
+  .week-item:hover { box-shadow:0 2px 12px rgba(0,0,0,0.1); }
+  .week-number { font-weight:700; color:#e74c3c; min-width:80px; font-size:1.1em; }
+  .week-date { color:#888; min-width:120px; font-size:0.9em; }
+  .week-link { margin-left:auto; text-decoration:none; background:#3498db; color:#fff; padding:6px 16px; border-radius:4px; font-size:0.85em; transition:background .2s; }
+  .week-link:hover { background:#2980b9; }
+  .empty { color:#999; text-align:center; padding:60px 0; }
+  .footer { margin-top:40px; text-align:center; color:#aaa; font-size:0.85em; border-top:1px solid #eee; padding-top:20px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>市场资讯观察周报</h1>
+  <p class="subtitle">微小 / 抖小 畅销榜 Top100 · 双平台交叉分析 · 品类趋势 · 平台政策</p>
+  <ul class="week-list" id="weekList">
+    <li class="empty">暂无报告，等待首次生成...</li>
+  </ul>
+  <div class="footer">由 Claude Code 每周五 10:07 自动生成 · 数据来源：引力引擎</div>
+</div>
+<script>
+// 周报索引由每周推送脚本自动更新
+const reports = [];
+const list = document.getElementById('weekList');
+if (reports.length === 0) {
+  // 占位 — 首次生成后脚本会自动替换
+}
+</script>
+</body>
+</html>
