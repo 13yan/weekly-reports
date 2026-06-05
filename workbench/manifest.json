@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-06-05T06:32:42+08:00",
+  "updatedAt": "2026-06-05T07:00:16+08:00",
   "reports": [
     {
       "id": "20260605",
-      "label": "2026年6月第1周",
+      "label": "2026年6月第1周（数据截止6月5日）",
       "date": "2026-06-05",
       "dirName": "2026/2026年6月第1周（数据截止6月5日）",
       "hasData": true,
-      "highlight": "微信小游戏畅销榜Top100覆盖12个品类，模拟经营11款领跑，跨平台30款",
+      "highlight": "本周各平台均无新政策发布，多个激励政策将于6月30日截止",
       "stats": {
-        "wxCount": 100,
-        "dyCount": 100,
-        "crossPlatform": 30,
-        "categories": 12
+        "wxCount": 0,
+        "dyCount": 0,
+        "crossPlatform": 0,
+        "categories": 0
       }
     },
     {
