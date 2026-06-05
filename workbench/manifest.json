@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-05T07:12:12+08:00",
+  "updatedAt": "2026-06-05T07:18:43+08:00",
   "reports": [
     {
       "id": "20260605",
@@ -9,10 +9,10 @@
       "hasData": true,
       "highlight": "本周各平台均无新政策发布，多个激励政策将于6月30日截止",
       "stats": {
-        "wxCount": 0,
-        "dyCount": 0,
-        "crossPlatform": 0,
-        "categories": 0
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 47,
+        "categories": 14
       }
     },
     {
