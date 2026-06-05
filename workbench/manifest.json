@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-05T10:45:00+08:00",
+  "updatedAt": "2026-06-05T06:32:42+08:00",
   "reports": [
     {
       "id": "20260605",
@@ -8,7 +8,12 @@
       "dirName": "2026/2026年6月第1周（数据截止6月5日）",
       "hasData": true,
       "highlight": "微信小游戏畅销榜Top100覆盖12个品类，模拟经营11款领跑，跨平台30款",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 30, "categories": 12 }
+      "stats": {
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 30,
+        "categories": 12
+      }
     },
     {
       "id": "20260603",
@@ -17,7 +22,12 @@
       "dirName": "2026/2026年6月第1周（数据截止6月3日）",
       "hasData": true,
       "highlight": "微信小游戏开发者大会发布史上最大力度政策，5000万流水不分成+2000万激励金+IAA最高90%分成",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 51, "categories": 13 }
+      "stats": {
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 51,
+        "categories": 13
+      }
     },
     {
       "id": "20260529",
@@ -26,7 +36,12 @@
       "dirName": "2026/2026年5月第5周（数据截止5月29日）",
       "hasData": true,
       "highlight": "模拟经营品类持续领跑，双平台合计29款上榜",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
+      "stats": {
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 46,
+        "categories": 17
+      }
     },
     {
       "id": "20260522",
@@ -35,7 +50,12 @@
       "dirName": "2026/2026年5月第4周（数据截止5月22日）",
       "hasData": true,
       "highlight": "塔防品类供给旺盛，多款融合玩法新游上榜",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
+      "stats": {
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 46,
+        "categories": 17
+      }
     },
     {
       "id": "20260515",
@@ -44,7 +64,12 @@
       "dirName": "2026/2026年5月第3周（数据截止5月15日）",
       "hasData": true,
       "highlight": "ARPG品类在抖音端占比持续提升，内容营销驱动增长",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
+      "stats": {
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 46,
+        "categories": 17
+      }
     },
     {
       "id": "20260509",
@@ -53,7 +78,12 @@
       "dirName": "2026/2026年5月第2周（数据截止5月9日）",
       "hasData": true,
       "highlight": "模拟经营和塔防持续领跑双平台，跨平台发行趋势明显",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
+      "stats": {
+        "wxCount": 100,
+        "dyCount": 100,
+        "crossPlatform": 46,
+        "categories": 17
+      }
     }
   ]
 }
