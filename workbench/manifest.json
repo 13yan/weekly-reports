@@ -15,36 +15,38 @@
       "label": "2026年5月第5周",
       "date": "2026-05-29",
       "dirName": "2026/2026年5月第5周（数据截止5月29日）",
-      "hasData": false,
+      "hasData": true,
       "highlight": "模拟经营品类持续领跑，双平台合计29款上榜",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 48, "categories": 12 }
+      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
     },
     {
       "id": "20260522",
       "label": "2026年5月第4周",
       "date": "2026-05-22",
       "dirName": "2026/2026年5月第4周（数据截止5月22日）",
-      "hasData": false,
+      "hasData": true,
       "highlight": "塔防品类供给旺盛，多款融合玩法新游上榜",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 12 }
+      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
     },
     {
       "id": "20260515",
       "label": "2026年5月第3周",
       "date": "2026-05-15",
       "dirName": "2026/2026年5月第3周（数据截止5月15日）",
-      "hasData": false,
+      "hasData": true,
       "highlight": "ARPG品类在抖音端占比持续提升，内容营销驱动增长",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 44, "categories": 11 }
+      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
     },
     {
       "id": "20260509",
       "label": "2026年5月第2周",
       "date": "2026-05-09",
       "dirName": "2026/2026年5月第2周（数据截止5月9日）",
-      "hasData": false,
+      "hasData": true,
       "highlight": "模拟经营和塔防持续领跑双平台，跨平台发行趋势明显",
-      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 42, "categories": 11 }
+      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
     }
+  ,
+    {"id": "20260605", "label": "2026年6月第1周（数据截止6月5日）", "date": "2026-06-05", "dirName": "2026/2026年6月第1周（数据截止6月5日）", "hasData": true, "highlight": "微信小游戏开发者大会发布历史上最大力度政策，5000万流水不分成+2000万激励金+IAA最高90%分成", "stats": {"wxCount": 0, "dyCount": 0, "crossPlatform": 0, "categories": 0}}
   ]
 }
