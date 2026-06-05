@@ -567,7 +567,7 @@ function fillData(d, key) {
   var coreEl = document.getElementById('summaryCore');
   if (coreEl) {
     if (summary.core) {
-      coreEl.textContent = summary.core;
+      coreEl.innerHTML = summary.core;
     } else {
       coreEl.style.display = 'none';
     }
@@ -602,7 +602,13 @@ function fillData(d, key) {
   var sim = d.simulation || {};
   var simOvEl = document.getElementById('simOverview');
   if (simOvEl) {
-    simOvEl.textContent = '微信上榜' + (sim.wxCount || '--') + '款，抖音上榜' + (sim.dyCount || '--') + '款。';
+    var wxReps = sim.wxReps || '--';
+    var dyReps = sim.dyReps || '--';
+    simOvEl.innerHTML =
+      '<div class="table-wrap"><table><thead><tr><th>平台</th><th>上榜数</th><th>Top10内</th><th>Top20内</th><th>头部代表</th></tr></thead><tbody>' +
+      '<tr><td><strong>微信小游戏</strong></td><td>' + (sim.wxCount || '--') + '款</td><td>' + (sim.wxTop10 || '--') + '款</td><td>' + (sim.wxTop20 || '--') + '款</td><td>' + escHTML(wxReps) + '</td></tr>' +
+      '<tr><td><strong>抖音小游戏</strong></td><td>' + (sim.dyCount || '--') + '款</td><td>' + (sim.dyTop10 || '--') + '款</td><td>' + (sim.dyTop20 || '--') + '款</td><td>' + escHTML(dyReps) + '</td></tr>' +
+      '</tbody></table></div>';
   }
   renderSimTable(sim.games || []);
   var simConcEl = document.getElementById('simConclusion');
