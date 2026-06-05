@@ -305,31 +305,116 @@ button { font-family: inherit; cursor: pointer; }
 .subsection-title::before { content: ''; width: 3px; height: 14px; background: var(--primary); border-radius: 2px; }
 
 /* ============================================================
-   摘要区
+   摘要区 — 看板卡片式
    ============================================================ */
-.summary-grid { display: grid; gap: 12px; }
-.summary-item {
-  background: linear-gradient(135deg, var(--bg-soft) 0%, #fff 100%);
-  border: 1px solid var(--border-light);
+.summary-hero {
+  background: linear-gradient(135deg, #f0faf4 0%, #fff 100%);
+  border: 1px solid var(--primary-200);
   border-radius: var(--radius);
   padding: 14px 18px;
-  font-size: 13.5px; line-height: 1.85; color: var(--text-secondary);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+  position: relative; overflow: hidden;
+}
+.summary-hero::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+}
+.summary-hero .hero-tag {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 5px 10px; border-radius: 6px;
+  letter-spacing: 0.3px;
   position: relative;
+}
+.summary-hero .hero-content {
+  flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--text);
+  font-weight: 500; position: relative;
+}
+
+.kanban-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.kanban-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex; flex-direction: column;
+  transition: all var(--t-fast);
+  position: relative; overflow: hidden;
+}
+.kanban-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%; background: var(--border);
   transition: all var(--t-fast);
 }
-.summary-item:hover { border-color: var(--primary-200); background: linear-gradient(135deg, var(--primary-50) 0%, #fff 100%); }
-.summary-item .label { color: var(--text); font-weight: 700; margin-right: 4px; }
-.summary-item .hl { color: var(--red); font-weight: 700; background: rgba(229, 62, 62, 0.06); padding: 1px 4px; border-radius: 3px; }
-.summary-item .hl-green { color: var(--primary); font-weight: 700; }
-.summary-item .hl-blue { color: var(--blue); font-weight: 700; }
-.key-events, .core-concerns { margin-top: 14px; }
-.kv-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-.kv-title.events { color: var(--blue); }
-.kv-title.concerns { color: var(--primary); }
-.kv-list { display: flex; flex-direction: column; gap: 6px; }
-.kv-item { padding: 8px 12px; font-size: 12.5px; line-height: 1.6; border-radius: var(--radius-sm); border-left: 3px solid; }
-.kv-item.event { background: var(--blue-soft); border-color: var(--blue); color: #1e40af; }
-.kv-item.concern { background: var(--primary-50); border-color: var(--primary); color: var(--primary-700); }
+.kanban-card:hover {
+  border-color: var(--primary-200);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.kanban-card:hover::before { background: var(--primary); }
+.kanban-card.kanban-wide { grid-column: 1 / -1; }
+.kanban-card.kanban-featured { background: linear-gradient(135deg, var(--primary-50) 0%, #fff 100%); border-color: var(--primary-200); }
+.kanban-card.kanban-featured::before { background: var(--primary); }
+
+.kanban-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px; padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border-light);
+}
+.kanban-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 7px;
+  font-size: 14px; background: var(--bg-soft);
+  flex-shrink: 0;
+}
+.kanban-card.kanban-featured .kanban-icon { background: var(--primary); color: #fff; }
+.kanban-label {
+  font-size: 14px; font-weight: 700; color: var(--text);
+  flex: 1; letter-spacing: 0.2px;
+}
+.kanban-tag {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10.5px; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.kanban-tag.tag-data { background: #eff6ff; color: #1e40af; }
+.kanban-tag.tag-focus { background: #fff7ed; color: #c2410c; }
+.kanban-tag.tag-feature { background: var(--primary-50); color: var(--primary-700); }
+.kanban-tag.tag-policy { background: #faf5ff; color: #7e22ce; }
+.kanban-tag.tag-action { background: #fef2f2; color: #b91c1c; }
+.kanban-tag.tag-market { background: #f0fdfa; color: #0f766e; }
+
+.kanban-body {
+  font-size: 13px; line-height: 1.75;
+  color: var(--text-secondary); flex: 1;
+}
+.kanban-body .hl {
+  color: var(--red); font-weight: 700;
+  background: rgba(229, 62, 62, 0.08);
+  padding: 1px 5px; border-radius: 3px;
+}
+.kanban-body .hl-green { color: var(--primary); font-weight: 700; }
+.kanban-body .hl-blue { color: var(--blue); font-weight: 700; }
+.kanban-body .hl-amber { color: var(--amber); font-weight: 700; }
+.kanban-body strong { color: var(--text); font-weight: 600; }
+.kanban-body .warn {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: var(--amber); font-weight: 600;
+  background: var(--amber-soft);
+  padding: 2px 6px; border-radius: 4px;
+  font-size: 12px;
+}
 
 /* ============================================================
    表格 (Top20 / 模拟经营 / 飙升)
@@ -603,6 +688,9 @@ button { font-family: inherit; cursor: pointer; }
   .section { padding: 14px 16px; border-radius: var(--radius); }
   .section-title { font-size: 13.5px; }
   .summary-item { padding: 12px 14px; font-size: 13px; }
+  .kanban-grid { grid-template-columns: 1fr; gap: 10px; }
+  .kanban-card { padding: 12px 14px; }
+  .kanban-body { font-size: 12.5px; }
   .surge-grid { grid-template-columns: 1fr; }
   .trend-grid { grid-template-columns: 1fr; }
 }
@@ -823,9 +911,8 @@ function buildPageHTML(d, key) {
         '<div class="section-text"><span>本周核心摘要</span><span class="section-sub">Core Insights</span></div>',
         '<a class="more-link" href="' + BASE + 'index.html" target="_blank">查看完整 HTML 报告 →</a>',
       '</div>',
-      '<div class="summary-grid" id="summaryCore"></div>',
-      '<div id="keyEventsBlock" class="key-events"></div>',
-      '<div id="coreConcernsBlock" class="core-concerns"></div>',
+      '<div class="summary-hero" id="summaryHero"></div>',
+      '<div class="kanban-grid" id="summaryCore"></div>',
     '</section>',
 
     // Ⅰ Top20
@@ -934,41 +1021,59 @@ function fillData(d, key) {
 }
 
 /* ============================================================
-   摘要渲染
+   摘要渲染 — 看板卡片式
    ============================================================ */
+var KANBAN_META = {
+  '市场格局':     { icon: '📊', tag: '数据洞察', tagClass: 'tag-data' },
+  '头部表现':     { icon: '🏆', tag: '本周焦点', tagClass: 'tag-focus', featured: true },
+  '模拟经营聚焦': { icon: '🏘️', tag: '核心品类', tagClass: 'tag-feature' },
+  '政策动态':     { icon: '📋', tag: '政策追踪', tagClass: 'tag-policy' },
+  '核心关注':     { icon: '🎯', tag: '行动建议', tagClass: 'tag-action', wide: true }
+};
+
 function renderSummary(d) {
   var summary = d.summary || {};
+
+  // Hero — 一句话焦点
+  var heroEl = document.getElementById('summaryHero');
+  if (heroEl) {
+    if (summary.highlight) {
+      heroEl.innerHTML = '<span class="hero-tag">⚡ 本周焦点</span><div class="hero-content">' + escHTML(summary.highlight) + '</div>';
+    } else {
+      heroEl.innerHTML = '';
+      heroEl.style.display = 'none';
+    }
+  }
+
+  // 看板卡片 — 解析 summary.core
   var coreEl = document.getElementById('summaryCore');
   if (coreEl) {
     if (summary.core) {
       var html = summary.core;
-      // 把每段（以 <strong>【...】</strong> 开头）切分成独立卡片
+      // 按 <br> 拆段（每段以 <strong>【...】</strong> 开头）
       var parts = html.split(/<br>\s*(?=<strong>)/);
-      if (parts.length === 1) {
-        coreEl.innerHTML = '<div class="summary-item">' + html + '</div>';
-      } else {
-        coreEl.innerHTML = parts.map(function(p) { return '<div class="summary-item">' + p + '</div>'; }).join('');
-      }
+      coreEl.innerHTML = parts.map(function(p) {
+        // 抽取 <strong>【标签】</strong>
+        var m = p.match(/<strong>【(.+?)】<\/strong>/);
+        var label = m ? m[1] : '';
+        var body = m ? p.replace(/<strong>【.+?】<\/strong>/, '') : p;
+        var meta = KANBAN_META[label] || { icon: '•', tag: '本周要点', tagClass: 'tag-data' };
+        var featuredClass = meta.featured ? ' kanban-featured' : '';
+        var wideClass = meta.wide ? ' kanban-wide' : '';
+        return '<div class="kanban-card' + featuredClass + wideClass + '">' +
+          '<div class="kanban-header">' +
+            '<span class="kanban-icon">' + meta.icon + '</span>' +
+            '<span class="kanban-label">' + escHTML(label) + '</span>' +
+            '<span class="kanban-tag ' + meta.tagClass + '">' + meta.tag + '</span>' +
+          '</div>' +
+          '<div class="kanban-body">' + body + '</div>' +
+        '</div>';
+      }).join('');
     } else {
       coreEl.innerHTML = '';
     }
   }
-  var events = summary.keyEvents || [];
-  var evtEl = document.getElementById('keyEventsBlock');
-  if (evtEl) {
-    if (events.length) {
-      evtEl.innerHTML = '<div class="kv-title events">📌 本周重大事件</div><div class="kv-list">' +
-        events.map(function(e) { return '<div class="kv-item event">▸ ' + escHTML(e) + '</div>'; }).join('') + '</div>';
-    } else { evtEl.innerHTML = ''; }
-  }
-  var concerns = summary.coreConcerns || [];
-  var ccEl = document.getElementById('coreConcernsBlock');
-  if (ccEl) {
-    if (concerns.length) {
-      ccEl.innerHTML = '<div class="kv-title concerns">🎯 核心关注</div><div class="kv-list">' +
-        concerns.map(function(c) { return '<div class="kv-item concern">◆ ' + escHTML(c) + '</div>'; }).join('') + '</div>';
-    } else { ccEl.innerHTML = ''; }
-  }
+  // 不再渲染 keyEvents / coreConcerns — 已并入核心 5 张卡片，避免重复
 }
 
 /* ============================================================
