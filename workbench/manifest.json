@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-05T07:18:43+08:00",
+  "updatedAt": "2026-06-05T08:50:17.394+08:00",
   "reports": [
     {
       "id": "20260605",
@@ -13,20 +13,6 @@
         "dyCount": 100,
         "crossPlatform": 47,
         "categories": 14
-      }
-    },
-    {
-      "id": "20260603",
-      "label": "2026年6月第1周",
-      "date": "2026-06-03",
-      "dirName": "2026/2026年6月第1周（数据截止6月3日）",
-      "hasData": true,
-      "highlight": "微信小游戏开发者大会发布史上最大力度政策，5000万流水不分成+2000万激励金+IAA最高90%分成",
-      "stats": {
-        "wxCount": 100,
-        "dyCount": 100,
-        "crossPlatform": 51,
-        "categories": 13
       }
     },
     {
