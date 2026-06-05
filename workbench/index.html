@@ -1091,12 +1091,30 @@ function renderTable(id, data, plat) {
     var change = r.change || '';
     var isCross = r.isCrossPlatform;
     var rc = rank === 1 ? 'top1' : rank === 2 ? 'top2' : rank === 3 ? 'top3' : rank <= 10 ? 'top10' : '';
-    var cc = change.indexOf('↑') >= 0 ? 'up' : change.indexOf('↓') >= 0 ? 'down' : change.indexOf('NEW') >= 0 || change.indexOf('新进') >= 0 || change.indexOf('霸榜') >= 0 ? 'new' : 'stable';
+
+    // 格式化变化值（兜底：原 JSON 多数是裸数字 "5"，原报告里是 "↑5"）
+    var changeHtml = '';
+    var changeClass = 'stable';
+    if (!change || change === '-' || change === '─' || change === '稳定' || change === '- 稳定' || change === '—') {
+      changeHtml = '─'; changeClass = 'stable';
+    } else if (change.indexOf('霸榜') >= 0) {
+      changeHtml = change; changeClass = 'new';
+    } else if (change === '新进榜' || change === 'NEW' || change === '登顶') {
+      changeHtml = 'NEW'; changeClass = 'new';
+    } else if (change.indexOf('↑') >= 0 || /^\d+$/.test(change)) {
+      var n = change.replace('↑', '');
+      changeHtml = '↑' + n; changeClass = 'up';
+    } else if (change.indexOf('↓') >= 0) {
+      changeHtml = change; changeClass = 'down';
+    } else {
+      changeHtml = change; changeClass = 'stable';
+    }
+
     el.innerHTML += '<tr>' +
       '<td data-label="排名"><span class="rank-num ' + rc + '">' + rank + '</span></td>' +
       '<td data-label="游戏" style="text-align:left"><strong>' + escHTML(name) + '</strong>' + (isCross ? '<span class="cross-tag">双</span>' : '') + '</td>' +
       '<td data-label="品类"><span class="tag-cat">' + escHTML(cat) + '</span></td>' +
-      '<td data-label="变化" class="' + cc + '">' + escHTML(change) + '</td>' +
+      '<td data-label="变化" class="' + changeClass + '">' + escHTML(changeHtml) + '</td>' +
     '</tr>';
   });
 }
@@ -1118,13 +1136,26 @@ function toggleTop100(btn, plat) {
     var platformLabel = plat === 'wx' ? '微信' : '抖音';
     if (list && list.length) {
       body.innerHTML = list.map(function(g) {
+        var ch = g.change || '';
+        var chDisplay = ch, chCls = 'stable';
+        if (!ch || ch === '-' || ch === '─' || ch === '稳定' || ch === '- 稳定') {
+          chDisplay = '─'; chCls = 'stable';
+        } else if (ch.indexOf('霸榜') >= 0) {
+          chDisplay = ch; chCls = 'new';
+        } else if (ch === '新进榜' || ch === 'NEW' || ch === '登顶') {
+          chDisplay = 'NEW'; chCls = 'new';
+        } else if (ch.indexOf('↑') >= 0 || /^\d+$/.test(ch)) {
+          chDisplay = '↑' + ch.replace('↑', ''); chCls = 'up';
+        } else if (ch.indexOf('↓') >= 0) {
+          chDisplay = ch; chCls = 'down';
+        }
         return '<tr>' +
           '<td>' + (g.rank || 0) + '</td>' +
           '<td class="top100-name">' + escHTML(g.name || '') + (g.isCrossPlatform ? '<span class="cross-tag">双</span>' : '') + '</td>' +
           '<td style="font-size:10.5px;color:var(--text-tertiary)">' + platformLabel + '</td>' +
           '<td><span class="tag-cat">' + escHTML(g.category || '') + '</span></td>' +
           '<td class="top100-company" title="' + escAttr(g.company || '--') + '">' + escHTML(g.company || '--') + '</td>' +
-          '<td style="font-size:11.5px">' + escHTML(g.change || '') + '</td>' +
+          '<td class="' + chCls + '" style="font-size:11.5px">' + escHTML(chDisplay) + '</td>' +
         '</tr>';
       }).join('');
     } else {
@@ -1168,14 +1199,24 @@ function renderSimTable(games) {
     el.innerHTML = '<tr><td colspan="7" style="color:#999;padding:16px;text-align:center">暂无数据</td></tr>';
     return;
   }
+  // 兜底：客户端计算 diff（兼容旧数据无此字段）
+  function calcDiff(wxR, dyR) {
+    if (wxR === '-' || wxR === '─' || wxR == null || wxR === '') return '仅抖音';
+    if (dyR === '-' || dyR === '─' || dyR == null || dyR === '') return '仅微信';
+    var d = wxR - dyR;
+    if (d > 0) return '抖音领先' + d + '位';
+    if (d < 0) return '微信领先' + Math.abs(d) + '位';
+    return '排名接近';
+  }
   games.forEach(function(g) {
+    var diff = g.diff || calcDiff(g.wxRank, g.dyRank);
     el.innerHTML += '<tr>' +
       '<td data-label="游戏" style="text-align:left"><strong>' + escHTML(g.name || '') + '</strong><br><span style="font-size:10.5px;color:var(--text-tertiary)">' + escHTML(g.company || '') + '</span></td>' +
       '<td data-label="融合玩法">' + escHTML(g.mergePlay || '') + '</td>' +
       '<td data-label="题材">' + escHTML(g.theme || '') + '</td>' +
-      '<td data-label="微信排名">' + (g.wxRank ? '#<strong>' + g.wxRank + '</strong>' : '<span style="color:#999">未上榜</span>') + '</td>' +
-      '<td data-label="抖音排名">' + (g.dyRank ? '#<strong>' + g.dyRank + '</strong>' : '<span style="color:#999">未上榜</span>') + '</td>' +
-      '<td data-label="差异" style="font-size:11.5px;color:var(--text-secondary)">' + escHTML(g.diff || '') + '</td>' +
+      '<td data-label="微信排名">' + (g.wxRank && g.wxRank !== '-' ? '#<strong>' + g.wxRank + '</strong>' : '<span style="color:#999">未上榜</span>') + '</td>' +
+      '<td data-label="抖音排名">' + (g.dyRank && g.dyRank !== '-' ? '#<strong>' + g.dyRank + '</strong>' : '<span style="color:#999">未上榜</span>') + '</td>' +
+      '<td data-label="差异" style="font-size:11.5px;color:var(--text-secondary)">' + escHTML(diff) + '</td>' +
     '</tr>';
   });
 }

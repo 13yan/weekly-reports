@@ -2188,7 +2188,8 @@
         "mergePlay": "二合+模拟经营",
         "theme": "花园种花",
         "wxRank": 5,
-        "dyRank": 3
+        "dyRank": 3,
+        "diff": "抖音领先2位"
       },
       {
         "name": "QQ经典农场",
@@ -2196,7 +2197,8 @@
         "mergePlay": "社交+偷菜",
         "theme": "田园农场",
         "wxRank": 8,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "浪漫餐厅",
@@ -2204,7 +2206,8 @@
         "mergePlay": "合成+剧情经营",
         "theme": "餐厅改造",
         "wxRank": 24,
-        "dyRank": 10
+        "dyRank": 10,
+        "diff": "抖音领先14位"
       },
       {
         "name": "时尚百货城",
@@ -2212,7 +2215,8 @@
         "mergePlay": "模拟经营+连锁",
         "theme": "商场经营",
         "wxRank": 32,
-        "dyRank": 11
+        "dyRank": 11,
+        "diff": "抖音领先21位"
       },
       {
         "name": "向往的生活",
@@ -2220,7 +2224,8 @@
         "mergePlay": "二合+田园综艺IP",
         "theme": "田园综艺",
         "wxRank": 16,
-        "dyRank": 15
+        "dyRank": 15,
+        "diff": "抖音领先1位"
       },
       {
         "name": "梦幻消除战",
@@ -2228,7 +2233,8 @@
         "mergePlay": "消除+茶楼经营",
         "theme": "国风茶楼",
         "wxRank": 22,
-        "dyRank": 17
+        "dyRank": 17,
+        "diff": "抖音领先5位"
       },
       {
         "name": "杜拉拉升职记",
@@ -2236,7 +2242,8 @@
         "mergePlay": "模拟养成+剧情换装",
         "theme": "都市职场",
         "wxRank": "-",
-        "dyRank": 23
+        "dyRank": 23,
+        "diff": "仅抖音"
       },
       {
         "name": "肥鹅美食街",
@@ -2244,7 +2251,8 @@
         "mergePlay": "二合+模拟经营",
         "theme": "美食街",
         "wxRank": 25,
-        "dyRank": 48
+        "dyRank": 48,
+        "diff": "微信领先23位"
       },
       {
         "name": "时光大爆炸",
@@ -2252,7 +2260,8 @@
         "mergePlay": "模拟经营+RPG",
         "theme": "穿越经营",
         "wxRank": "-",
-        "dyRank": 63
+        "dyRank": 63,
+        "diff": "仅抖音"
       },
       {
         "name": "我的休闲时光",
@@ -2260,7 +2269,8 @@
         "mergePlay": "放置经营+装修",
         "theme": "休闲生活",
         "wxRank": 65,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "这城有良田",
@@ -2268,7 +2278,8 @@
         "mergePlay": "模拟经营+种田",
         "theme": "古代种田",
         "wxRank": 69,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "空格之境",
@@ -2276,7 +2287,8 @@
         "mergePlay": "二合+纺织经营",
         "theme": "江南纺织",
         "wxRank": 80,
-        "dyRank": 77
+        "dyRank": 77,
+        "diff": "抖音领先3位"
       },
       {
         "name": "梦幻经理人",
@@ -2284,7 +2296,8 @@
         "mergePlay": "模拟经营+体育",
         "theme": "足球经理",
         "wxRank": 79,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "宫廷风云",
@@ -2292,7 +2305,8 @@
         "mergePlay": "换装养成+经营",
         "theme": "古风宫廷",
         "wxRank": "-",
-        "dyRank": 82
+        "dyRank": 82,
+        "diff": "仅抖音"
       },
       {
         "name": "肥鹅健身房",
@@ -2300,7 +2314,8 @@
         "mergePlay": "二合+模拟经营",
         "theme": "健身房",
         "wxRank": 90,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "深海花园",
@@ -2308,7 +2323,8 @@
         "mergePlay": "模拟经营",
         "theme": "生活模拟",
         "wxRank": 91,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "织梦森林",
@@ -2316,7 +2332,8 @@
         "mergePlay": "二合+模拟经营",
         "theme": "森林种树",
         "wxRank": 92,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       },
       {
         "name": "最强祖师",
@@ -2324,7 +2341,8 @@
         "mergePlay": "模拟经营+修仙",
         "theme": "修仙宗门",
         "wxRank": "-",
-        "dyRank": 95
+        "dyRank": 95,
+        "diff": "仅抖音"
       },
       {
         "name": "幸福小渔村",
@@ -2332,7 +2350,8 @@
         "mergePlay": "模拟经营",
         "theme": "生活模拟",
         "wxRank": 98,
-        "dyRank": "-"
+        "dyRank": "-",
+        "diff": "仅微信"
       }
     ]
   },
