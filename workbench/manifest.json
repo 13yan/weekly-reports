@@ -2,6 +2,7 @@
   "updatedAt": "2026-06-05T10:45:00+08:00",
   "reports": [
     {
+      "id": "20260605",
       "label": "2026年6月第1周",
       "date": "2026-06-05",
       "dirName": "2026/2026年6月第1周（数据截止6月5日）",
@@ -54,8 +55,5 @@
       "highlight": "模拟经营和塔防持续领跑双平台，跨平台发行趋势明显",
       "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
     }
-  ,
-  ,
-    {"id": "20260605", "label": "2026年6月第1周（数据截止6月5日）", "date": "2026-06-05", "dirName": "2026/2026年6月第1周（数据截止6月5日）", "hasData": true, "highlight": "本周各平台均无新政策发布，多个激励政策将于6月30日截止", "stats": {"wxCount": 0, "dyCount": 0, "crossPlatform": 0, "categories": 0}}
   ]
 }
