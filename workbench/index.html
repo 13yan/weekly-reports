@@ -256,7 +256,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 var BASE = '../', MANIFEST_URL = './manifest.json';
 var CHART_COLORS = ['#667eea','#764ba2','#e74c3c','#e67e22','#27ae60','#2980b9','#8e44ad','#f39c12','#1abc9c','#2ecc71','#e91e63','#00bcd4','#ff5722','#607d8b','#9b59b6'];
 
-var DATA = {}, weekKeys = [], currentKey = null;
+var DATA = {}, weekKeys = [], currentKey = null, reportMap = {};
 var chartInstances = {}, navSections = [];
 
 // ====== 启动 ======
@@ -278,6 +278,8 @@ function init() {
       );
     });
     return Promise.all(promises).then(function() {
+      // 建立 id → report 映射
+      reports.forEach(function(r) { reportMap[r.id] = r; });
       // 清掉加载失败的 key
       weekKeys = weekKeys.filter(function(k) { return DATA[k]; });
       if (!weekKeys.length) return renderEmpty();
@@ -512,15 +514,20 @@ function renderSidebarList(reports) {
   var el = document.getElementById('sidebarWeekList');
   if (!el) return;
   el.innerHTML = reports.map(function(r, i) {
-    return '<a class="nav-item" href="#" data-sidebar-week="' + r.id + '"><span>' + escHTML(r.label) + '</span>' + (i === 0 ? '<span class="badge">最新</span>' : '') + '</a>';
+    return '<a class="nav-item" href="#" data-sidebar-week="' + r.id + '" data-dir="' + escAttr(r.dirName) + '" data-hasdata="' + (r.hasData !== false) + '"><span>' + escHTML(r.label) + '</span>' + (i === 0 ? '<span class="badge">最新</span>' : '') + '</a>';
   }).join('');
   el.querySelectorAll('[data-sidebar-week]').forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault();
       var wk = this.getAttribute('data-sidebar-week');
-      if (wk && wk !== currentKey && DATA[wk]) {
+      var hasData = this.getAttribute('data-hasdata') === 'true';
+      if (hasData && DATA[wk]) {
         renderPage(wk);
         if (window.innerWidth <= 768) toggleSidebar();
+      } else {
+        // 无数据则跳转到原始 HTML 报告
+        var dir = this.getAttribute('data-dir');
+        window.open(BASE + dir + '/index.html', '_blank');
       }
     });
   });
@@ -725,6 +732,7 @@ function escHTML(s) {
   if (!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+function escAttr(s) { return escHTML(s); }
 
 // ====== 启动 ======
 init();
