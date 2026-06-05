@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-06-04T10:07:00+08:00",
+  "updatedAt": "2026-06-05T10:45:00+08:00",
   "reports": [
+    {
+      "id": "20260605",
+      "label": "2026年6月第1周",
+      "date": "2026-06-05",
+      "dirName": "2026/2026年6月第1周（数据截止6月5日）",
+      "hasData": true,
+      "highlight": "微信小游戏畅销榜Top100覆盖12个品类，模拟经营11款领跑，跨平台30款",
+      "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 30, "categories": 12 }
+    },
     {
       "id": "20260603",
       "label": "2026年6月第1周",
@@ -46,8 +55,5 @@
       "highlight": "模拟经营和塔防持续领跑双平台，跨平台发行趋势明显",
       "stats": { "wxCount": 100, "dyCount": 100, "crossPlatform": 46, "categories": 17 }
     }
-  ,
-  ,
-    {"id": "20260605", "label": "2026年6月第1周（数据截止6月5日）", "date": "2026-06-05", "dirName": "2026/2026年6月第1周（数据截止6月5日）", "hasData": true, "highlight": "微信小游戏开发者大会发布历史上最大力度政策，5000万流水不分成+2000万激励金+IAA最高90%分成", "stats": {"wxCount": 0, "dyCount": 0, "crossPlatform": 0, "categories": 0}}
   ]
 }
