@@ -1,0 +1,831 @@
+{
+  "version": 1,
+  "week": {
+    "label": "2026年第23周",
+    "date": "2026-06-04",
+    "weekNumber": 23
+  },
+  "summary": {
+    "core": "【市场格局】微信小游戏畅销榜Top100覆盖13个品类，模拟经营（13款）、ARPG（13款）、塔防（14款）为三大支柱；抖音畅销榜模拟经营（11款）、塔防（16款）、ARPG（20款）居前。双平台Top100中51款游戏跨平台上榜，跨平台发行已成行业标配。\n【头部表现】微信Top5：无尽冬日、向僵尸开炮、我的花园世界、永远的蔚蓝星球、疯狂水世界；抖音Top5：灵画师、我的花园世界、永远的蔚蓝星球、无尽冬日、跃动小子。无尽冬日、向僵尸开炮、我的花园世界、永远的蔚蓝星球、疯狂水世界、三国：冰河时代等10款游戏同时进入双平台Top20。\n【模拟经营聚焦】微信13款/抖音11款上榜。\"二合+模拟经营\"融合玩法占比超40%，低门槛+长留存成为品类核心竞争力。修仙、怀旧、体育、职场等差异化题材表现亮眼。\n【本周重大事件】微信小游戏开发者大会（5.27）发布IAP首发新游最高5000万流水不分成+2000万激励金+PC高性能模式+IAA最高90%分成，政策力度历史最大；5/28-29媒体密集报道，AI智能体+动态反外挂+安全升级三大技术方向落地，平台明确\"从连接到长青\"战略转向。\n【核心关注】PC端成为第二增长曲线（独占用户40%/ARPU超移动130%）；苹果税降至15%~25%+微小iOS支付跑通；AI务实落地（AIM+增390%/直玩转化率提3倍）；模拟经营、塔防、SLG三大品类持续领跑。",
+    "highlight": "微信小游戏开发者大会发布历史上最大力度政策，5000万流水不分成+2000万激励金+IAA最高90%分成",
+    "keyEvents": [
+      "微信小游戏开发者大会（5.27）发布史上最大力度政策",
+      "AI智能体+动态反外挂+安全升级三大技术落地",
+      "iOS支付跑通，苹果税降至15%~25%"
+    ],
+    "coreConcerns": [
+      "PC端成为第二增长曲线（独占用户40%/ARPU超移动130%）",
+      "苹果税降至15%~25%+微小iOS支付跑通",
+      "AI务实落地（AIM+增390%/直玩转化率提3倍）",
+      "模拟经营、塔防、SLG三大品类持续领跑"
+    ]
+  },
+  "stats": {
+    "wxCount": 100,
+    "dyCount": 100,
+    "crossPlatform": 51,
+    "categories": 13,
+    "wxTop5": [
+      "无尽冬日",
+      "向僵尸开炮",
+      "我的花园世界",
+      "永远的蔚蓝星球",
+      "疯狂水世界"
+    ],
+    "dyTop5": [
+      "灵画师",
+      "我的花园世界",
+      "永远的蔚蓝星球",
+      "无尽冬日",
+      "跃动小子"
+    ]
+  },
+  "top20": {
+    "wx": [
+      {
+        "rank": 1,
+        "name": "无尽冬日",
+        "category": "SLG/策略",
+        "change": "霸榜1天",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 2,
+        "name": "向僵尸开炮",
+        "category": "塔防",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 3,
+        "name": "我的花园世界",
+        "category": "模拟经营",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 4,
+        "name": "永远的蔚蓝星球",
+        "category": "塔防",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 5,
+        "name": "疯狂水世界",
+        "category": "SLG/策略",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 6,
+        "name": "三国：冰河时代",
+        "category": "SLG/策略",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 7,
+        "name": "跃动小子",
+        "category": "放置RPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 8,
+        "name": "QQ经典农场",
+        "category": "模拟经营",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 9,
+        "name": "灵画师",
+        "category": "ARPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 10,
+        "name": "占城大师",
+        "category": "塔防",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 11,
+        "name": "保卫向日葵",
+        "category": "塔防",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 12,
+        "name": "西游降妖记",
+        "category": "ARPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 13,
+        "name": "奔奔王国",
+        "category": "塔防",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 14,
+        "name": "烈焰觉醒",
+        "category": "ARPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 15,
+        "name": "道友来挖宝",
+        "category": "放置RPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 16,
+        "name": "腾讯欢乐斗地主",
+        "category": "棋牌",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 17,
+        "name": "城主别慌张",
+        "category": "ARPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 18,
+        "name": "向往的生活",
+        "category": "模拟经营",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 19,
+        "name": "神器传说",
+        "category": "放置RPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 20,
+        "name": "寻道大千",
+        "category": "卡牌RPG",
+        "change": "- 稳定",
+        "changeValue": 0,
+        "isCrossPlatform": false
+      }
+    ],
+    "dy": [
+      {
+        "rank": 1,
+        "name": "灵画师",
+        "category": "ARPG",
+        "change": "3",
+        "changeValue": 3,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 2,
+        "name": "我的花园世界",
+        "category": "模拟经营",
+        "change": "1",
+        "changeValue": 1,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 3,
+        "name": "永远的蔚蓝星球",
+        "category": "塔防",
+        "change": "17",
+        "changeValue": 17,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 4,
+        "name": "无尽冬日",
+        "category": "SLG/策略",
+        "change": "4",
+        "changeValue": 4,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 5,
+        "name": "跃动小子",
+        "category": "放置RPG",
+        "change": "4",
+        "changeValue": 4,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 6,
+        "name": "疯狂水世界",
+        "category": "SLG/策略",
+        "change": "4",
+        "changeValue": 4,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 7,
+        "name": "三国：冰河时代",
+        "category": "SLG/策略",
+        "change": "1",
+        "changeValue": 1,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 8,
+        "name": "超能下蛋鸭",
+        "category": "放置RPG",
+        "change": "6",
+        "changeValue": 6,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 9,
+        "name": "狱国争霸",
+        "category": "SLG/策略",
+        "change": "6",
+        "changeValue": 6,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 10,
+        "name": "传奇之业",
+        "category": "ARPG",
+        "change": "3",
+        "changeValue": 3,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 11,
+        "name": "浪漫餐厅",
+        "category": "模拟经营",
+        "change": "1",
+        "changeValue": 1,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 12,
+        "name": "占城大师",
+        "category": "塔防",
+        "change": "1",
+        "changeValue": 1,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 13,
+        "name": "向僵尸开炮",
+        "category": "塔防",
+        "change": "6",
+        "changeValue": 6,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 14,
+        "name": "时尚百货城",
+        "category": "模拟经营",
+        "change": "2",
+        "changeValue": 2,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 15,
+        "name": "梦幻消除战",
+        "category": "模拟经营",
+        "change": "4",
+        "changeValue": 4,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 16,
+        "name": "妖怪金手指",
+        "category": "卡牌RPG",
+        "change": "11",
+        "changeValue": 11,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 17,
+        "name": "杜拉拉升职记",
+        "category": "模拟经营",
+        "change": "18",
+        "changeValue": 18,
+        "isCrossPlatform": false
+      },
+      {
+        "rank": 18,
+        "name": "四季合合",
+        "category": "合成消除",
+        "change": "4",
+        "changeValue": 4,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 19,
+        "name": "指尖幻影",
+        "category": "塔防",
+        "change": "5",
+        "changeValue": 5,
+        "isCrossPlatform": true
+      },
+      {
+        "rank": 20,
+        "name": "向往的生活",
+        "category": "模拟经营",
+        "change": "2",
+        "changeValue": 2,
+        "isCrossPlatform": true
+      }
+    ]
+  },
+  "simulation": {
+    "wxCount": 13,
+    "dyCount": 11,
+    "games": [
+      {
+        "name": "我的花园世界",
+        "company": "厦门麟贝互娱科技有限公司",
+        "mergePlay": "二合+模拟经营",
+        "theme": "花园种花",
+        "wxRank": 3,
+        "dyRank": 2
+      },
+      {
+        "name": "QQ经典农场",
+        "company": "深圳市腾讯计算机系统有限公司",
+        "mergePlay": "社交+偷菜",
+        "theme": "田园农场",
+        "wxRank": 8,
+        "dyRank": "-"
+      },
+      {
+        "name": "浪漫餐厅",
+        "company": "北京柠檬微趣科技股份有限公司",
+        "mergePlay": "合成+剧情经营",
+        "theme": "餐厅改造",
+        "wxRank": 21,
+        "dyRank": 11
+      },
+      {
+        "name": "时尚百货城",
+        "company": "深圳市爱的番茄科技有限公司",
+        "mergePlay": "模拟经营+连锁",
+        "theme": "商场经营",
+        "wxRank": 31,
+        "dyRank": 14
+      },
+      {
+        "name": "梦幻消除战",
+        "company": "广州喜势网络科技有限公司",
+        "mergePlay": "消除+茶楼经营",
+        "theme": "国风茶楼",
+        "wxRank": 25,
+        "dyRank": 15
+      },
+      {
+        "name": "杜拉拉升职记",
+        "company": "苏州沁游网络科技有限公司",
+        "mergePlay": "模拟养成+剧情换装",
+        "theme": "都市职场",
+        "wxRank": "-",
+        "dyRank": 17
+      },
+      {
+        "name": "向往的生活",
+        "company": "深圳市必凡娱乐科技有限公司",
+        "mergePlay": "二合+田园综艺IP",
+        "theme": "田园综艺",
+        "wxRank": 18,
+        "dyRank": 20
+      },
+      {
+        "name": "肥鹅美食街",
+        "company": "北京豪腾创想科技有限公司",
+        "mergePlay": "二合+模拟经营",
+        "theme": "美食街",
+        "wxRank": 24,
+        "dyRank": 48
+      },
+      {
+        "name": "织梦森林",
+        "company": "安徽雷虎网络科技有限公司",
+        "mergePlay": "二合+模拟经营",
+        "theme": "森林种树",
+        "wxRank": 47,
+        "dyRank": 100
+      },
+      {
+        "name": "我的休闲时光",
+        "company": "广州卓动信息科技有限公司",
+        "mergePlay": "放置经营+装修",
+        "theme": "休闲生活",
+        "wxRank": 59,
+        "dyRank": "-"
+      },
+      {
+        "name": "时光大爆炸",
+        "company": "安徽盈趣网络科技有限公司",
+        "mergePlay": "模拟经营+RPG",
+        "theme": "穿越经营",
+        "wxRank": "-",
+        "dyRank": 61
+      },
+      {
+        "name": "这城有良田",
+        "company": "上海益玩网络科技有限公司",
+        "mergePlay": "模拟经营+种田",
+        "theme": "古代种田",
+        "wxRank": 65,
+        "dyRank": "-"
+      },
+      {
+        "name": "肥鹅健身房",
+        "company": "北京豪腾创想科技有限公司",
+        "mergePlay": "二合+模拟经营",
+        "theme": "健身房",
+        "wxRank": 68,
+        "dyRank": "-"
+      },
+      {
+        "name": "翡翠大师",
+        "company": "青岛蓝飞互娱科技股份有限公司",
+        "mergePlay": "模拟经营",
+        "theme": "生活模拟",
+        "wxRank": "-",
+        "dyRank": 73
+      },
+      {
+        "name": "梦幻经理人",
+        "company": "上海望伯纳乌科技有限公司",
+        "mergePlay": "模拟经营+体育",
+        "theme": "足球经理",
+        "wxRank": 85,
+        "dyRank": "-"
+      },
+      {
+        "name": "空格之境",
+        "company": "江西启游互动科技有限公司",
+        "mergePlay": "二合+纺织经营",
+        "theme": "江南纺织",
+        "wxRank": 87,
+        "dyRank": 93
+      }
+    ]
+  },
+  "movers": [
+    {
+      "name": "疯狂积木城",
+      "platform": "微信",
+      "category": "益智",
+      "rise": 999,
+      "company": "--",
+      "insight": "益智题材"
+    },
+    {
+      "name": "极限萌怪",
+      "platform": "抖音",
+      "category": "卡牌RPG",
+      "rise": 999,
+      "company": "霍尔果斯天翔信息技术有限公司",
+      "insight": "卡牌RPG题材"
+    },
+    {
+      "name": "问你服不服",
+      "platform": "抖音",
+      "category": "益智",
+      "rise": 999,
+      "company": "快点文化传播（上海）有限公司",
+      "insight": "益智题材"
+    },
+    {
+      "name": "翡翠大师",
+      "platform": "抖音",
+      "category": "模拟经营",
+      "rise": 999,
+      "company": "青岛蓝飞互娱科技股份有限公司",
+      "insight": "模拟经营题材"
+    },
+    {
+      "name": "王者征途",
+      "platform": "抖音",
+      "category": "MMO",
+      "rise": 999,
+      "company": "上海巨人统平网络科技有限公司",
+      "insight": "MMO题材"
+    },
+    {
+      "name": "圣域守护",
+      "platform": "抖音",
+      "category": "ARPG",
+      "rise": 999,
+      "company": "杭州悦轶网络科技有限公司",
+      "insight": "ARPG题材"
+    },
+    {
+      "name": "找茬砍价王",
+      "platform": "抖音",
+      "category": "益智",
+      "rise": 999,
+      "company": "快点文化传播（上海）有限公司",
+      "insight": "益智题材"
+    },
+    {
+      "name": "空格之境",
+      "platform": "抖音",
+      "category": "模拟经营",
+      "rise": 999,
+      "company": "江西启游互动科技有限公司",
+      "insight": "二合+江南纺织经营，差异化题材突围"
+    },
+    {
+      "name": "道友来挖宝",
+      "platform": "抖音",
+      "category": "放置RPG",
+      "rise": 999,
+      "company": "深圳雷霆信息技术有限公司",
+      "insight": "放置RPG题材"
+    },
+    {
+      "name": "龙骑争霸",
+      "platform": "抖音",
+      "category": "ARPG",
+      "rise": 999,
+      "company": "绍兴玩味科技有限公司",
+      "insight": "ARPG题材"
+    },
+    {
+      "name": "找个啥",
+      "platform": "抖音",
+      "category": "益智",
+      "rise": 999,
+      "company": "长沙指米网络科技有限公司",
+      "insight": "益智题材"
+    },
+    {
+      "name": "超级消消",
+      "platform": "抖音",
+      "category": "消除",
+      "rise": 999,
+      "company": "广州联曼信息科技有限公司",
+      "insight": "消除题材"
+    },
+    {
+      "name": "超凡三国",
+      "platform": "抖音",
+      "category": "ARPG",
+      "rise": 67,
+      "company": "深圳百里光芒网络科技有限公司",
+      "insight": "ARPG题材"
+    },
+    {
+      "name": "织梦森林",
+      "platform": "抖音",
+      "category": "模拟经营",
+      "rise": 63,
+      "company": "安徽雷虎网络科技有限公司",
+      "insight": "二合+森林种树，治愈系新游"
+    },
+    {
+      "name": "王者军团",
+      "platform": "抖音",
+      "category": "塔防",
+      "rise": 42,
+      "company": "广州游龙互娱网络科技有限公司",
+      "insight": "塔防题材"
+    },
+    {
+      "name": "王者之弈",
+      "platform": "抖音",
+      "category": "卡牌RPG",
+      "rise": 38,
+      "company": "海南椰路信息科技有限公司",
+      "insight": "自走棋+卡牌融合，策略竞技新方向"
+    },
+    {
+      "name": "怪物冒险之旅",
+      "platform": "抖音",
+      "category": "放置RPG",
+      "rise": 35,
+      "company": "广州游动网络科技有限公司",
+      "insight": "放置RPG题材"
+    },
+    {
+      "name": "剑侠传奇",
+      "platform": "抖音",
+      "category": "ARPG",
+      "rise": 31,
+      "company": "深圳市小黑龙网络科技有限公司",
+      "insight": "ARPG题材"
+    },
+    {
+      "name": "楚新钓",
+      "platform": "抖音",
+      "category": "放置RPG",
+      "rise": 27,
+      "company": "海南易多量科技有限公司",
+      "insight": "放置钓鱼RPG，抖音内容营销带动上升"
+    },
+    {
+      "name": "灵决苍穹",
+      "platform": "抖音",
+      "category": "ARPG",
+      "rise": 27,
+      "company": "杭州悦玩互娱网络科技有限公司",
+      "insight": "ARPG题材"
+    },
+    {
+      "name": "魔灵纪元",
+      "platform": "抖音",
+      "category": "放置RPG",
+      "rise": 26,
+      "company": "郑州信跃网络科技有限公司",
+      "insight": "放置回合制黑马，单周飙升61位，抖音内容营销爆发"
+    },
+    {
+      "name": "英雄大对决",
+      "platform": "抖音",
+      "category": "塔防",
+      "rise": 26,
+      "company": "重庆煌秀信息技术有限公司",
+      "insight": "策略塔防随心布局，新兴黑马"
+    },
+    {
+      "name": "第七大道新弹弹堂",
+      "platform": "抖音",
+      "category": "卡牌RPG",
+      "rise": 26,
+      "company": "深圳第七大道科技有限公司",
+      "insight": "卡牌RPG题材"
+    },
+    {
+      "name": "时光大爆炸",
+      "platform": "抖音",
+      "category": "模拟经营",
+      "rise": 25,
+      "company": "安徽盈趣网络科技有限公司",
+      "insight": "模拟经营题材"
+    },
+    {
+      "name": "一路狂飙",
+      "platform": "抖音",
+      "category": "塔防",
+      "rise": 25,
+      "company": "世熠网络科技（上海）有限公司",
+      "insight": "塔防题材"
+    },
+    {
+      "name": "一步两步",
+      "platform": "抖音",
+      "category": "放置RPG",
+      "rise": 23,
+      "company": "厦门游力信息科技有限公司",
+      "insight": "模拟经营融合肉鸽塔防，创新玩法驱动"
+    },
+    {
+      "name": "佣兵小镇",
+      "platform": "抖音",
+      "category": "卡牌RPG",
+      "rise": 21,
+      "company": "成都爱奇艺影视文化有限公司",
+      "insight": "卡牌RPG题材"
+    },
+    {
+      "name": "遗弃之地",
+      "platform": "抖音",
+      "category": "塔防",
+      "rise": 21,
+      "company": "北京智诚互娱科技有限公司",
+      "insight": "塔防题材"
+    },
+    {
+      "name": "怪兽盟约",
+      "platform": "抖音",
+      "category": "卡牌RPG",
+      "rise": 20,
+      "company": "深圳游世界科技有限公司",
+      "insight": "卡牌RPG题材"
+    },
+    {
+      "name": "杜拉拉升职记",
+      "platform": "抖音",
+      "category": "模拟经营",
+      "rise": 18,
+      "company": "苏州沁游网络科技有限公司",
+      "insight": "模拟经营题材"
+    },
+    {
+      "name": "全境守卫",
+      "platform": "抖音",
+      "category": "塔防",
+      "rise": 18,
+      "company": "重庆汇量云科技有限公司",
+      "insight": "塔防题材"
+    },
+    {
+      "name": "永远的蔚蓝星球",
+      "platform": "抖音",
+      "category": "塔防",
+      "rise": 17,
+      "company": "广州颂悦信息技术有限公司",
+      "insight": "塔防题材"
+    },
+    {
+      "name": "梦幻西游网页版",
+      "platform": "抖音",
+      "category": "放置RPG",
+      "rise": 16,
+      "company": "广州网易计算机系统有限公司",
+      "insight": "经典IP网页版，抖音端获量"
+    },
+    {
+      "name": "青云诀之伏魔",
+      "platform": "抖音",
+      "category": "MMO",
+      "rise": 16,
+      "company": "海南青时信息技术有限公司",
+      "insight": "国风仙侠RPG，微信端新进榜"
+    },
+    {
+      "name": "消的有点菜",
+      "platform": "抖音",
+      "category": "消除",
+      "rise": 15,
+      "company": "长沙指极星科技有限公司",
+      "insight": "消除题材"
+    }
+  ],
+  "policies": {
+    "wechat": "<h3>&#128227; 微信小游戏</h3>\n  <div class=\"policy-box wx\">\n    <p><strong>本周更新政策：</strong>2026年5月27日微信小游戏开发者大会（杭州，主题\"从连接到长青\"）发布史上最大力度政策更新：</p>\n    <ol>\n      <li><strong>IAP新游激励：</strong>首发新游最高<span class=\"hl\">5000万元</span>流水全额不分成+最高<span class=\"hl\">2000万元</span>激励金，非首发新游首100万流水不分成，长线运营游戏30天内每200万安卓现金投放消耗→5%广告金激励。</li>\n      <li><strong>IAA广告变现激励：</strong>方案一（轻中度）现金50%+广告金40%→总<span class=\"hl\">90%</span>；方案二（长线精品）现金50%+广告金35%→总<span class=\"hl\">85%</span>。新增回流政策：流失超45天用户召回激励与新用户等同。</li>\n      <li><strong>PC端战略：</strong>额外<span class=\"hl\">10%</span>专属广告金返还，2026年推出PC高性能模式（大屏适配、键鼠操作）。</li>\n      <li><strong>安全升级（5/28）：</strong>动态反外挂（零接入成本）+代码加固3.0（Unity WASM）+一站式维权平台。</li>\n    </ol>\n    <p><strong>市场动态/厂商反应：</strong>平台MAU突破<span class=\"hl\">5亿</span>，开发者超<span class=\"hl\">50万</span>（80%为30人以下团队），DAU超百万游戏超80款，季度流水超千万游戏超300款，2026年1-5月变现收入同比增长<span class=\"hl\">20%</span>。5/28-29媒体密集报道，AI智能体+动态反外挂+安全升级三大技术方向落地。</p>\n    <p>平台明确\"从连接到长青\"战略转向，重点方向：经典玩法+IP、女性用户（\"她力量\"）、玩法创新融合。</p>\n    <p><strong>结论/建议：</strong>微信小游戏政策力度历史最大，IAP新游5000万流水不分成+2000万激励金是核心利好。PC端成为第二增长曲线（独占用户<span class=\"hl\">40%</span>/ARPU超移动<span class=\"hl\">130%</span>），PC高性能模式将吸引更多中重度游戏开发者。</p>\n    <p>AI务实落地：AIM+智能投放Q2消耗同比增长<span class=\"hl\">390%</span>，直玩形态点击转化率提升<span class=\"hl\">3倍</span>。建议开发者重点关注PC端适配和AI智能体工具链，把握政策窗口期。</p>\n  </div>",
+    "apple": "<h3>&#127822; 苹果</h3>\n  <div class=\"policy-box apple\">\n    <p><strong>本周更新政策：</strong></p>\n    <ol>\n      <li><strong>佣金率调整（2026年3月15日起）：</strong>标准App内购买佣金<span class=\"hl\">30%→25%</span>；小型厂商游戏合作伙伴计划<span class=\"hl\">15%</span>；首年后自动续费订阅<span class=\"hl\">15%→12%</span>。</li>\n      <li><strong>iOS支付突破：</strong>2025年底苹果与腾讯达成协议，苹果从用户购买金额中抽取<span class=\"hl\">15%</span>分成；微信团队在5.27开发者大会上确认\"流程已跑通\"。</li>\n    </ol>\n    <p><strong>市场动态/厂商反应：</strong>iOS支付链路打通为微信小游戏打开了iOS用户付费的新增量通道，对中重度IAP游戏利好显著。</p>\n    <p><strong>结论/建议：</strong>苹果税降至<span class=\"hl\">12%~25%</span>+微小iOS支付跑通，iOS用户付费增量可观，建议中重度IAP游戏开发者尽快接入iOS支付通道，降低渠道成本。</p>\n  </div>",
+    "douyin": "<h3>&#127925; 抖音小游戏</h3>\n  <div class=\"policy-box dy\">\n    <p><strong>本周更新政策：</strong></p>\n    <ol>\n      <li><strong>历史任务金激活计划（5月执行）：</strong>4月单款游戏分成前总收入≥<span class=\"hl\">1万元</span>可激活，5月内一次性发放至星图账户，有效期<span class=\"hl\">180天</span>。</li>\n      <li><strong>Q1 IAP激励政策（持续至Q2）：</strong>最高<span class=\"hl\">40%</span>现金消耗赠款，单款封顶<span class=\"hl\">400万元</span>；新游同发门槛简化，日均消耗增量≥1万元即可享受；重点品类（模拟经营、塔防、RPG）额外<span class=\"hl\">20%</span>返点。</li>\n      <li><strong>任务金限时激励（至2026年6月30日）：</strong>发行人场景IAA广告收入<span class=\"hl\">20%</span>任务金、投广IAA <span class=\"hl\">5%</span>任务金、投广IAP <span class=\"hl\">4%</span>任务金、自然IAP <span class=\"hl\">10%</span>任务金。</li>\n    </ol>\n    <p><strong>市场动态/厂商反应：</strong>新游同发门槛简化后中小团队参与度提升，日均消耗增量≥1万元即可享受激励。多项激励活动<span class=\"hl\">6月30日</span>截止，Q3政策尚未明确，市场存在观望情绪。</p>\n    <p><strong>结论/建议：</strong>抖音激励力度维持高位，建议开发者把握Q2窗口期加速投放，尤其是模拟经营、塔防、RPG重点品类可获额外返点。密切关注Q3政策调整方向及PC端小游戏入驻政策是否放宽。</p>\n  </div>",
+    "android": "<h3>&#128241; 华为 / 小米 / OPPO / vivo / TapTap</h3>\n  <div class=\"policy-box\">\n    <p><strong>本周更新政策：</strong></p>\n    <ol>\n      <li><strong>ITGSA金标联盟（5月发布）：</strong>联盟成员vivo、小米、OPPO、荣耀等，统一内存管理规范，建立主动释放机制，适配截止<span class=\"hl\">2026年6月30日</span>。</li>\n      <li><strong>TapTap：</strong>维持<span class=\"hl\">0分成</span>策略不变，2026年聚焦社区内容生态和游戏评测体系完善。</li>\n    </ol>\n    <p><strong>市场动态/厂商反应：</strong>0分成策略持续吸引独立游戏和中小开发者入驻TapTap。金标联盟内存规范对Unity WASM小游戏有直接影响。</p>\n    <p><strong>结论/建议：</strong>金标联盟内存规范建议在6月30日前完成适配，避免审核风险。TapTap 0分成策略对独立开发者和创新玩法游戏持续友好，值得关注。</p>\n  </div>",
+    "banhao": "<h3>&#128220; 版号更新（5月26日）</h3>\n  <div class=\"policy-box\">\n    <p><strong>本周更新政策：</strong>共计<span class=\"hl\">158款</span>游戏获批（国产<span class=\"hl\">154款</span>+进口<span class=\"hl\">4款</span>），2026年累计发放版号<span class=\"hl\">779个</span>（同比增长<span class=\"hl\">19.66%</span>）。</p>\n    <p><strong>市场动态/厂商反应：</strong>重点厂商与产品：腾讯《追逐卡蕾多》（3D二次元机车RPG）、网易《诡影藏锋》（中式志怪搜打撤）、三七互娱《斗破苍穹：觉醒》（玄幻开放世界MMO）、莉莉丝《小冰冰斗蛐蛐》（休闲竞技）、朝夕光年《托托比亚》（冒险题材）、上海游卡《三国杀·烽烟策》（卡牌三端）。模拟经营品类过审约<span class=\"hl\">17款</span>，包括《犹格索托斯的庭院》（克苏鲁题材模拟经营叙事，Steam特别好评）、《桃源小镇》、《开间花店》等花卉园艺经营品类。</p>\n    <p><strong>结论/建议：</strong>版号供给持续高位，行业门槛降低。模拟经营品类供给充足（约17款），差异化题材（克苏鲁、园艺等细分赛道）仍有蓝海机会。头部大厂加速布局生活模拟赛道，品类竞争将加剧。</p>\n  </div>",
+    "industry": "<h3>&#128200; 行业动态</h3>\n  <div class=\"policy-box\">\n    <p><strong>本周更新政策：</strong>微信小游戏开发者大会（5.27·杭州）主题\"从连接到长青\"，MAU突破<span class=\"hl\">5亿</span>接近天花板，转向生态繁荣。李卿（产品总监）AI三判断：AI增强生产能力/短期体现于成本端/AI无法替代人类创意。</p>\n    <p><strong>市场动态/厂商反应：</strong></p>\n    <p><strong>AI务实落地：</strong>研发端AI智能体将原型开发从数周压缩至数小时；投放端AIM+Q2消耗同比增长<span class=\"hl\">390%</span>；用户端直玩形态点击转化率提升<span class=\"hl\">3倍</span>，注册成本降低<span class=\"hl\">80%</span>。AI漫剧Q1在播量约<span class=\"hl\">18万部</span>（较1月增<span class=\"hl\">200%+</span>）。</p>\n    <p><strong>头部厂商加速布局生活模拟赛道：</strong>腾讯《莉莉的迷你世界》、米哈游《星布谷地》预计2026年上线；行业正从\"数值驱动ARPG疲劳\"转向\"治愈系\"低压力生活模拟。</p>\n    <p><strong>行业大咖持续流向小游戏赛道：</strong>原《射雕》制作人（<span class=\"hl\">600人</span>团队/投入近<span class=\"hl\">10亿</span>项目关停后）低调创业竖屏小游戏。</p>\n    <p><strong>小游戏获客报告：</strong><span class=\"hl\">67%</span>新用户来自付费买量（两年前约<span class=\"hl\">40%</span>），自然增长红利消退；IAP占比升至<span class=\"hl\">68%</span>，小游戏从\"IAA轻量\"转向\"IAP中重度\"。</p>\n    <p><strong>结论/建议：</strong>行业正从\"数值驱动ARPG疲劳\"转向\"治愈系\"低压力生活模拟，生活模拟赛道值得开发者重点关注和布局。</p>\n    <p>自然增长红利消退（付费买量占比从<span class=\"hl\">40%</span>升至<span class=\"hl\">67%</span>），获客成本持续上升，建议精细化运营和优化ROI模型。小游戏从IAA轻量转向IAP中重度，付费设计能力成为核心竞争壁垒。</p>\n  </div>\n</div>\n\n<!-- ====== 六、本周趋势观察 ====== -->\n<div class=\"section\">\n  <h2>&#9733; 六、本周趋势观察</h2>\n  <ol class=\"trend-list\">\n    <li><strong>SLG品类双平台领先：</strong>三国：冰河时代、无尽冬日、疯狂水世界等SLG/策略游戏在双平台均表现强势，小游戏渠道的SLG LTV潜力已被验证。</li>\n    <li><strong>塔防品类供给旺盛：</strong>向僵尸开炮、占城大师、保卫向日葵等多款同时上榜，塔防+融合玩法成主流方向，Unity WASM加固全面支持利好Unity开发的塔防产品。</li>\n    <li><strong>模拟经营长线最稳健：</strong>微信13款/抖音11款上榜，用户生命周期远超其他品类，IAA最高<span class=\"hl\">90%</span>分成新政利好模拟经营团队。</li>\n    <li><strong>跨平台发行成标配：</strong><span class=\"hl\">51</span>款游戏同时登上双平台畅销榜，头部产品跨平台渗透效应明显。</li>\n    <li><strong>抖音端内容营销效应显著：</strong>永远的蔚蓝星球(↑17)、杜拉拉升职记(↑18)、超凡三国(↑67)等依赖达人内容带量，与微信端获量逻辑差异明显。</li>\n    <li><strong>本周政策红利集中释放：</strong>微信开发者大会发布<span class=\"hl\">5000万</span>流水不分成+<span class=\"hl\">2000万</span>激励金+PC高性能模式+IAA最高<span class=\"hl\">90%</span>分成+安全体系升级，叠加抖音Q1历史最高激励、苹果税降至<span class=\"hl\">12%</span>，2026年是入局小游戏的最佳窗口期。</li>\n    <li><strong>PC端成为第二增长曲线：</strong>微信PC小游戏独占用户<span class=\"hl\">40%</span>，ARPU超移动端<span class=\"hl\">130%</span>，PC高性能模式将吸引更多中重度游戏开发者。</li>\n    <li><strong>AI务实落地元年：</strong>腾讯定位AI为\"效率基础设施\"，AIM+智能投放Q2消耗同比增<span class=\"hl\">390%</span>，直玩形态转化率提升<span class=\"hl\">3倍</span>；AI漫剧入局争夺注意力，小游戏核心护城河仍是社交关系链。</li>\n    <li><strong>版号供给持续高位：</strong><span class=\"hl\">5月</span><span class=\"hl\">158</span>款过审，累计<span class=\"hl\">779</span>个同比增长<span class=\"hl\">19.66%</span>，模拟经营品类约<span class=\"hl\">17</span>款供给充足，行业门槛持续降低。</li>\n  </ol>\n</div>\n\n<!-- ====== 页脚 ====== -->\n<footer>\n  <a href=\"../../\" class=\"back-to-index\">← 返回汇总报告</a>\n  市场资讯观察周报 · 数据来源：引力引擎 · 品类统一划分<br>\n  报告生成时间：2026年6月4日 | 品类标准：SLG/策略、模拟经营、塔防、ARPG、卡牌RPG、放置RPG、MMO、消除、棋牌、合成消除、射击、动作、益智\n</footer>\n\n</div>"
+  },
+  "trends": [
+    {
+      "title": "SLG品类双平台领先",
+      "content": "三国：冰河时代、无尽冬日、疯狂水世界等SLG/策略游戏在双平台均表现强势，小游戏渠道的SLG LTV潜力已被验证。"
+    },
+    {
+      "title": "塔防品类供给旺盛",
+      "content": "向僵尸开炮、占城大师、保卫向日葵等多款同时上榜，塔防+融合玩法成主流方向。"
+    },
+    {
+      "title": "模拟经营长线最稳健",
+      "content": "微信13款/抖音11款上榜，用户生命周期远超其他品类。"
+    },
+    {
+      "title": "跨平台发行成标配",
+      "content": "51款游戏同时登上双平台畅销榜，头部产品跨平台渗透效应明显。"
+    },
+    {
+      "title": "抖音端内容营销效应显著",
+      "content": "永远的蔚蓝星球(↑17)、杜拉拉升职记(↑18)等依赖达人内容带量，与微信端获量逻辑差异明显。"
+    },
+    {
+      "title": "本周政策红利集中释放",
+      "content": "微信开发者大会发布5000万流水不分成+2000万激励金+PC高性能模式+IAA最高90%分成。"
+    },
+    {
+      "title": "PC端成为第二增长曲线",
+      "content": "微信PC小游戏独占用户40%，ARPU超移动端130%。"
+    },
+    {
+      "title": "AI务实落地元年",
+      "content": "AIM+智能投放Q2消耗同比增390%，直玩形态转化率提升3倍。"
+    },
+    {
+      "title": "版号供给持续高位",
+      "content": "5月158款过审，累计779个同比增长19.66%，行业门槛持续降低。"
+    }
+  ]
+}

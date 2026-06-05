@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>微小/抖小 市场资讯工作台</title>
+<style>
+:root {
+  --primary: #07C160;
+  --primary-dark: #06AD56;
+  --bg: #f5f6fa;
+  --card-bg: #fff;
+  --text: #1a1a1a;
+  --text-secondary: #666;
+  --text-muted: #999;
+  --border: rgba(0,0,0,0.08);
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --font: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+#app { min-height: 100vh; padding-top: var(--safe-top); }
+
+/* ===== Header ===== */
+.header { background: var(--primary); color: #fff; padding: 20px 16px; position: sticky; top: 0; z-index: 100; }
+.header h1 { font-size: 20px; font-weight: 700; }
+.header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+.header-detail { background: var(--primary); color: #fff; padding: 12px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; }
+.back-btn { background: none; border: none; color: #fff; font-size: 16px; cursor: pointer; padding: 4px 0; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.back-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.header-detail h2 { font-size: 17px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ===== Footer ===== */
+.footer { text-align: center; padding: 20px 16px calc(20px + var(--safe-bottom)); color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 8px; }
+.footer .data-source { color: var(--text-secondary); font-size: 13px; margin-bottom: 4px; }
+
+/* ===== Master View ===== */
+.master { max-width: 800px; margin: 0 auto; padding: 12px; }
+.report-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; margin-bottom: 12px; cursor: pointer; transition: transform .15s, box-shadow .15s; border: 2px solid transparent; position: relative; }
+.report-card:active { transform: scale(0.98); }
+.report-card.latest { border-color: var(--primary); }
+.report-card .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.report-card .week-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: var(--text); }
+.report-card .latest-tag { font-size: 11px; background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+.report-card .card-date { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+.report-card .card-highlight { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; padding: 8px 12px; background: #f0faf4; border-radius: var(--radius-sm); border-left: 3px solid var(--primary); line-height: 1.5; }
+.report-card .card-highlight::before { content: '▸ '; color: var(--primary); font-weight: 700; }
+.report-card .card-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+.report-card .stat-item { text-align: center; padding: 6px 4px; background: #f8f9fb; border-radius: var(--radius-sm); }
+.report-card .stat-value { font-size: 18px; font-weight: 700; color: var(--primary-dark); }
+.report-card .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.report-card .card-action { text-align: right; font-size: 13px; color: var(--primary); font-weight: 600; }
+
+/* ===== Detail View ===== */
+.detail { max-width: 800px; margin: 0 auto; }
+.stats-bar { display: flex; gap: 8px; padding: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.stats-bar::-webkit-scrollbar { display: none; }
+.stat-chip { flex-shrink: 0; background: var(--card-bg); border-radius: var(--radius-sm); padding: 10px 14px; box-shadow: var(--shadow); text-align: center; min-width: 80px; }
+.stat-chip .chip-value { font-size: 20px; font-weight: 700; color: var(--primary-dark); }
+.stat-chip .chip-label { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+/* ===== Tab Bar ===== */
+.tab-bar { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--card-bg); border-bottom: 1px solid var(--border); position: sticky; top: 56px; z-index: 50; }
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-item { flex-shrink: 0; padding: 10px 16px; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; white-space: nowrap; }
+.tab-item.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-item:active { opacity: 0.7; }
+
+/* ===== Tab Content ===== */
+.tab-content { padding: 12px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ===== Summary Tab ===== */
+.summary-section { margin-bottom: 16px; }
+.summary-section .section-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 2px solid var(--primary); }
+.summary-text { font-size: 13px; line-height: 2.0; color: #444; white-space: pre-wrap; }
+.concern-list { list-style: none; }
+.concern-list li { padding: 8px 12px; background: #f0faf4; border-radius: var(--radius-sm); margin-bottom: 6px; font-size: 13px; border-left: 3px solid var(--primary); }
+.concern-list li::before { content: '◆ '; color: var(--primary); }
+.event-list { list-style: none; }
+.event-list li { padding: 8px 12px; background: #f8f9ff; border-radius: var(--radius-sm); margin-bottom: 6px; font-size: 13px; border-left: 3px solid #667eea; }
+.event-list li::before { content: '▸ '; color: #667eea; }
+
+/* ===== Tables ===== */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 16px; }
+.table-wrap h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+.rank-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.rank-table th { background: #f0f2f5; padding: 8px 6px; text-align: center; font-weight: 600; color: #555; border-bottom: 2px solid #dce0e8; white-space: nowrap; }
+.rank-table td { padding: 7px 6px; border-bottom: 1px solid #eee; text-align: center; }
+.rank-table td:first-child { font-weight: 700; color: var(--primary-dark); }
+.rank-table td:nth-child(2) { text-align: left; }
+.cross-tag { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 9px; background: #e8f8f5; color: #27ae60; margin-left: 3px; font-weight: 600; }
+.up { color: #e74c3c; font-weight: 600; }
+.down { color: #27ae60; font-weight: 600; }
+.stable { color: #95a5a6; }
+
+/* ===== Movers ===== */
+.mover-list { list-style: none; }
+.mover-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: var(--card-bg); border-radius: var(--radius-sm); margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.mover-info { flex: 1; }
+.mover-name { font-size: 14px; font-weight: 600; }
+.mover-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.mover-rise { font-size: 16px; font-weight: 700; color: #e74c3c; white-space: nowrap; }
+.mover-insight { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* ===== Policy ===== */
+.policy-list { list-style: none; }
+.policy-item { background: var(--card-bg); border-radius: var(--radius-sm); margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); overflow: hidden; }
+.policy-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; cursor: pointer; font-size: 14px; font-weight: 600; -webkit-user-select: none; user-select: none; }
+.policy-header:active { background: #f8f9fb; }
+.policy-arrow { font-size: 12px; color: var(--text-muted); transition: transform .2s; }
+.policy-arrow.open { transform: rotate(90deg); }
+.policy-body { display: none; padding: 0 14px 12px; font-size: 13px; line-height: 1.8; color: #555; }
+.policy-body.open { display: block; }
+.policy-body p { margin-bottom: 6px; }
+.policy-body ol { padding-left: 18px; margin: 4px 0; }
+.policy-body li { margin: 3px 0; }
+
+/* ===== Trends ===== */
+.trend-list { list-style: none; counter-reset: trend; }
+.trend-item { counter-increment: trend; padding: 10px 12px 10px 42px; background: var(--card-bg); border-radius: var(--radius-sm); margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; }
+.trend-item::before { content: counter(trend); position: absolute; left: 12px; top: 10px; width: 22px; height: 22px; background: var(--primary); color: #fff; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.trend-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.trend-content { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== Simulation ===== */
+.sim-overview { display: flex; gap: 12px; margin-bottom: 12px; }
+.sim-platform { flex: 1; text-align: center; padding: 10px; background: #f8f9fb; border-radius: var(--radius-sm); }
+.sim-platform .plat-name { font-size: 12px; color: var(--text-muted); }
+.sim-platform .plat-count { font-size: 24px; font-weight: 700; color: var(--primary-dark); }
+
+/* ===== Loading & Error ===== */
+.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { margin-top: 12px; font-size: 14px; color: var(--text-muted); }
+.error-view { text-align: center; padding: 60px 20px; }
+.error-icon { font-size: 48px; margin-bottom: 12px; }
+.error-text { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; }
+.retry-btn { padding: 8px 24px; background: var(--primary); color: #fff; border: none; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.retry-btn:active { opacity: 0.8; }
+.empty-view { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+.empty-icon { font-size: 48px; margin-bottom: 12px; }
+.empty-text { font-size: 14px; }
+
+/* ===== Desktop ===== */
+@media (min-width: 768px) {
+  .stats-bar { justify-content: center; }
+  .report-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .master { padding: 20px; }
+  .detail { padding: 0 20px; }
+  .tab-content { padding: 20px; }
+  .rank-table { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">加载中...</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const $app = document.getElementById('app');
+  const MANIFEST_URL = './manifest.json';
+  const BASE = '../'; // 相对 workbench/ 目录，指向仓库根
+
+  let state = {
+    view: 'loading',
+    reports: [],
+    currentReport: null,
+    currentTab: 'summary',
+    error: null
+  };
+
+  // ====== 渲染 ======
+  function render() {
+    switch (state.view) {
+      case 'loading': renderLoading(); break;
+      case 'error': renderError(); break;
+      case 'master': renderMaster(); break;
+      case 'detail': renderDetail(); break;
+      case 'empty': renderEmpty(); break;
+    }
+  }
+
+  function renderLoading() {
+    $app.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">加载中...</div></div>';
+  }
+
+  function renderError() {
+    $app.innerHTML = '<div class="error-view"><div class="error-icon">⚠️</div><div class="error-text">' + escapeHtml(state.error || '加载失败') + '</div><button class="retry-btn" onclick="window.__retry()">重试</button><div style="margin-top:16px;font-size:12px;color:#999">也可以 <a href="' + BASE + 'index.html" style="color:#07C160">查看汇总报告</a></div></div>';
+  }
+
+  function renderEmpty() {
+    $app.innerHTML = '<div class="empty-view"><div class="empty-icon">📋</div><div class="empty-text">暂无周报数据</div><div style="margin-top:8px;font-size:12px;color:#999">首份报告将在下次生成后自动显示</div><div style="margin-top:16px"><a href="' + BASE + 'index.html" style="color:#07C160;font-size:13px">查看汇总报告 →</a></div></div>';
+  }
+
+  function renderMaster() {
+    const reports = state.reports;
+    if (!reports || reports.length === 0) { state.view = 'empty'; return render(); }
+
+    const latestDate = reports.reduce((max, r) => r.date > max ? r.date : max, '');
+    const dataDate = latestDate ? formatDateDisplay(latestDate) : '--';
+
+    $app.innerHTML =
+      '<div class="header"><h1>微小/抖小 市场资讯工作台</h1><div class="subtitle">共 ' + reports.length + ' 份周报 · 自动同步</div></div>' +
+      '<div class="master">' +
+      reports.map(function(r, i) {
+        var isLatest = i === 0;
+        var hasDetail = r.hasData !== false;
+        return '<div class="report-card' + (isLatest ? ' latest' : '') + '" onclick="window.__openReport(' + i + ')">' +
+          '<div class="card-header">' +
+            '<span class="week-badge">' + (isLatest ? '<span class="latest-tag">最新</span> ' : '') + escapeHtml(r.label) + '</span>' +
+            '<span class="card-date">' + r.date + '</span>' +
+          '</div>' +
+          (r.highlight ? '<div class="card-highlight">' + escapeHtml(r.highlight) + '</div>' : '') +
+          '<div class="card-stats">' +
+            '<div class="stat-item"><div class="stat-value">' + (r.stats ? r.stats.wxCount : '--') + '</div><div class="stat-label">微信</div></div>' +
+            '<div class="stat-item"><div class="stat-value">' + (r.stats ? r.stats.dyCount : '--') + '</div><div class="stat-label">抖音</div></div>' +
+            '<div class="stat-item"><div class="stat-value">' + (r.stats ? r.stats.crossPlatform : '--') + '</div><div class="stat-label">跨平台</div></div>' +
+            '<div class="stat-item"><div class="stat-value">' + (r.stats ? r.stats.categories : '--') + '</div><div class="stat-label">品类</div></div>' +
+          '</div>' +
+          '<div class="card-action">' + (hasDetail ? '查看详情 →' : '查看完整报告 →') + '</div>' +
+        '</div>';
+      }).join('') +
+      '</div>' +
+      '<div class="footer"><div class="data-source">数据来源：引力引擎（数据截止时间 ' + dataDate + '）</div>由 Claude Code 每周自动生成</div>';
+  }
+
+  function renderDetail() {
+    var d = state.currentReport;
+    if (!d) { state.view = 'master'; return render(); }
+
+    var data = d.data || {};
+    var summary = data.summary || {};
+    var stats = data.stats || {};
+    var top20 = data.top20 || { wx: [], dy: [] };
+    var simulation = data.simulation || { wxCount: 0, dyCount: 0, games: [] };
+    var movers = data.movers || [];
+    var policies = data.policies || {};
+    var trends = data.trends || [];
+    var week = data.week || {};
+
+    var tabs = ['summary', 'top20', 'simulation', 'movers', 'policies', 'trends'];
+    var tabLabels = { summary: '摘要', top20: '畅销榜', simulation: '模拟经营', movers: '飙升', policies: '政策', trends: '趋势' };
+
+    $app.innerHTML =
+      '<div class="header-detail">' +
+        '<button class="back-btn" onclick="window.__back()"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg> 返回</button>' +
+        '<h2>' + escapeHtml(d.label || '') + '</h2>' +
+      '</div>' +
+      '<div class="detail">' +
+        '<div class="stats-bar">' +
+          '<div class="stat-chip"><div class="chip-value">' + (stats.wxCount || '--') + '</div><div class="chip-label">微信</div></div>' +
+          '<div class="stat-chip"><div class="chip-value">' + (stats.dyCount || '--') + '</div><div class="chip-label">抖音</div></div>' +
+          '<div class="stat-chip"><div class="chip-value">' + (stats.crossPlatform || '--') + '</div><div class="chip-label">跨平台</div></div>' +
+          '<div class="stat-chip"><div class="chip-value">' + (stats.categories || '--') + '</div><div class="chip-label">品类</div></div>' +
+          '<div class="stat-chip"><div class="chip-value">' + (movers.length || '--') + '</div><div class="chip-label">飙升</div></div>' +
+        '</div>' +
+        '<div class="tab-bar">' +
+          tabs.map(function(t) { return '<div class="tab-item' + (state.currentTab === t ? ' active' : '') + '" onclick="window.__switchTab(\'' + t + '\')">' + tabLabels[t] + '</div>'; }).join('') +
+        '</div>' +
+        '<div class="tab-content">' +
+          renderSummaryTab(summary) +
+          renderTop20Tab(top20) +
+          renderSimulationTab(simulation) +
+          renderMoversTab(movers) +
+          renderPoliciesTab(policies) +
+          renderTrendsTab(trends) +
+        '</div>' +
+      '</div>' +
+      '<div class="footer"><div class="data-source">数据来源：引力引擎（数据截止时间 ' + (week.date || '--') + '）</div>由 Claude Code 每周自动生成</div>';
+
+    // 显示当前 tab
+    document.querySelectorAll('.tab-panel').forEach(function(el) {
+      el.classList.toggle('active', el.dataset.tab === state.currentTab);
+    });
+  }
+
+  function renderSummaryTab(summary) {
+    var core = summary.core || '';
+    var events = summary.keyEvents || [];
+    var concerns = summary.coreConcerns || [];
+    return '<div class="tab-panel active" data-tab="summary">' +
+      '<div class="summary-section"><div class="section-title">★ 本周核心摘要</div><div class="summary-text">' + escapeHtml(core) + '</div></div>' +
+      (events.length ? '<div class="summary-section"><div class="section-title">本周重大事件</div><ul class="event-list">' + events.map(function(e) { return '<li>' + escapeHtml(e) + '</li>'; }).join('') + '</ul></div>' : '') +
+      (concerns.length ? '<div class="summary-section"><div class="section-title">核心关注</div><ul class="concern-list">' + concerns.map(function(c) { return '<li>' + escapeHtml(c) + '</li>'; }).join('') + '</ul></div>' : '') +
+    '</div>';
+  }
+
+  function renderTop20Tab(top20) {
+    function tableHtml(games, platform) {
+      if (!games || !games.length) return '';
+      return '<div class="table-wrap"><h3>' + platform + ' Top20</h3><table class="rank-table"><thead><tr><th>#</th><th>游戏</th><th>品类</th><th>变化</th></tr></thead><tbody>' +
+        games.map(function(g) {
+          return '<tr><td>' + g.rank + '</td><td>' + escapeHtml(g.name) + (g.isCrossPlatform ? '<span class="cross-tag">双</span>' : '') + '</td><td>' + escapeHtml(g.category) + '</td><td>' + renderChange(g.change, g.changeValue) + '</td></tr>';
+        }).join('') + '</tbody></table></div>';
+    }
+    return '<div class="tab-panel" data-tab="top20">' +
+      tableHtml(top20.wx, '微信小游戏') +
+      tableHtml(top20.dy, '抖音小游戏') +
+    '</div>';
+  }
+
+  function renderSimulationTab(sim) {
+    var games = sim.games || [];
+    // 改用简单的列表视图
+    return '<div class="tab-panel" data-tab="simulation">' +
+      '<div class="sim-overview">' +
+        '<div class="sim-platform"><div class="plat-name">微信</div><div class="plat-count">' + (sim.wxCount || 0) + '</div><div class="plat-name">款</div></div>' +
+        '<div class="sim-platform"><div class="plat-name">抖音</div><div class="plat-count">' + (sim.dyCount || 0) + '</div><div class="plat-name">款</div></div>' +
+      '</div>' +
+      '<div class="table-wrap"><table class="rank-table"><thead><tr><th>游戏</th><th>融合玩法</th><th>微信</th><th>抖音</th></tr></thead><tbody>' +
+        games.map(function(g) {
+          var wxR = g.wxRank === '-' ? '<span style="color:#999">未上榜</span>' : '#' + g.wxRank;
+          var dyR = g.dyRank === '-' ? '<span style="color:#999">未上榜</span>' : '#' + g.dyRank;
+          return '<tr><td style="text-align:left">' + escapeHtml(g.name) + '</td><td style="font-size:11px">' + escapeHtml(g.mergePlay || '') + '</td><td>' + wxR + '</td><td>' + dyR + '</td></tr>';
+        }).join('') +
+      '</tbody></table></div>' +
+    '</div>';
+  }
+
+  function renderMoversTab(movers) {
+    if (!movers || !movers.length) {
+      return '<div class="tab-panel" data-tab="movers"><div style="text-align:center;padding:40px;color:#999">本周无大幅上升（≥15位）的游戏</div></div>';
+    }
+    return '<div class="tab-panel" data-tab="movers"><ul class="mover-list">' +
+      movers.map(function(g) {
+        var riseText = g.rise >= 999 ? '新进榜' : '↑' + g.rise;
+        return '<li class="mover-item"><div class="mover-info"><div class="mover-name">' + escapeHtml(g.name) + '</div><div class="mover-meta">' + escapeHtml(g.platform) + ' · ' + escapeHtml(g.category) + (g.company && g.company !== '--' ? ' · ' + escapeHtml(g.company) : '') + '</div>' + (g.insight ? '<div class="mover-insight">' + escapeHtml(g.insight) + '</div>' : '') + '</div><div class="mover-rise">' + riseText + '</div></li>';
+      }).join('') +
+    '</ul></div>';
+  }
+
+  function renderPoliciesTab(policies) {
+    var keys = ['wechat', 'apple', 'douyin', 'android', 'banhao', 'industry'];
+    var labels = {
+      wechat: '📣 微信小游戏', apple: '🍎 苹果', douyin: '🎵 抖音小游戏',
+      android: '📱 华为/小米/OPPO/vivo/TapTap', banhao: '📜 版号更新', industry: '📈 行业动态'
+    };
+    var html = '<div class="tab-panel" data-tab="policies"><ul class="policy-list">';
+    keys.forEach(function(k) {
+      var content = policies[k];
+      var hasContent = content && content.length > 10;
+      html += '<li class="policy-item">' +
+        '<div class="policy-header" onclick="window.__togglePolicy(this)">' +
+          '<span>' + labels[k] + '</span>' +
+          '<span class="policy-arrow">▶</span>' +
+        '</div>' +
+        '<div class="policy-body">' + (hasContent ? content : '<p style="color:#999">本周无更新</p>') + '</div>' +
+      '</li>';
+    });
+    return html + '</ul></div>';
+  }
+
+  function renderTrendsTab(trends) {
+    if (!trends || !trends.length) {
+      return '<div class="tab-panel" data-tab="trends"><div style="text-align:center;padding:40px;color:#999">暂无趋势数据</div></div>';
+    }
+    return '<div class="tab-panel" data-tab="trends"><ol class="trend-list">' +
+      trends.map(function(t) {
+        return '<li class="trend-item"><div class="trend-title">' + escapeHtml(t.title) + '</div><div class="trend-content">' + escapeHtml(t.content) + '</div></li>';
+      }).join('') +
+    '</ol></div>';
+  }
+
+  // ====== 辅助函数 ======
+  function renderChange(change, changeValue) {
+    if (!change || change === '稳定' || change === '- 稳定' || !changeValue) return '<span class="stable">─</span>';
+    if (change.includes('霸榜')) return '<span style="color:#e67e22;font-weight:600">' + escapeHtml(change) + '</span>';
+    if (changeValue >= 999) return '<span class="up">NEW</span>';
+    if (changeValue > 0) return '<span class="up">↑' + changeValue + '</span>';
+    if (changeValue < 0) return '<span class="down">↓' + Math.abs(changeValue) + '</span>';
+    return '<span class="stable">─</span>';
+  }
+
+  function formatDateDisplay(dateStr) {
+    if (!dateStr) return '--';
+    var parts = dateStr.split('-');
+    if (parts.length === 3) return parts[0] + '年' + parts[1] + '月' + parts[2] + '日';
+    return dateStr;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  // ====== 数据获取 ======
+  async function fetchJSON(url, timeoutMs) {
+    timeoutMs = timeoutMs || 15000;
+    var controller = new AbortController();
+    var timer = setTimeout(function() { controller.abort(); }, timeoutMs);
+    try {
+      var res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } catch (e) {
+      clearTimeout(timer);
+      throw e;
+    }
+  }
+
+  // ====== 全局回调 ======
+  window.__openReport = function(index) {
+    var report = state.reports[index];
+    if (!report) return;
+    var reportPath = BASE + report.dirName;
+    if (report.hasData === false) {
+      window.open(reportPath + '/index.html', '_blank');
+      return;
+    }
+    state.view = 'loading';
+    render();
+
+    fetchJSON(reportPath + '/report-data.json').then(function(data) {
+      state.currentReport = { label: report.label, data: data };
+      state.currentTab = 'summary';
+      state.view = 'detail';
+      render();
+    }).catch(function() {
+      window.open(reportPath + '/index.html', '_blank');
+      state.view = 'master';
+      render();
+    });
+  };
+
+  window.__back = function() {
+    state.view = 'master';
+    state.currentReport = null;
+    render();
+  };
+
+  window.__switchTab = function(tab) {
+    state.currentTab = tab;
+    render();
+    // 切换后保持 tab 位置
+    var el = document.querySelector('.tab-item.active');
+    if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  };
+
+  window.__togglePolicy = function(header) {
+    var body = header.nextElementSibling;
+    var arrow = header.querySelector('.policy-arrow');
+    if (!body) return;
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    if (arrow) arrow.classList.toggle('open');
+  };
+
+  window.__retry = function() {
+    init();
+  };
+
+  window.__togglePolicy = function(header) {
+    var body = header.nextElementSibling;
+    var arrow = header.querySelector('.policy-arrow');
+    if (!body) return;
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    if (arrow) arrow.classList.toggle('open');
+  };
+
+  // ====== 初始化 ======
+  async function init() {
+    state.view = 'loading';
+    render();
+    try {
+      var manifest = await fetchJSON(MANIFEST_URL);
+      if (!manifest || !manifest.reports || !manifest.reports.length) {
+        state.view = 'empty';
+        render();
+        return;
+      }
+      state.reports = manifest.reports;
+      state.view = 'master';
+      render();
+    } catch (e) {
+      state.error = '网络连接失败，请检查网络后重试。';
+      state.view = 'error';
+      render();
+    }
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
