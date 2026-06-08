@@ -804,6 +804,7 @@ button { font-family: inherit; cursor: pointer; }
     <a class="nav-item" href="#top20" data-nav><span class="nav-icon">Ⅰ</span><span>畅销榜 Top20</span></a>
     <a class="nav-item" href="#sim" data-nav><span class="nav-icon">Ⅱ</span><span>模拟经营对比</span></a>
     <a class="nav-item" href="#marketing" data-nav><span class="nav-icon">$</span><span>买量 &amp; ROI</span></a>
+    <a class="nav-item" href="#consume" data-nav><span class="nav-icon">¥</span><span>消耗 Top15</span></a>
     <a class="nav-item" href="#category" data-nav><span class="nav-icon">Ⅲ</span><span>品类分布全景</span></a>
     <a class="nav-item" href="#surge" data-nav><span class="nav-icon">↑</span><span>大幅上升游戏</span></a>
     <a class="nav-item" href="#policy" data-nav><span class="nav-icon">⊙</span><span>政策与市场动态</span></a>
@@ -1111,6 +1112,22 @@ function buildPageHTML(d, key) {
       '<div id="marketingContent"></div>',
     '</section>',
 
+    // 五、买量消耗 Top15（动态：仅当 consumeTop15 有数据时显示）
+    (d.marketing && d.marketing.consumeTop15 && d.marketing.consumeTop15.length ? ''
+      + '<section class="section" id="consume">'
+      + '<div class="section-title">'
+      + '<span class="section-icon">¥</span>'
+      + '<div class="section-text"><span>本周微信小游戏广点通买量消耗 Top15</span><span class="section-sub">WeChat Ad Spend Top 15</span></div>'
+      + '</div>'
+      + '<div class="table-wrap"><table><thead><tr><th>排名</th><th>游戏</th><th>品类</th><th>日消耗(万元)</th></tr></thead><tbody>'
+      + d.marketing.consumeTop15.map(function(r){ return '<tr><td>' + r.rank + '</td><td><strong>' + escHTML(r.name) + '</strong></td><td>' + escHTML(r.category) + '</td><td class="trend-up">' + r.dailyConsume + '</td></tr>'; }).join('')
+      + '</tbody></table></div>'
+      + (d.marketing.totalConsume ? '<div class="footnote" style="margin-top:8px;color:var(--text-tertiary);font-size:12px">总消耗 ' + d.marketing.totalConsume + ' 万元</div>' : '')
+      + (d.marketing.consumeOverview && d.marketing.consumeOverview.conclusion ? '<div class="insight-box" style="margin-top:16px">' + escHTML(d.marketing.consumeOverview.conclusion) + '</div>' : '')
+      // Top5 柱状图
+      + (d.marketing.consumeChartTop5 ? '<div class="chart-card" style="margin-top:12px"><div class="chart-title" style="font-size:13px;font-weight:600">📊 微小-广点通 · 日消耗Top5（万元）</div><div class="chart-box"><canvas id="consumeTop5Canvas2" style="max-height:200px"></canvas></div></div>' : '')
+      + '</section>' : ''),
+
     // Ⅲ 品类分布
     '<section class="section" id="category">',
       '<div class="section-title">',
@@ -1177,6 +1194,10 @@ function fillData(d, key) {
   renderSimTable(d.simulation && d.simulation.games ? d.simulation.games : []);
   renderInsightBox('simConclusionWrap', d.simConclusion, '结论');
   renderMarketing(d.marketing || {});
+  // 消耗 Top15 章节的柱状图（独立渲染，不依赖 renderMarketing）
+  if (d.marketing && d.marketing.consumeChartTop5) {
+    requestAnimationFrame(function() { drawConsumeTop5Chart2(d.marketing.consumeChartTop5); });
+  }
   var charts = d.charts || {};
   if (charts.cats && charts.cats.length) { renderCharts(charts); document.getElementById('chartGrid').style.display = 'grid'; }
   else { document.getElementById('chartGrid').style.display = 'none'; }
@@ -1672,6 +1693,22 @@ function drawRoiChart7d(data) {
 
 function drawConsumeTop5Chart(data) {
   var canvas = document.getElementById('consumeTop5Canvas');
+  if (!canvas || !data.labels || !data.values) return;
+  try {
+    new Chart(canvas, {
+      type: 'bar',
+      data: { labels: data.labels, datasets: [{ label: '日消耗（万元）', data: data.values, backgroundColor: '#6f9e7c', borderRadius: 6 }] },
+      options: {
+        responsive: true, maintainAspectRatio: true,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx) { return ctx.raw + '万元'; } } } },
+        scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+      }
+    });
+  } catch(e) {}
+}
+
+function drawConsumeTop5Chart2(data) {
+  var canvas = document.getElementById('consumeTop5Canvas2');
   if (!canvas || !data.labels || !data.values) return;
   try {
     new Chart(canvas, {
