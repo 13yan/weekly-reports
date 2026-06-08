@@ -301,26 +301,186 @@
     "wxReps": "QQ经典农场(#2)、我的花园世界(#8)、向往的生活(#18)、浪漫餐厅(#20)",
     "dyReps": "我的花园世界(#3)、浪漫餐厅(#7)、时尚百货城(#12)、杜拉拉升职记(#17)",
     "games": [
-      {"name":"QQ经典农场","company":"腾讯","mergePlay":"社交+偷菜","theme":"田园农场","wxRank":2,"dyRank":"-","diff":"仅微信"},
-      {"name":"我的花园世界","company":"厦门麟贝互娱","mergePlay":"二合+模拟经营","theme":"花园种花","wxRank":8,"dyRank":3,"diff":"抖音领先5位"},
-      {"name":"向往的生活","company":"深圳必凡娱乐","mergePlay":"二合+田园综艺IP","theme":"田园综艺","wxRank":18,"dyRank":20,"diff":"微信领先2位"},
-      {"name":"浪漫餐厅","company":"北京柠檬微趣","mergePlay":"合成+剧情经营","theme":"餐厅改造","wxRank":20,"dyRank":7,"diff":"抖音领先13位"},
-      {"name":"肥鹅美食街","company":"北京豪腾创想","mergePlay":"二合+模拟经营","theme":"美食街","wxRank":24,"dyRank":46,"diff":"微信领先22位"},
-      {"name":"时尚百货城","company":"深圳爱的番茄","mergePlay":"模拟经营+连锁","theme":"商场经营","wxRank":34,"dyRank":12,"diff":"抖音领先22位"},
-      {"name":"造化仙府","company":"上海沛炫网络","mergePlay":"修仙模拟经营","theme":"修仙","wxRank":44,"dyRank":40,"diff":"抖音领先4位"},
-      {"name":"肥鹅健身房","company":"北京豪腾创想","mergePlay":"二合+模拟经营","theme":"健身房","wxRank":53,"dyRank":"-","diff":"仅微信"},
-      {"name":"空格之境","company":"江西启游互动","mergePlay":"二合+纺织经营","theme":"江南纺织","wxRank":70,"dyRank":88,"diff":"微信领先18位"},
-      {"name":"织梦森林","company":"安徽雷虎网络","mergePlay":"二合+模拟经营","theme":"森林种树","wxRank":73,"dyRank":"-","diff":"仅微信"},
-      {"name":"我的休闲时光","company":"广州卓动信息","mergePlay":"放置经营+装修","theme":"休闲生活","wxRank":76,"dyRank":"-","diff":"仅微信"},
-      {"name":"梦幻经理人","company":"上海望伯纳乌","mergePlay":"模拟经营+体育","theme":"足球经理","wxRank":79,"dyRank":"-","diff":"仅微信"},
-      {"name":"这城有良田","company":"上海益玩网络","mergePlay":"模拟经营+种田","theme":"古代种田","wxRank":81,"dyRank":"-","diff":"仅微信"},
-      {"name":"杜拉拉升职记","company":"苏州沁游网络","mergePlay":"模拟养成+剧情换装","theme":"都市职场","wxRank":"-","dyRank":17,"diff":"仅抖音"},
-      {"name":"时光杂货店","company":"安徽雷虎网络","mergePlay":"模拟经营+怀旧","theme":"90年代怀旧","wxRank":"-","dyRank":67,"diff":"仅抖音"},
-      {"name":"时光大爆炸","company":"安徽盈趣网络","mergePlay":"模拟经营+RPG","theme":"穿越经营","wxRank":"-","dyRank":82,"diff":"仅抖音"},
-      {"name":"此生无白","company":"苏州沁游网络","mergePlay":"都市经营+穿搭","theme":"现代都市","wxRank":"-","dyRank":86,"diff":"仅抖音"},
-      {"name":"最强祖师","company":"霍尔果斯星嘉网络","mergePlay":"放置RPG","theme":"修仙宗门","wxRank":"-","dyRank":91,"diff":"仅抖音"},
-      {"name":"大丰收","company":"北京米兜科技","mergePlay":"休闲模拟经营","theme":"农场丰收","wxRank":"-","dyRank":95,"diff":"仅抖音"},
-      {"name":"宫廷风云","company":"苏州沁游网络","mergePlay":"换装养成+经营","theme":"古风宫廷","wxRank":"-","dyRank":100,"diff":"仅抖音"}
+      {
+        "name": "QQ经典农场",
+        "company": "腾讯",
+        "mergePlay": "社交+偷菜",
+        "theme": "田园农场",
+        "wxRank": 2,
+        "dyRank": "-",
+        "diff": "仅微信"
+      },
+      {
+        "name": "我的花园世界",
+        "company": "厦门麟贝互娱",
+        "mergePlay": "二合+模拟经营",
+        "theme": "花园种花",
+        "wxRank": 8,
+        "dyRank": 3,
+        "diff": "抖音领先5位"
+      },
+      {
+        "name": "向往的生活",
+        "company": "深圳必凡娱乐",
+        "mergePlay": "二合+田园综艺IP",
+        "theme": "田园综艺",
+        "wxRank": 18,
+        "dyRank": 20,
+        "diff": "微信领先2位"
+      },
+      {
+        "name": "浪漫餐厅",
+        "company": "北京柠檬微趣",
+        "mergePlay": "合成+剧情经营",
+        "theme": "餐厅改造",
+        "wxRank": 20,
+        "dyRank": 7,
+        "diff": "抖音领先13位"
+      },
+      {
+        "name": "肥鹅美食街",
+        "company": "北京豪腾创想",
+        "mergePlay": "二合+模拟经营",
+        "theme": "美食街",
+        "wxRank": 24,
+        "dyRank": 46,
+        "diff": "微信领先22位"
+      },
+      {
+        "name": "时尚百货城",
+        "company": "深圳爱的番茄",
+        "mergePlay": "模拟经营+连锁",
+        "theme": "商场经营",
+        "wxRank": 34,
+        "dyRank": 12,
+        "diff": "抖音领先22位"
+      },
+      {
+        "name": "造化仙府",
+        "company": "上海沛炫网络",
+        "mergePlay": "修仙模拟经营",
+        "theme": "修仙",
+        "wxRank": 44,
+        "dyRank": 40,
+        "diff": "抖音领先4位"
+      },
+      {
+        "name": "肥鹅健身房",
+        "company": "北京豪腾创想",
+        "mergePlay": "二合+模拟经营",
+        "theme": "健身房",
+        "wxRank": 53,
+        "dyRank": "-",
+        "diff": "仅微信"
+      },
+      {
+        "name": "空格之境",
+        "company": "江西启游互动",
+        "mergePlay": "二合+纺织经营",
+        "theme": "江南纺织",
+        "wxRank": 70,
+        "dyRank": 88,
+        "diff": "微信领先18位"
+      },
+      {
+        "name": "织梦森林",
+        "company": "安徽雷虎网络",
+        "mergePlay": "二合+模拟经营",
+        "theme": "森林种树",
+        "wxRank": 73,
+        "dyRank": "-",
+        "diff": "仅微信"
+      },
+      {
+        "name": "我的休闲时光",
+        "company": "广州卓动信息",
+        "mergePlay": "放置经营+装修",
+        "theme": "休闲生活",
+        "wxRank": 76,
+        "dyRank": "-",
+        "diff": "仅微信"
+      },
+      {
+        "name": "梦幻经理人",
+        "company": "上海望伯纳乌",
+        "mergePlay": "模拟经营+体育",
+        "theme": "足球经理",
+        "wxRank": 79,
+        "dyRank": "-",
+        "diff": "仅微信"
+      },
+      {
+        "name": "这城有良田",
+        "company": "上海益玩网络",
+        "mergePlay": "模拟经营+种田",
+        "theme": "古代种田",
+        "wxRank": 81,
+        "dyRank": "-",
+        "diff": "仅微信"
+      },
+      {
+        "name": "杜拉拉升职记",
+        "company": "苏州沁游网络",
+        "mergePlay": "模拟养成+剧情换装",
+        "theme": "都市职场",
+        "wxRank": "-",
+        "dyRank": 17,
+        "diff": "仅抖音"
+      },
+      {
+        "name": "时光杂货店",
+        "company": "安徽雷虎网络",
+        "mergePlay": "模拟经营+怀旧",
+        "theme": "90年代怀旧",
+        "wxRank": "-",
+        "dyRank": 67,
+        "diff": "仅抖音"
+      },
+      {
+        "name": "时光大爆炸",
+        "company": "安徽盈趣网络",
+        "mergePlay": "模拟经营+RPG",
+        "theme": "穿越经营",
+        "wxRank": "-",
+        "dyRank": 82,
+        "diff": "仅抖音"
+      },
+      {
+        "name": "此生无白",
+        "company": "苏州沁游网络",
+        "mergePlay": "都市经营+穿搭",
+        "theme": "现代都市",
+        "wxRank": "-",
+        "dyRank": 86,
+        "diff": "仅抖音"
+      },
+      {
+        "name": "最强祖师",
+        "company": "霍尔果斯星嘉网络",
+        "mergePlay": "放置RPG",
+        "theme": "修仙宗门",
+        "wxRank": "-",
+        "dyRank": 91,
+        "diff": "仅抖音"
+      },
+      {
+        "name": "大丰收",
+        "company": "北京米兜科技",
+        "mergePlay": "休闲模拟经营",
+        "theme": "农场丰收",
+        "wxRank": "-",
+        "dyRank": 95,
+        "diff": "仅抖音"
+      },
+      {
+        "name": "宫廷风云",
+        "company": "苏州沁游网络",
+        "mergePlay": "换装养成+经营",
+        "theme": "古风宫廷",
+        "wxRank": "-",
+        "dyRank": 100,
+        "diff": "仅抖音"
+      }
     ]
   },
   "simConclusion": "模拟经营是双平台最稳定品类，用户生命周期长、付费模型健康。二合+模拟经营占比超40%。微信端社交裂变（QQ经典农场）驱动自然量；抖音端剧情/题材差异化（杜拉拉升职记、时光杂货店）吸量能力更强。",
@@ -2071,5 +2231,274 @@
     "android": "<p><strong>本周状态：无重大分成政策更新，以下为行业共性动态：</strong></p>\n<p><strong>① ITGSA金标联盟 — 公平运行内存机制（2026年5月发布）</strong>\n<br>• 联盟成员：vivo、小米、OPPO、荣耀等（华为同为金标联盟成员）\n<br>• 统一内存管理规范，解决安卓应用内存占用过高导致的卡顿/发热/后台被杀问题\n<br>• 建立<strong>主动释放机制</strong>，内存紧张时系统通知应用释放资源\n<br>• <span style=\"color:#e74c3c;font-weight:600;\">适配截止：2026年6月30日</span>，需各品牌开放平台获取适配文档</p>\n<p><strong>② TapTap</strong>：维持0分成策略不变，2026年聚焦社区内容生态和游戏评测体系完善。</p>\n<p></p><p><strong>后续关注重点：</strong></p>\n<ol style=\"margin:6px 0 0 16px;font-size:13px;\">\n  <li>各硬件厂商2026年H2联运分成政策是否调整</li>\n  <li>金标联盟内存机制对游戏性能表现的实际影响</li>\n  <li>华为鸿蒙生态小游戏/快应用接入进展</li>\n</ol>",
     "banhao": "<p><strong>共计158款游戏获批</strong>（国产网络游戏154款 + 进口网络游戏4款），2026年累计发放版号 <strong>779个</strong>（同比增长19.66%）。</p>\n\n<table>\n<thead><tr><th>类型</th><th>数量</th><th>占比</th></tr></thead>\n<tbody>\n<tr><td>移动游戏</td><td>79款</td><td>51.3%</td></tr>\n<tr><td>移动-休闲益智</td><td>56款</td><td>36.4%</td></tr>\n<tr><td>移动+客户端</td><td>15款</td><td>9.7%</td></tr>\n<tr><td>客户端</td><td>2款</td><td>1.3%</td></tr>\n<tr><td>移动+网页等多端</td><td>2款</td><td>1.3%</td></tr>\n</tbody>\n</table>\n\n<table>\n<thead><tr><th>厂商</th><th>游戏</th><th>品类/题材</th></tr></thead>\n<tbody>\n<tr><td><strong>腾讯</strong></td><td>《追逐卡蕾多》</td><td>3D二次元机车RPG</td></tr>\n<tr><td><strong>网易</strong></td><td>《诡影藏锋》</td><td>中式志怪搜打撤</td></tr>\n<tr><td><strong>三七互娱</strong></td><td>《斗破苍穹：觉醒》</td><td>玄幻开放世界MMO</td></tr>\n<tr><td><strong>莉莉丝</strong></td><td>《小冰冰斗蛐蛐》</td><td>休闲竞技</td></tr>\n<tr><td><strong>朝夕光年</strong></td><td>《托托比亚》</td><td>冒险题材</td></tr>\n<tr><td><strong>上海游卡</strong></td><td>《三国杀·烽烟策》</td><td>卡牌（三端）</td></tr>\n<tr><td><strong>友谊时光</strong></td><td>《超人气足球》</td><td>体育模拟经营</td></tr>\n<tr><td><strong>电魂网络</strong></td><td>《星愿之冠》</td><td>角色扮演</td></tr>\n</tbody>\n</table>\n\n<p><strong>模拟经营品类重点关注：</strong></p>\n<p>本月过审游戏中，模拟经营类约 <strong>17款</strong>，以轻量化休闲经营为主：</p>\n<ul style=\"margin:4px 0 0 16px;font-size:13px;\">\n  <li><strong>《犹格索托斯的庭院》</strong>（移动+客户端）— ⭐ 最受关注，克苏鲁题材模拟经营叙事，骨钉工作室开发，Steam特别好评</li>\n  <li><strong>《桃源小镇》</strong>（移动）— 小镇模拟经营</li>\n  <li><strong>《开间花店》《花房四季》《花间小筑》</strong>（移动-休闲益智）— 花卉园艺经营品类</li>\n  <li><strong>《花香农场》《大鹅超市》《杂货梦工厂》《老板的日常》</strong>（移动/休闲益智）— 农场/商超/工坊经营</li>\n  <li><strong>《梦想时光》</strong>（移动-休闲益智）— 生活模拟经营</li>\n</ul>\n<p style=\"font-size:12px;color:#888;margin-top:6px;\"><a href=\"https://www.gamersky.com/news/202605/2146177.shtml\">5月最新版号信息 →</a> </p>",
     "industry": "<p><strong>① 微信小游戏开发者大会（5月27日·杭州）— 核心战略转向</strong>\n<br>• <strong>主题\"从连接到长青\"</strong>：MAU突破5亿接近天花板，不再执着规模增长，转向生态繁荣\n<br>• 李卿（产品总监）AI三判断：AI增强生产能力/短期体现于成本端/AI无法替代人类创意\n<br>• 明确三大方向：经典玩法+IP、女性用户（\"她力量\"）、玩法创新融合（肉鸽+自走棋等）\n<br>• 商业化规模连续8年增长，2026年1-5月变现收入同比增长 <strong>20%</strong></p>\n\n<p><strong>② AI在小游戏领域的务实落地</strong>\n<br>• <strong>研发端</strong>：腾讯游戏云AI智能体将原型开发从数周压缩至数小时，AI关卡分析/热点工具/难度评分大量实测中\n<br>• <strong>投放端</strong>：AIM+智能投放Q2消耗同比增长<strong>390%</strong>，妙思AIGC素材大幅降本增效，自然语言投放Agent降低门槛\n<br>• <strong>用户端</strong>：直玩形态（广告即游戏）点击转化率<strong>提升3倍</strong>，注册成本<strong>降低80%</strong>\n<br>• 开发者反馈：《一箭又一箭》关卡量产/难度评分已大量交给AI；《向往的生活》AI嵌入立项/调研/策划全环节\n<br>• AI漫剧Q1在播量约18万部（较1月增200%+），与小游戏争夺\"低成本娱乐时间\"</p>\n\n<p><strong>③ 安全风控全面升级（5/28微信公开课）</strong>\n<br>• 微信公开课讲师彭馨勇发布 <strong>三大安全升级</strong>：动态反外挂（零接入成本）+ 代码加固3.0（Unity WASM）+ 一站式维权平台\n<br>• 实测效果：重打包外挂从3000+趋近于0，侵权内容48小时内下架率超95%\n<br>• 用户风控系统上线：高/中/低/轻微四级风险分级，高风险直接拦截，中风险柔性干预</p>\n\n<p><strong>④ 头部厂商加速布局生活模拟赛道</strong>\n<br>• 腾讯《莉莉的迷你世界》、米哈游《星布谷地》预计2026年上线\n<br>• 行业正从\"数值驱动ARPG疲劳\"转向<strong>\"治愈系\"低压力生活模拟</strong>\n<br>• 品类定位：抢占玩家 <strong>\"第二款游戏\"</strong> 位置，低压力日常陪伴型体验</p>\n\n<p><strong>⑤ 行业大咖持续流向小游戏赛道</strong>\n<br>• 原《射雕》制作人（600人团队/投入近10亿项目关停后）低调创业<strong>竖屏小游戏</strong>\n<br>• 反映中重度游戏大咖向小游戏赛道流动的持续趋势</p>\n\n<p><strong>⑥ 小游戏获客报告：买量已成主入口</strong>\n<br>• 67%新用户来自<strong>付费买量</strong>（两年前约40%），自然增长红利消退\n<br>• 热力引擎×Insightrackr联合报告：IAP占比升至<strong>68%</strong>，小游戏从\"IAA轻量\"转向\"IAP中重度\"</p>"
+  },
+  "marketing": {
+    "marketOverview": {
+      "app": 1300,
+      "miniapp": 5400,
+      "total": 6700
+    },
+    "groupTop10": [
+      {
+        "rank": 1,
+        "name": "大梦",
+        "dailyConsume": 410
+      },
+      {
+        "rank": 2,
+        "name": "途游",
+        "dailyConsume": 370
+      },
+      {
+        "rank": 3,
+        "name": "9377",
+        "dailyConsume": 340
+      },
+      {
+        "rank": 4,
+        "name": "点点",
+        "dailyConsume": 340
+      },
+      {
+        "rank": 5,
+        "name": "波克",
+        "dailyConsume": 210
+      },
+      {
+        "rank": 6,
+        "name": "IEG",
+        "dailyConsume": 210
+      },
+      {
+        "rank": 7,
+        "name": "必凡",
+        "dailyConsume": 210
+      },
+      {
+        "rank": 8,
+        "name": "游酷",
+        "dailyConsume": 190
+      },
+      {
+        "rank": 9,
+        "name": "豪腾",
+        "dailyConsume": 160
+      },
+      {
+        "rank": 10,
+        "name": "3网",
+        "dailyConsume": 140
+      }
+    ],
+    "consumeTop15": [
+      {
+        "rank": 1,
+        "name": "永远的蔚蓝星球",
+        "dailyConsume": 220,
+        "category": "塔防"
+      },
+      {
+        "rank": 2,
+        "name": "向僵尸开炮",
+        "dailyConsume": 210,
+        "category": "塔防"
+      },
+      {
+        "rank": 3,
+        "name": "无尽冬日",
+        "dailyConsume": 200,
+        "category": "SLG"
+      },
+      {
+        "rank": 4,
+        "name": "向往的生活",
+        "dailyConsume": 170,
+        "category": "模拟经营"
+      },
+      {
+        "rank": 5,
+        "name": "三国：冰河时代",
+        "dailyConsume": 160,
+        "category": "SLG"
+      },
+      {
+        "rank": 6,
+        "name": "肥鹅美食街",
+        "dailyConsume": 140,
+        "category": "模拟经营"
+      },
+      {
+        "rank": 7,
+        "name": "烈焰觉醒",
+        "dailyConsume": 140,
+        "category": "ARPG"
+      },
+      {
+        "rank": 8,
+        "name": "奔奔王国",
+        "dailyConsume": 110,
+        "category": "塔防"
+      },
+      {
+        "rank": 9,
+        "name": "疯狂水世界",
+        "dailyConsume": 110,
+        "category": "SLG"
+      },
+      {
+        "rank": 10,
+        "name": "保卫向日葵",
+        "dailyConsume": 100,
+        "category": "塔防"
+      },
+      {
+        "rank": 11,
+        "name": "寻道大千",
+        "dailyConsume": 90,
+        "category": "卡牌RPG"
+      },
+      {
+        "rank": 12,
+        "name": "梦幻消除战",
+        "dailyConsume": 80,
+        "category": "模拟经营"
+      },
+      {
+        "rank": 13,
+        "name": "西游降妖记",
+        "dailyConsume": 70,
+        "category": "ARPG"
+      },
+      {
+        "rank": 14,
+        "name": "灵画师",
+        "dailyConsume": 60,
+        "category": "ARPG"
+      },
+      {
+        "rank": 15,
+        "name": "口袋奇兵",
+        "dailyConsume": 60,
+        "category": "SLG"
+      }
+    ],
+    "appTop10": [
+      {
+        "rank": 1,
+        "name": "捕鱼大作战",
+        "dailyConsume": 110
+      },
+      {
+        "rank": 2,
+        "name": "永远的蔚蓝星球",
+        "dailyConsume": 110
+      },
+      {
+        "rank": 3,
+        "name": "鱼乐达人",
+        "dailyConsume": 80
+      },
+      {
+        "rank": 4,
+        "name": "捕鱼大咖",
+        "dailyConsume": 70
+      },
+      {
+        "rank": 5,
+        "name": "宗师之上",
+        "dailyConsume": 70
+      },
+      {
+        "rank": 6,
+        "name": "超自然行动组",
+        "dailyConsume": 70
+      },
+      {
+        "rank": 7,
+        "name": "向僵尸开炮",
+        "dailyConsume": 50
+      },
+      {
+        "rank": 8,
+        "name": "途游休闲捕鱼",
+        "dailyConsume": 40
+      },
+      {
+        "rank": 9,
+        "name": "梦幻西游",
+        "dailyConsume": 40
+      },
+      {
+        "rank": 10,
+        "name": "捕鱼达人千炮版",
+        "dailyConsume": 30
+      }
+    ],
+    "channelBreakdown": [
+      {
+        "name": "小程序",
+        "dailyConsume": 2200
+      },
+      {
+        "name": "朋友圈",
+        "dailyConsume": 1200
+      },
+      {
+        "name": "搜一搜",
+        "dailyConsume": 850
+      },
+      {
+        "name": "APP-ios",
+        "dailyConsume": 800
+      },
+      {
+        "name": "平台和内容",
+        "dailyConsume": 800
+      },
+      {
+        "name": "联盟",
+        "dailyConsume": 650
+      },
+      {
+        "name": "视频号",
+        "dailyConsume": 560
+      },
+      {
+        "name": "APP-安卓",
+        "dailyConsume": 500
+      },
+      {
+        "name": "公众号",
+        "dailyConsume": 400
+      },
+      {
+        "name": "试玩",
+        "dailyConsume": 380
+      },
+      {
+        "name": "直玩",
+        "dailyConsume": 370
+      }
+    ],
+    "consumeChartTop5": {
+      "labels": [
+        "永远的蔚蓝星球",
+        "向僵尸开炮",
+        "无尽冬日",
+        "向往的生活",
+        "三国：冰河时代"
+      ],
+      "values": [
+        220,
+        210,
+        200,
+        170,
+        160
+      ]
+    },
+    "totalConsume": 1920,
+    "consumeOverview": {
+      "conclusion": "【大盘格局】广点通日均总消耗 6700 万元（APP 1300 万 + 小程序 5400 万），小程序占比 80.6%，是 APP 渠道的 4.2 倍，微信小游戏已成为广点通买量的绝对主力。\n\n【厂商集中度】Top3 集团（大梦/途游/9377）合计 1120 万元，占集团 Top10 的 43.4%。大梦以 410 万/天领跑，途游 370 万紧随其后，头部厂商买量竞争激烈。\n\n【小游戏消耗解析】永远的蔚蓝星球以 220 万/天领跑，向僵尸开炮 210 万紧随其后。品类维度：塔防 4 款合计 640 万（33.3%）为消耗第一大品类；SLG/策略 4 款 530 万（27.6%）；模拟经营 3 款 390 万（20.3%）；ARPG 3 款 270 万（14.1%）。\n\n【APP 消耗】捕鱼题材占主导，Top10 中 5 款捕鱼游戏合计 330 万。永远的蔚蓝星球 APP 端同步投放 110 万/天，双端联动策略显著。\n\n【渠道拆解】小程序渠道 2200 万（25.3%）最高；朋友圈 1200 万（13.8%）、搜一搜 850 万（9.8%）等社交/搜索渠道表现亮眼，新兴渠道正成为重要增量来源。"
+    }
   }
 }
