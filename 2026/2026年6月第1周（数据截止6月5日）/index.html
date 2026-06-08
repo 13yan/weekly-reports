@@ -2437,9 +2437,84 @@ if (typeof Chart === 'undefined') {
   </div>
 </div>
 
-<!-- ====== 五、平台政策与市场动态 ====== -->
+<!-- ====== 五、本周微信小游戏广点通买量消耗 Top15 ====== -->
 <div class="section">
-  <h2>&#9733; 五、平台政策与市场动态（2026年第23周）</h2>
+  <h2>&#9733; 五、本周微信小游戏广点通买量消耗 Top15</h2>
+  <p style="margin:0 0 8px;font-size:13px;color:#666;">数据来源：本周买量消耗情况（2026年6月第1周）</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>排名</th><th>游戏</th><th style="text-align:right">日均消耗（万元）</th><th>品类</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td>永远的蔚蓝星球</td><td class="hl" style="text-align:right">220</td><td>塔防</td></tr>
+        <tr><td><strong>2</strong></td><td>向僵尸开炮</td><td class="hl" style="text-align:right">210</td><td>塔防</td></tr>
+        <tr><td><strong>3</strong></td><td>无尽冬日</td><td class="hl" style="text-align:right">200</td><td>SLG/策略</td></tr>
+        <tr><td><strong>4</strong></td><td>向往的生活</td><td style="text-align:right">170</td><td>模拟经营</td></tr>
+        <tr><td><strong>5</strong></td><td>三国：冰河时代</td><td style="text-align:right">160</td><td>SLG/策略</td></tr>
+        <tr><td><strong>6</strong></td><td>肥鹅美食街</td><td style="text-align:right">140</td><td>模拟经营</td></tr>
+        <tr><td><strong>7</strong></td><td>烈焰觉醒</td><td style="text-align:right">140</td><td>ARPG</td></tr>
+        <tr><td><strong>8</strong></td><td>奔奔王国</td><td style="text-align:right">110</td><td>塔防</td></tr>
+        <tr><td><strong>9</strong></td><td>疯狂水世界</td><td style="text-align:right">110</td><td>SLG/策略</td></tr>
+        <tr><td><strong>10</strong></td><td>保卫向日葵</td><td style="text-align:right">100</td><td>塔防</td></tr>
+        <tr><td><strong>11</strong></td><td>寻道大千</td><td style="text-align:right">90</td><td>卡牌RPG</td></tr>
+        <tr><td><strong>12</strong></td><td>梦幻消除战</td><td style="text-align:right">80</td><td>模拟经营</td></tr>
+        <tr><td><strong>13</strong></td><td>西游降妖记</td><td style="text-align:right">70</td><td>ARPG</td></tr>
+        <tr><td><strong>14</strong></td><td>灵画师</td><td style="text-align:right">60</td><td>ARPG</td></tr>
+        <tr><td><strong>15</strong></td><td>口袋奇兵</td><td style="text-align:right">60</td><td>SLG/策略</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="margin:6px 0 0;font-size:12px;color:#888;">Top15 合计消耗：约 <strong>2,060</strong> 万元 / 天</p>
+
+  <!-- Top5 柱状图 -->
+  <div class="chart-wrap" style="margin-top:16px;height:220px;">
+    <canvas id="consumeChart"></canvas>
+  </div>
+
+  <div class="insight-box" style="margin-top:16px;">
+    <strong>结论：</strong>头部买量集中度明显，Top5 游戏（永远的蔚蓝星球、向僵尸开炮、无尽冬日、向往的生活、三国：冰河时代）合计消耗 <span class="hl">960 万元</span>，占 Top15 总消耗的 <span class="hl">46.6%</span>。塔防品类买量力度最大（永远的蔚蓝星球、向僵尸开炮、奔奔王国、保卫向日葵 4 款合计 <span class="hl">640 万元</span>），SLG/策略紧随其后。整体来看，微信小游戏头部产品日均买量消耗门槛已提升至 <strong>60 万元/天</strong>以上，买量竞争持续加剧。
+  </div>
+</div>
+
+<script>
+(function() {
+  var canvas = document.getElementById('consumeChart');
+  if (!canvas || typeof Chart === 'undefined') return;
+  try {
+    new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: ['永远的蔚蓝星球', '向僵尸开炮', '无尽冬日', '向往的生活', '三国：冰河时代'],
+        datasets: [{
+          label: '日均消耗（万元）',
+          data: [220, 210, 200, 170, 160],
+          backgroundColor: ['#e74c3c', '#e67e22', '#f1c40f', '#2ecc71', '#3498db'],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: '消耗 Top5 对比（万元）', font: { size: 14 } }
+        },
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.06)' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  } catch(e) {}
+})();
+</script>
+
+<!-- ====== 六、平台政策与市场动态 ====== -->
+<div class="section">
+  <h2>&#9733; 六、平台政策与市场动态（2026年第23周）</h2>
 
   <div class="insight-box" style="background:#fff3e0;border-left-color:#ff9800;">
     <strong>&#9200; 本周（5/31-6/5）各平台均无新政策发布。</strong>
@@ -2519,9 +2594,9 @@ if (typeof Chart === 'undefined') {
   </div>
 </div>
 
-<!-- ====== 六、本周趋势观察 ====== -->
+<!-- ====== 七、本周趋势观察 ====== -->
 <div class="section">
-  <h2>&#9733; 六、本周趋势观察</h2>
+  <h2>&#9733; 七、本周趋势观察</h2>
   <ol class="trend-list">
     <li><strong>SLG品类双平台领先：</strong>三国：冰河时代、无尽冬日、疯狂水世界等SLG/策略游戏在双平台均表现强势，小游戏渠道的SLG LTV潜力已被验证。</li>
     <li><strong>塔防品类供给旺盛：</strong>向僵尸开炮、占城大师、保卫向日葵等多款同时上榜，塔防+融合玩法成主流方向，Unity WASM加固全面支持利好Unity开发的塔防产品。</li>
