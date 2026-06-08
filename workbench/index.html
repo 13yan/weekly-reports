@@ -130,8 +130,8 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration: none;
   transition: all var(--t-fast);
 }
-.nav-item:hover { background: rgba(255, 255, 255, 0.04); color: rgba(255, 255, 255, 0.85); }
-.nav-item.scroll-active { background: var(--primary-glow); color: #4ade80; border-left-color: #22c55e; }
+.nav-item:hover { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.9); }
+.nav-item.scroll-active { background: rgba(255, 255, 255, 0.07); color: #fff; border-left-color: #fff; }
 .nav-item .nav-icon { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; opacity: 0.7; flex-shrink: 0; }
 .nav-item .badge { margin-left: auto; background: var(--primary); color: #fff; font-size: 9.5px; padding: 2px 7px; border-radius: 8px; font-weight: 600; }
 .sidebar-footer {
@@ -177,7 +177,7 @@ button { font-family: inherit; cursor: pointer; }
 .topbar-right .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); display: inline-block; margin-right: 4px; box-shadow: 0 0 0 3px var(--primary-glow); animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-.content { padding: 24px 28px calc(60px + var(--safe-bottom)); max-width: var(--content-max); }
+.content { padding: 28px 32px calc(60px + var(--safe-bottom)); max-width: var(--content-max); }
 .content > * { animation: fadeUp 0.4s ease; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -265,7 +265,7 @@ button { font-family: inherit; cursor: pointer; }
 .section {
   background: var(--card-bg);
   border-radius: var(--radius-lg);
-  padding: 24px 28px;
+  padding: 28px 32px;
   margin-bottom: 18px;
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--t);
@@ -274,8 +274,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .section:hover { box-shadow: var(--shadow); }
 .section-title {
-  font-size: 16px; font-weight: 700; color: var(--text);
-  margin-bottom: 16px; padding-bottom: 12px;
+  font-size: 17px; font-weight: 700; color: var(--text);
+  margin-bottom: 18px; padding-bottom: 14px;
   border-bottom: 1.5px solid var(--border-light);
   display: flex; align-items: center; gap: 10px;
   position: relative;
@@ -299,8 +299,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .section-title .more-link:hover { opacity: 1; }
 .subsection-title {
-  font-size: 13.5px; font-weight: 600; color: var(--text);
-  margin: 18px 0 10px; display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  margin: 20px 0 12px; display: flex; align-items: center; gap: 6px;
 }
 .subsection-title::before { content: ''; width: 3px; height: 14px; background: var(--primary); border-radius: 2px; }
 
@@ -396,7 +396,7 @@ button { font-family: inherit; cursor: pointer; }
 .kanban-tag.tag-market { background: #f0fdfa; color: #0f766e; }
 
 .kanban-body {
-  font-size: 13px; line-height: 1.75;
+  font-size: 13.5px; line-height: 1.8;
   color: var(--text-secondary); flex: 1;
 }
 .kanban-body .hl {
@@ -420,16 +420,17 @@ button { font-family: inherit; cursor: pointer; }
    表格 (Top20 / 模拟经营 / 飙升)
    ============================================================ */
 .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border-light); background: var(--card-bg); }
-.table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table-wrap table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .table-wrap th {
-  background: linear-gradient(180deg, #fafbfc 0%, #f3f5f9 100%);
-  padding: 11px 12px; text-align: center; font-weight: 600;
+  background: #f8f9fb;
+  padding: 12px 16px; text-align: center; font-weight: 600;
   color: var(--text-secondary); font-size: 12px;
   border-bottom: 1px solid var(--border);
   white-space: nowrap; letter-spacing: 0.3px;
 }
-.table-wrap td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: center; vertical-align: middle; }
+.table-wrap td { padding: 12px 14px; border-bottom: 1px solid var(--border-light); text-align: center; vertical-align: middle; }
 .table-wrap tbody tr { transition: background var(--t-fast); }
+.table-wrap tbody tr:nth-child(even) td { background: #fafbfc; }
 .table-wrap tbody tr:hover td { background: var(--primary-50); }
 .table-wrap tbody tr:last-child td { border-bottom: none; }
 
@@ -545,14 +546,12 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--text-tertiary); font-weight: 600; text-transform: uppercase;
 }
 .top100-modal-body th:first-child { text-align: center; width: 36px; }
-.top100-modal-body th:nth-child(2) { text-align: left; }
-.top100-modal-body th:nth-child(4) { text-align: left; }
 .top100-modal-body td {
   padding: 9px 10px; border-bottom: 1px solid var(--border-light);
   text-align: center; vertical-align: middle;
 }
-.top100-modal-body td:nth-child(2) { text-align: left; font-weight: 500; }
-.top100-modal-body td:nth-child(4) { text-align: left; font-size: 11px; color: var(--text-tertiary); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.top100-modal-body td:nth-child(2) { font-weight: 500; }
+.top100-modal-body td:nth-child(4) { font-size: 11px; color: var(--text-tertiary); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .top100-modal-body td .cross-tag { margin-left: 4px; }
 .top100-modal-empty {
   padding: 40px 20px; text-align: center; color: var(--text-tertiary); font-size: 14px;
@@ -676,7 +675,7 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--font-num); line-height: 1;
 }
 .trend-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; position: relative; }
-.trend-content { font-size: 12.5px; color: var(--text-secondary); line-height: 1.7; position: relative; }
+.trend-content { font-size: 13px; color: var(--text-secondary); line-height: 1.75; position: relative; }
 .trend-content .hl { color: var(--red); font-weight: 700; }
 .trend-content .hl-green { color: var(--primary); font-weight: 700; }
 
@@ -1280,7 +1279,7 @@ function renderTable(id, data, plat) {
 
     el.innerHTML += '<tr>' +
       '<td data-label="排名"><span class="rank-num ' + rc + '">' + rank + '</span></td>' +
-      '<td data-label="游戏" style="text-align:left"><strong>' + escHTML(name) + '</strong>' + (isCross ? '<span class="cross-tag">双</span>' : '') + '</td>' +
+      '<td data-label="游戏"><strong>' + escHTML(name) + '</strong>' + (isCross ? '<span class="cross-tag">双</span>' : '') + '</td>' +
       '<td data-label="品类"><span class="tag-cat">' + escHTML(cat) + '</span></td>' +
       '<td data-label="变化" class="' + changeClass + '">' + escHTML(changeHtml) + '</td>' +
     '</tr>';
@@ -1436,7 +1435,7 @@ function renderSimTable(games) {
   games.forEach(function(g) {
     var diff = g.diff || calcDiff(g.wxRank, g.dyRank);
     el.innerHTML += '<tr>' +
-      '<td data-label="游戏" style="text-align:left"><strong>' + escHTML(g.name || '') + '</strong><br><span style="font-size:10.5px;color:var(--text-tertiary)">' + escHTML(g.company || '') + '</span></td>' +
+      '<td data-label="游戏"><strong>' + escHTML(g.name || '') + '</strong><br><span style="font-size:10.5px;color:var(--text-tertiary)">' + escHTML(g.company || '') + '</span></td>' +
       '<td data-label="融合玩法">' + escHTML(g.mergePlay || '') + '</td>' +
       '<td data-label="题材">' + escHTML(g.theme || '') + '</td>' +
       '<td data-label="微信排名">' + (g.wxRank && g.wxRank !== '-' ? '#<strong>' + g.wxRank + '</strong>' : '<span style="color:#999">未上榜</span>') + '</td>' +
