@@ -2746,125 +2746,72 @@
   "catDesc": "微信端：模拟经营（15款）、塔防（13款）、ARPG（13款）、卡牌RPG（14款）为四大支柱。抖音端：模拟经营（11款）、ARPG（19款）、塔防（13款）居前。双平台模拟经营和塔防均为核心赛道，抖音端ARPG和放置RPG占比更高，反映内容营销对展示型品类的偏好。",
   "surgeConclusion": "剧情驱动、融合创新玩法（背包合成+肉鸽、放置卡牌+题材跨界）是本周飙升核心动力。抖音平台对新内容敏感度高，中小团队可通过创意融合快速起量。",
   "marketing": {
-    "consumeOverview": {
-      "title": "微小-广点通 · 买量消耗 Top15（万元）",
-      "channels": [
-        {
-          "name": "微小-广点通",
-          "value": "2060（Top15合计）"
-        }
-      ],
-      "wxTotal": 2060,
-      "conclusion": "头部买量集中度明显，Top5 游戏（永远的蔚蓝星球/向僵尸开炮/无尽冬日/向往的生活/三国：冰河时代）合计消耗 960 万元，占 Top15 总消耗的 46.6%。塔防品类买量力度最大（永远的蔚蓝星球、向僵尸开炮、奔奔王国、保卫向日葵 4 款合计 640 万元），SLG/策略紧随其后。"
+    "marketOverview": {
+      "app": 1400,
+      "miniapp": 5400,
+      "total": 6800
     },
+    "groupTop10": [
+      { "rank": 1, "name": "9377", "dailyConsume": 410 },
+      { "rank": 2, "name": "途游", "dailyConsume": 390 },
+      { "rank": 3, "name": "大梦", "dailyConsume": 350 },
+      { "rank": 4, "name": "点点", "dailyConsume": 280 },
+      { "rank": 5, "name": "波克", "dailyConsume": 220 },
+      { "rank": 6, "name": "游酷", "dailyConsume": 210 },
+      { "rank": 7, "name": "3网", "dailyConsume": 190 },
+      { "rank": 8, "name": "必凡", "dailyConsume": 180 },
+      { "rank": 9, "name": "玩心", "dailyConsume": 160 },
+      { "rank": 10, "name": "IEG", "dailyConsume": 160 }
+    ],
     "consumeTop15": [
-      {
-        "rank": 1,
-        "name": "永远的蔚蓝星球",
-        "dailyConsume": 220,
-        "category": "塔防"
-      },
-      {
-        "rank": 2,
-        "name": "向僵尸开炮",
-        "dailyConsume": 210,
-        "category": "塔防"
-      },
-      {
-        "rank": 3,
-        "name": "无尽冬日",
-        "dailyConsume": 200,
-        "category": "SLG/策略"
-      },
-      {
-        "rank": 4,
-        "name": "向往的生活",
-        "dailyConsume": 170,
-        "category": "模拟经营"
-      },
-      {
-        "rank": 5,
-        "name": "三国：冰河时代",
-        "dailyConsume": 160,
-        "category": "SLG/策略"
-      },
-      {
-        "rank": 6,
-        "name": "肥鹅美食街",
-        "dailyConsume": 140,
-        "category": "模拟经营"
-      },
-      {
-        "rank": 7,
-        "name": "烈焰觉醒",
-        "dailyConsume": 140,
-        "category": "ARPG"
-      },
-      {
-        "rank": 8,
-        "name": "奔奔王国",
-        "dailyConsume": 110,
-        "category": "塔防"
-      },
-      {
-        "rank": 9,
-        "name": "疯狂水世界",
-        "dailyConsume": 110,
-        "category": "SLG/策略"
-      },
-      {
-        "rank": 10,
-        "name": "保卫向日葵",
-        "dailyConsume": 100,
-        "category": "塔防"
-      },
-      {
-        "rank": 11,
-        "name": "寻道大千",
-        "dailyConsume": 90,
-        "category": "卡牌RPG"
-      },
-      {
-        "rank": 12,
-        "name": "梦幻消除战",
-        "dailyConsume": 80,
-        "category": "模拟经营"
-      },
-      {
-        "rank": 13,
-        "name": "西游降妖记",
-        "dailyConsume": 70,
-        "category": "ARPG"
-      },
-      {
-        "rank": 14,
-        "name": "灵画师",
-        "dailyConsume": 60,
-        "category": "ARPG"
-      },
-      {
-        "rank": 15,
-        "name": "口袋奇兵",
-        "dailyConsume": 60,
-        "category": "SLG/策略"
-      }
+      { "rank": 1,  "name": "永远的蔚蓝星球", "dailyConsume": 270, "category": "塔防" },
+      { "rank": 2,  "name": "向僵尸开炮",   "dailyConsume": 180, "category": "塔防" },
+      { "rank": 3,  "name": "烈焰觉醒",     "dailyConsume": 180, "category": "ARPG" },
+      { "rank": 4,  "name": "无尽冬日",     "dailyConsume": 170, "category": "SLG/策略" },
+      { "rank": 5,  "name": "三国：冰河时代", "dailyConsume": 170, "category": "SLG/策略" },
+      { "rank": 6,  "name": "向往的生活",   "dailyConsume": 150, "category": "模拟经营" },
+      { "rank": 7,  "name": "寻道大千",     "dailyConsume": 130, "category": "卡牌RPG" },
+      { "rank": 8,  "name": "肥鹅美食街",   "dailyConsume": 120, "category": "模拟经营" },
+      { "rank": 9,  "name": "疯狂水世界",   "dailyConsume": 110, "category": "SLG/策略" },
+      { "rank": 10, "name": "奔奔王国",     "dailyConsume": 90,  "category": "塔防" },
+      { "rank": 11, "name": "保卫向日葵",   "dailyConsume": 80,  "category": "塔防" },
+      { "rank": 12, "name": "梦幻消除战",   "dailyConsume": 80,  "category": "模拟经营" },
+      { "rank": 13, "name": "西游降妖记",   "dailyConsume": 70,  "category": "ARPG" },
+      { "rank": 14, "name": "时尚百货城",   "dailyConsume": 70,  "category": "模拟经营" },
+      { "rank": 15, "name": "灵画师",       "dailyConsume": 70,  "category": "ARPG" }
+    ],
+    "appTop10": [
+      { "rank": 1,  "name": "捕鱼大作战",     "dailyConsume": 120 },
+      { "rank": 2,  "name": "永远的蔚蓝星球",  "dailyConsume": 110 },
+      { "rank": 3,  "name": "超自然行动组",   "dailyConsume": 90 },
+      { "rank": 4,  "name": "鱼乐达人",       "dailyConsume": 90 },
+      { "rank": 5,  "name": "捕鱼大咖",       "dailyConsume": 80 },
+      { "rank": 6,  "name": "夜幕之下",       "dailyConsume": 60 },
+      { "rank": 7,  "name": "途游休闲捕鱼",   "dailyConsume": 40 },
+      { "rank": 8,  "name": "向僵尸开炮",     "dailyConsume": 40 },
+      { "rank": 9,  "name": "捕鱼达人千炮版",  "dailyConsume": 40 },
+      { "rank": 10, "name": "梦幻西游",       "dailyConsume": 40 }
+    ],
+    "channelBreakdown": [
+      { "name": "小程序",     "dailyConsume": 2100 },
+      { "name": "朋友圈",     "dailyConsume": 1300 },
+      { "name": "平台和内容", "dailyConsume": 830 },
+      { "name": "搜一搜",     "dailyConsume": 810 },
+      { "name": "APP-ios",   "dailyConsume": 800 },
+      { "name": "联盟",      "dailyConsume": 660 },
+      { "name": "视频号",    "dailyConsume": 560 },
+      { "name": "直玩",      "dailyConsume": 410 },
+      { "name": "公众号",    "dailyConsume": 400 },
+      { "name": "试玩",      "dailyConsume": 360 },
+      { "name": "APP-安卓",  "dailyConsume": 600 }
     ],
     "consumeChartTop5": {
-      "labels": [
-        "永远的蔚蓝星球",
-        "向僵尸开炮",
-        "无尽冬日",
-        "向往的生活",
-        "三国：冰河时代"
-      ],
-      "values": [
-        220,
-        210,
-        200,
-        170,
-        160
-      ]
+      "labels": ["永远的蔚蓝星球", "向僵尸开炮", "烈焰觉醒", "无尽冬日", "三国：冰河时代"],
+      "values": [270, 180, 180, 170, 170]
     },
-    "totalConsume": 2060
+    "totalConsume": 2010,
+    "consumeOverview": {
+      "conclusion": "【大盘格局】广点通日均总消耗 6800 万元（APP 1400 万 + 小程序 5400 万），小程序占比 79.4%，是 APP 渠道的 3.9 倍，微信小游戏已成为广点通买量的绝对主力。\n\n【厂商集中度】Top3 集团（9377/途游/大梦）合计 1150 万元，占集团 Top10 的 42.6%。9377 以 410 万/天领跑，途游 390 万紧随其后，头部厂商买量竞争激烈。\n\n【小游戏消耗解析】永远的蔚蓝星球以 270 万/天断层领先，是第 2 名（向僵尸开炮 180 万）的 1.5 倍。品类维度：塔防 4 款合计 620 万（30.8%）为消耗第一大品类；SLG/策略 3 款 450 万（22.4%）；模拟经营 4 款 420 万（20.9%）；ARPG 3 款 320 万（15.9%）。\n\n【APP 消耗】捕鱼题材占主导，Top10 中 4 款捕鱼游戏合计 330 万。永远的蔚蓝星球 APP 端同步投放 110 万/天，双端联动策略显著。\n\n【渠道拆解】小程序渠道 2100 万（31.5%）最高；朋友圈 1300 万（19.5%）、搜一搜 810 万（12.2%）等社交/搜索渠道表现亮眼，新兴渠道正成为重要增量来源。"
+    }
   }
 }
