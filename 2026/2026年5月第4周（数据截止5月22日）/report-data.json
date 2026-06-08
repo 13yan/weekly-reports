@@ -1,7 +1,7 @@
 {
-  "label": "2026年第21周",
+  "label": "2026年5月第4周（数据截止5月22日）",
   "date": "2026年5月22日",
-  "weekTag": "2026年第21周",
+  "weekTag": "2026年5月第4周（数据截止5月22日）",
   "banner": {
     "wechat": 100,
     "douyin": 100,
@@ -533,7 +533,6 @@
     ]
   ],
   "surgeConclusion": "剧情驱动、融合创新玩法及题材差异化是本周飙升核心动力。",
-  "policyContent": "<div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">📣</span>微信小游戏</div><div class=\"pb-body\">IAP/IAA激励持续有效，本周无新增调整。<a href=\"https://developers.weixin.qq.com/minigame/introduction/commercialization/\" target=\"_blank\" class=\"policy-link\">PC端战略持续推进。</a></div></div><div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">🎵</span>抖音小游戏</div><div class=\"pb-body\">升级小游戏搜索入口，增加热门玩法标签。<a href=\"https://partner.open-douyin.com/docs/resource/zh-CN/mini-game/guide/minigame/examineguide\" target=\"_blank\" class=\"policy-link\">Q2新游激励政策持续。</a></div></div><div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">📜</span>版号更新（4月）</div><div class=\"pb-body\">4月147款获批，模拟经营9款过审占比6.1%。</div></div>",
   "trends": [
     "永远的蔚蓝星球日均消耗近千万，塔防+竞技买量效率极高",
     "我的花园世界买量效率标杆，社交裂变驱动自然流量",
@@ -2282,5 +2281,10 @@
         "isCrossPlatform": false
       }
     ]
+  },
+  "policies": {
+    "wechat": "IAP/IAA激励持续有效，本周无新增调整。<a href=\"https://developers.weixin.qq.com/minigame/introduction/commercialization/\" target=\"_blank\" class=\"policy-link\">PC端战略持续推进。</a>",
+    "douyin": "升级小游戏搜索入口，增加热门玩法标签。<a href=\"https://partner.open-douyin.com/docs/resource/zh-CN/mini-game/guide/minigame/examineguide\" target=\"_blank\" class=\"policy-link\">Q2新游激励政策持续。</a>",
+    "banhao": "4月147款获批，模拟经营9款过审占比6.1%。"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "label": "2026年第19周",
+  "label": "2026年5月第2周（数据截止5月09日）",
   "date": "2026年5月9日",
-  "weekTag": "2026年第19周",
+  "weekTag": "2026年5月第2周（数据截止5月09日）",
   "banner": {
     "wechat": 100,
     "douyin": 100,
@@ -298,7 +298,6 @@
     ]
   ],
   "surgeConclusion": "抖音头部竞争加剧，每周涌现飙升黑马。",
-  "policyContent": "<div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">📣</span>微信小游戏</div><div class=\"pb-body\">新游最高5000万流水免分成+2000万激励金。本周无新增调整。</div></div><div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">🎵</span>抖音小游戏</div><div class=\"pb-body\">激励政策持续，利好新游冲榜。</div></div><div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">📜</span>版号更新（4月）</div><div class=\"pb-body\">4月29日147款获批。模拟经营9款占比6.1%。关注：热血曙光、大鹅小院、肥鹅制造厂。</div></div>",
   "trends": [
     "永远的蔚蓝星球x周杰伦代言引爆消耗",
     "掌上谈兵卡牌+SLG融合范式验证",
@@ -462,5 +461,10 @@
       }
     ],
     "blueStarConclusion": "代言后日均消耗从30-40万暴涨至380万元/天，五一首日消耗达160万元，首日ROI提升至1.5%，表现比肩头部塔防爆款《向僵尸开炮》（首日ROI 1%）。微小&抖小双榜排名持续攀升，验证\"顶流代言+塔防竞技\"在微信小游戏赛道的跑通。"
+  },
+  "policies": {
+    "wechat": "新游最高5000万流水免分成+2000万激励金。本周无新增调整。",
+    "douyin": "激励政策持续，利好新游冲榜。",
+    "banhao": "4月29日147款获批。模拟经营9款占比6.1%。关注：热血曙光、大鹅小院、肥鹅制造厂。"
   }
 }

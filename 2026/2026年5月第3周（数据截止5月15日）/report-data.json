@@ -1,7 +1,7 @@
 {
-  "label": "2026年第20周",
+  "label": "2026年5月第3周（数据截止5月15日）",
   "date": "2026年5月15日",
-  "weekTag": "2026年第20周",
+  "weekTag": "2026年5月第3周（数据截止5月15日）",
   "banner": {
     "wechat": 100,
     "douyin": 100,
@@ -411,7 +411,6 @@
     ]
   ],
   "surgeConclusion": "剧情驱动、融合创新玩法（背包合成+肉鸽、放置卡牌+题材跨界）是本周飙升核心动力。",
-  "policyContent": "<div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">📣</span>微信小游戏</div><div class=\"pb-body\">IAP激励计划平稳推进，IAA广告金政策持续。</div></div><div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">🎵</span>抖音小游戏</div><div class=\"pb-body\">现行激励政策持续，预计5月下旬发布暑期档扶持政策。</div></div><div class=\"policy-box\"><div class=\"pb-title\"><span class=\"pb-icon\">📜</span>版号更新（4月）</div><div class=\"pb-body\">4月29日147款获批。模拟经营9款。重点关注小型厂商：热血曙光、大鹅小院、肥鹅制造厂。</div></div>",
   "trends": [
     "永远的蔚蓝星球x周杰伦代言模式成功，首日ROI提升至1.5%",
     "微信头部固化格局被掌上谈兵（卡牌+轻度SLG）打破",
@@ -606,5 +605,10 @@
       }
     ],
     "keyMetricsInsight": "双平台分化：微信依赖经典IP与社交，抖音偏好创新题材（杜拉拉、空格之境）；\"二合+\"成标配；新游差异化（空格之境哲学主题、深海花园海岛种花）借世界观突围；混合变现趋势（IAA+IAP）降低付费门槛。"
+  },
+  "policies": {
+    "wechat": "IAP激励计划平稳推进，IAA广告金政策持续。",
+    "douyin": "现行激励政策持续，预计5月下旬发布暑期档扶持政策。",
+    "banhao": "4月29日147款获批。模拟经营9款。重点关注小型厂商：热血曙光、大鹅小院、肥鹅制造厂。"
   }
 }
