@@ -1307,7 +1307,7 @@ function renderTrends(trends) {
 function renderInsightBox(id, content, label) {
   var el = document.getElementById(id);
   if (!el) return;
-  if (content) el.innerHTML = '<strong>📌 ' + (label || '核心发现') + '：</strong>' + escHTML(content);
+  if (content) el.innerHTML = '<strong>📌 ' + (label || '核心发现') + '：</strong>' + content;
   else el.innerHTML = '';
 }
 
