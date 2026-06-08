@@ -483,21 +483,80 @@ button { font-family: inherit; cursor: pointer; }
 .top100-wrap .top100-name { text-align: left; font-weight: 500; }
 .top100-wrap .top100-company { font-size: 10.5px; color: var(--text-tertiary); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* 品类分布 Top100 标签 */
-.top100-tabs { display: flex; gap: 10px; margin-top: 16px; margin-bottom: 12px; }
-.top100-tab {
-  flex: 1; padding: 10px 16px; border-radius: var(--radius); border: 1.5px solid var(--border-light);
-  background: var(--card-bg); cursor: pointer; font-size: 13px; font-weight: 600;
-  color: var(--text-secondary); transition: all var(--t-fast);
+/* 品类分布 Top100 胶囊按钮 */
+.top100-capsules { display: flex; gap: 12px; margin-top: 16px; }
+.top100-capsule {
+  flex: 1; padding: 12px 20px; border-radius: 100px; border: none;
+  cursor: pointer; font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
   display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all var(--t-fast); box-shadow: var(--shadow-sm);
 }
-.top100-tab:hover { border-color: var(--primary-200); background: var(--primary-50); }
-.top100-tab.active { border-color: var(--primary); background: var(--primary-50); color: var(--primary); }
-.top100-tab .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.top100-tab .dot.wx { background: #4ade80; }
-.top100-tab .dot.dy { background: #60a5fa; }
-.top100-list { border: 1px solid var(--border-light); border-radius: var(--radius); overflow: hidden; }
-.top100-empty { padding: 24px; text-align: center; color: var(--text-tertiary); font-size: 13px; }
+.top100-capsule.wx { background: #e8f5e9; color: #2e7d32; }
+.top100-capsule.wx:hover { background: #c8e6c9; transform: translateY(-1px); box-shadow: var(--shadow); }
+.top100-capsule.dy { background: #e3f2fd; color: #1565c0; }
+.top100-capsule.dy:hover { background: #bbdefb; transform: translateY(-1px); box-shadow: var(--shadow); }
+.top100-capsule .capsule-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.top100-capsule.wx .capsule-dot { background: #4caf50; }
+.top100-capsule.dy .capsule-dot { background: #42a5f5; }
+
+/* Top100 弹窗遮罩 */
+.top100-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.45); display: none;
+  align-items: flex-end; justify-content: center;
+  animation: fadeIn .2s ease;
+}
+.top100-overlay.open { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.top100-modal {
+  background: #fff; border-radius: 20px 20px 0 0;
+  width: 100%; max-width: 640px; max-height: 85vh;
+  display: flex; flex-direction: column;
+  animation: slideUp .25s ease;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.12);
+}
+.top100-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 12px; border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0;
+}
+.top100-modal-header .modal-title {
+  font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px;
+}
+.top100-modal-header .modal-close {
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: var(--bg); cursor: pointer;
+  font-size: 18px; line-height: 1; color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--t-fast);
+}
+.top100-modal-header .modal-close:hover { background: var(--border-light); }
+.top100-modal-body {
+  flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: 0 4px;
+}
+.top100-modal-body table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.top100-modal-body th {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--bg-soft); padding: 10px 10px; text-align: center;
+  border-bottom: 1px solid var(--border); font-size: 11.5px;
+  color: var(--text-tertiary); font-weight: 600; text-transform: uppercase;
+}
+.top100-modal-body th:first-child { text-align: center; width: 36px; }
+.top100-modal-body th:nth-child(2) { text-align: left; }
+.top100-modal-body th:nth-child(4) { text-align: left; }
+.top100-modal-body td {
+  padding: 9px 10px; border-bottom: 1px solid var(--border-light);
+  text-align: center; vertical-align: middle;
+}
+.top100-modal-body td:nth-child(2) { text-align: left; font-weight: 500; }
+.top100-modal-body td:nth-child(4) { text-align: left; font-size: 11px; color: var(--text-tertiary); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.top100-modal-body td .cross-tag { margin-left: 4px; }
+.top100-modal-empty {
+  padding: 40px 20px; text-align: center; color: var(--text-tertiary); font-size: 14px;
+}
 
 /* ============================================================
    模拟经营概况表
@@ -720,6 +779,19 @@ button { font-family: inherit; cursor: pointer; }
 <body>
 <button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">☰</button>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- Top100 弹窗 -->
+<div class="top100-overlay" id="top100Overlay" onclick="closeTop100Modal(event)">
+  <div class="top100-modal" onclick="event.stopPropagation()">
+    <div class="top100-modal-header">
+      <div class="modal-title" id="top100ModalTitle"><span class="capsule-dot" id="top100ModalDot"></span><span id="top100ModalLabel">榜单</span></div>
+      <button class="modal-close" onclick="closeTop100Modal()">✕</button>
+    </div>
+    <div class="top100-modal-body" id="top100ModalBody">
+      <div class="top100-modal-empty">加载中...</div>
+    </div>
+  </div>
+</div>
 
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
@@ -1050,12 +1122,11 @@ function buildPageHTML(d, key) {
         '<div class="chart-card"><div class="chart-title"><span class="dot dy"></span>抖音 Top100 品类分布</div><div class="chart-box"><canvas id="dyCatChart"></canvas></div></div>',
         '<div class="chart-card"><div class="chart-title"><span class="dot cmp"></span>双平台品类数量对比</div><div class="chart-box"><canvas id="cmpChart"></canvas></div></div>',
       '</div>',
-      // Top100 榜单切换标签
-      '<div class="top100-tabs" id="top100Tabs">',
-        '<button class="top100-tab active" data-plat="wx" onclick="switchTop100Tab(\'wx\')"><span class="dot wx"></span>微小 Top100</button>',
-        '<button class="top100-tab" data-plat="dy" onclick="switchTop100Tab(\'dy\')"><span class="dot dy"></span>抖小 Top100</button>',
+      // Top100 榜单胶囊按钮
+      '<div class="top100-capsules">',
+        '<button class="top100-capsule wx" onclick="openTop100Modal(\'wx\')"><span class="capsule-dot"></span>微小 Top100</button>',
+        '<button class="top100-capsule dy" onclick="openTop100Modal(\'dy\')"><span class="capsule-dot"></span>抖小 Top100</button>',
       '</div>',
-      '<div class="top100-list" id="categoryTop100List"><div class="top100-empty">暂无完整榜单数据</div></div>',
       '<div class="insight-box" id="catDescWrap" style="margin-top:14px"></div>',
     '</section>',
 
@@ -1110,7 +1181,6 @@ function fillData(d, key) {
   if (charts.cats && charts.cats.length) { renderCharts(charts); document.getElementById('chartGrid').style.display = 'grid'; }
   else { document.getElementById('chartGrid').style.display = 'none'; }
   renderInsightBox('catDescWrap', d.catDesc, '品类结构结论');
-  renderCategoryTop100List('wx');
   renderSurgeGrid(d.movers || []);
   renderInsightBox('surgeConclusionWrap', d.surgeConclusion, '飙升结论');
   renderPolicies(d.policies || {});
@@ -1264,47 +1334,61 @@ function toggleTop100(btn, plat) {
   btn.innerHTML = '📋 收起完整榜单';
 }
 
-/* 品类分布 Tab：微信/抖音 Top100 切换 */
-function switchTop100Tab(plat) {
-  document.querySelectorAll('.top100-tab').forEach(function(b) {
-    b.classList.toggle('active', b.getAttribute('data-plat') === plat);
-  });
-  renderCategoryTop100List(plat);
-}
+/* Top100 弹窗：点击胶囊按钮打开 */
+function openTop100Modal(plat) {
+  var overlay = document.getElementById('top100Overlay');
+  var bodyEl = document.getElementById('top100ModalBody');
+  var labelEl = document.getElementById('top100ModalLabel');
+  var dotEl = document.getElementById('top100ModalDot');
+  if (!overlay || !bodyEl) return;
 
-function renderCategoryTop100List(plat) {
-  var el = document.getElementById('categoryTop100List');
-  if (!el) return;
   var d = DATA[currentKey];
   var list = d && d.top100 ? (plat === 'wx' ? d.top100.wx : d.top100.dy) : [];
+  var name = plat === 'wx' ? '微小' : '抖小';
+  var color = plat === 'wx' ? '#4caf50' : '#42a5f5';
+
+  labelEl.textContent = name + '畅销榜 Top100';
+  if (dotEl) dotEl.style.background = color;
+
   if (!list || !list.length) {
-    el.innerHTML = '<div class="top100-empty">暂无完整榜单数据</div>';
-    return;
+    bodyEl.innerHTML = '<div class="top100-modal-empty">暂无完整榜单数据</div>';
+  } else {
+    bodyEl.innerHTML = '<table><thead><tr><th>#</th><th>游戏</th><th>品类</th><th>公司</th><th>变化</th></tr></thead><tbody>' +
+      list.map(function(g) {
+        var ch = g.change || '';
+        var chDisplay = ch, chCls = 'stable';
+        if (!ch || ch === '-' || ch === '─' || ch === '稳定' || ch === '- 稳定') {
+          chDisplay = '─'; chCls = 'stable';
+        } else if (ch.indexOf('霸榜') >= 0) {
+          chDisplay = ch; chCls = 'new';
+        } else if (ch === '新进榜' || ch === 'NEW' || ch === '登顶') {
+          chDisplay = 'NEW'; chCls = 'new';
+        } else if (ch.indexOf('↑') >= 0 || /^\d+$/.test(ch)) {
+          chDisplay = '↑' + ch.replace('↑', ''); chCls = 'up';
+        } else if (ch.indexOf('↓') >= 0) {
+          chDisplay = ch; chCls = 'down';
+        }
+        return '<tr>' +
+          '<td>' + (g.rank || 0) + '</td>' +
+          '<td>' + escHTML(g.name || '') + (g.isCrossPlatform ? '<span class="cross-tag">双</span>' : '') + '</td>' +
+          '<td><span class="tag-cat">' + escHTML(g.category || '') + '</span></td>' +
+          '<td>' + escHTML(g.company || '--') + '</td>' +
+          '<td class="' + chCls + '">' + escHTML(chDisplay) + '</td>' +
+        '</tr>';
+      }).join('') +
+      '</tbody></table>';
   }
-  el.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:var(--bg-soft)"><th style="width:36px;padding:8px 10px;text-align:center;border-bottom:1px solid var(--border-light)">#</th><th style="padding:8px 10px;text-align:left;border-bottom:1px solid var(--border-light)"> 游戏</th><th style="width:70px;padding:8px 10px;text-align:center;border-bottom:1px solid var(--border-light)">品类</th><th style="padding:8px 10px;text-align:left;border-bottom:1px solid var(--border-light)">公司</th><th style="width:70px;padding:8px 10px;text-align:center;border-bottom:1px solid var(--border-light)">变化</th></tr></thead><tbody>' +
-    list.map(function(g) {
-      var ch = g.change || '';
-      var chDisplay = ch, chCls = 'stable';
-      if (!ch || ch === '-' || ch === '─' || ch === '稳定' || ch === '- 稳定') {
-        chDisplay = '─'; chCls = 'stable';
-      } else if (ch.indexOf('霸榜') >= 0) {
-        chDisplay = ch; chCls = 'new';
-      } else if (ch === '新进榜' || ch === 'NEW' || ch === '登顶') {
-        chDisplay = 'NEW'; chCls = 'new';
-      } else if (ch.indexOf('↑') >= 0 || /^\d+$/.test(ch)) {
-        chDisplay = '↑' + ch.replace('↑', ''); chCls = 'up';
-      } else if (ch.indexOf('↓') >= 0) {
-        chDisplay = ch; chCls = 'down';
-      }
-      return '<tr>' +
-        '<td style="padding:7px 10px;text-align:center;border-bottom:1px solid var(--border-light);color:var(--text-tertiary)">' + (g.rank || 0) + '</td>' +
-        '<td style="padding:7px 10px;text-align:left;border-bottom:1px solid var(--border-light);font-weight:500">' + escHTML(g.name || '') + (g.isCrossPlatform ? '<span class="cross-tag">双</span>' : '') + '</td>' +
-        '<td style="padding:7px 10px;text-align:center;border-bottom:1px solid var(--border-light)"><span class="tag-cat">' + escHTML(g.category || '') + '</span></td>' +
-        '<td style="padding:7px 10px;text-align:left;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-tertiary);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escHTML(g.company || '--') + '</td>' +
-        '<td style="padding:7px 10px;text-align:center;border-bottom:1px solid var(--border-light);font-size:12px" class="' + chCls + '">' + escHTML(chDisplay) + '</td>' +
-      '</tr>';
-    }).join('') +
-    '</tbody></table>';
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTop100Modal(e) {
+  if (e && e.target !== e.currentTarget) return; // 只处理遮罩点击
+  var overlay = document.getElementById('top100Overlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 /* ============================================================
