@@ -1436,7 +1436,7 @@ function fetchJSON(url, timeout) {
 
 function escHTML(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escAttr(s) { return escHTML(s); }
-function sanitizeHtml(s) { if (!s) return ''; return String(s).replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi,'').replace(/<(\/?)(strong|b|em|span|br)(\s[^>]*)?>/g,'<$1$2$3>').replace(/<[^>]+>/g,function(m){return escHTML(m);}); }
+function sanitizeHtml(s) { if (!s) return ''; return String(s).replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi,'').replace(/<(\/?)(strong|b|em|span|br)(\s[^>]*)?>/g,'<$1$2>').replace(/<[^>]+>/g,function(m){return escHTML(m);}); }
 
 // 移动端表格转卡片
 function applyMobileTableCards() {
