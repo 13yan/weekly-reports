@@ -483,6 +483,22 @@ button { font-family: inherit; cursor: pointer; }
 .top100-wrap .top100-name { text-align: left; font-weight: 500; }
 .top100-wrap .top100-company { font-size: 10.5px; color: var(--text-tertiary); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+/* 品类分布 Top100 标签 */
+.top100-tabs { display: flex; gap: 10px; margin-top: 16px; margin-bottom: 12px; }
+.top100-tab {
+  flex: 1; padding: 10px 16px; border-radius: var(--radius); border: 1.5px solid var(--border-light);
+  background: var(--card-bg); cursor: pointer; font-size: 13px; font-weight: 600;
+  color: var(--text-secondary); transition: all var(--t-fast);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.top100-tab:hover { border-color: var(--primary-200); background: var(--primary-50); }
+.top100-tab.active { border-color: var(--primary); background: var(--primary-50); color: var(--primary); }
+.top100-tab .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.top100-tab .dot.wx { background: #4ade80; }
+.top100-tab .dot.dy { background: #60a5fa; }
+.top100-list { border: 1px solid var(--border-light); border-radius: var(--radius); overflow: hidden; }
+.top100-empty { padding: 24px; text-align: center; color: var(--text-tertiary); font-size: 13px; }
+
 /* ============================================================
    模拟经营概况表
    ============================================================ */
@@ -1034,6 +1050,12 @@ function buildPageHTML(d, key) {
         '<div class="chart-card"><div class="chart-title"><span class="dot dy"></span>抖音 Top100 品类分布</div><div class="chart-box"><canvas id="dyCatChart"></canvas></div></div>',
         '<div class="chart-card"><div class="chart-title"><span class="dot cmp"></span>双平台品类数量对比</div><div class="chart-box"><canvas id="cmpChart"></canvas></div></div>',
       '</div>',
+      // Top100 榜单切换标签
+      '<div class="top100-tabs" id="top100Tabs">',
+        '<button class="top100-tab active" data-plat="wx" onclick="switchTop100Tab(\'wx\')"><span class="dot wx"></span>微小 Top100</button>',
+        '<button class="top100-tab" data-plat="dy" onclick="switchTop100Tab(\'dy\')"><span class="dot dy"></span>抖小 Top100</button>',
+      '</div>',
+      '<div class="top100-list" id="categoryTop100List"><div class="top100-empty">暂无完整榜单数据</div></div>',
       '<div class="insight-box" id="catDescWrap" style="margin-top:14px"></div>',
     '</section>',
 
@@ -1088,6 +1110,7 @@ function fillData(d, key) {
   if (charts.cats && charts.cats.length) { renderCharts(charts); document.getElementById('chartGrid').style.display = 'grid'; }
   else { document.getElementById('chartGrid').style.display = 'none'; }
   renderInsightBox('catDescWrap', d.catDesc, '品类结构结论');
+  renderCategoryTop100List('wx');
   renderSurgeGrid(d.movers || []);
   renderInsightBox('surgeConclusionWrap', d.surgeConclusion, '飙升结论');
   renderPolicies(d.policies || {});
@@ -1239,6 +1262,49 @@ function toggleTop100(btn, plat) {
   wrap.style.display = 'block';
   btn.classList.add('active');
   btn.innerHTML = '📋 收起完整榜单';
+}
+
+/* 品类分布 Tab：微信/抖音 Top100 切换 */
+function switchTop100Tab(plat) {
+  document.querySelectorAll('.top100-tab').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-plat') === plat);
+  });
+  renderCategoryTop100List(plat);
+}
+
+function renderCategoryTop100List(plat) {
+  var el = document.getElementById('categoryTop100List');
+  if (!el) return;
+  var d = DATA[currentKey];
+  var list = d && d.top100 ? (plat === 'wx' ? d.top100.wx : d.top100.dy) : [];
+  if (!list || !list.length) {
+    el.innerHTML = '<div class="top100-empty">暂无完整榜单数据</div>';
+    return;
+  }
+  el.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:var(--bg-soft)"><th style="width:36px;padding:8px 10px;text-align:center;border-bottom:1px solid var(--border-light)">#</th><th style="padding:8px 10px;text-align:left;border-bottom:1px solid var(--border-light)"> 游戏</th><th style="width:70px;padding:8px 10px;text-align:center;border-bottom:1px solid var(--border-light)">品类</th><th style="padding:8px 10px;text-align:left;border-bottom:1px solid var(--border-light)">公司</th><th style="width:70px;padding:8px 10px;text-align:center;border-bottom:1px solid var(--border-light)">变化</th></tr></thead><tbody>' +
+    list.map(function(g) {
+      var ch = g.change || '';
+      var chDisplay = ch, chCls = 'stable';
+      if (!ch || ch === '-' || ch === '─' || ch === '稳定' || ch === '- 稳定') {
+        chDisplay = '─'; chCls = 'stable';
+      } else if (ch.indexOf('霸榜') >= 0) {
+        chDisplay = ch; chCls = 'new';
+      } else if (ch === '新进榜' || ch === 'NEW' || ch === '登顶') {
+        chDisplay = 'NEW'; chCls = 'new';
+      } else if (ch.indexOf('↑') >= 0 || /^\d+$/.test(ch)) {
+        chDisplay = '↑' + ch.replace('↑', ''); chCls = 'up';
+      } else if (ch.indexOf('↓') >= 0) {
+        chDisplay = ch; chCls = 'down';
+      }
+      return '<tr>' +
+        '<td style="padding:7px 10px;text-align:center;border-bottom:1px solid var(--border-light);color:var(--text-tertiary)">' + (g.rank || 0) + '</td>' +
+        '<td style="padding:7px 10px;text-align:left;border-bottom:1px solid var(--border-light);font-weight:500">' + escHTML(g.name || '') + (g.isCrossPlatform ? '<span class="cross-tag">双</span>' : '') + '</td>' +
+        '<td style="padding:7px 10px;text-align:center;border-bottom:1px solid var(--border-light)"><span class="tag-cat">' + escHTML(g.category || '') + '</span></td>' +
+        '<td style="padding:7px 10px;text-align:left;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-tertiary);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escHTML(g.company || '--') + '</td>' +
+        '<td style="padding:7px 10px;text-align:center;border-bottom:1px solid var(--border-light);font-size:12px" class="' + chCls + '">' + escHTML(chDisplay) + '</td>' +
+      '</tr>';
+    }).join('') +
+    '</tbody></table>';
 }
 
 /* ============================================================
