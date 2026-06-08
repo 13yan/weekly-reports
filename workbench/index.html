@@ -806,7 +806,7 @@ function normalizeData(d, meta) {
   if (!d.policies) d.policies = {};
   if (!d.trends) d.trends = [];
 
-  // 兼容桌面端硬编码格式
+  // 兼容桌面端硬编码格式（老版本 gen_report_v3.js 输出）
   if (d.banner && typeof d.banner === 'object' && !d.stats.wxCount) {
     d.stats.wxCount = d.banner.wechat || d.stats.wxCount;
     d.stats.dyCount = d.banner.douyin || d.stats.dyCount;
@@ -815,31 +815,84 @@ function normalizeData(d, meta) {
     if (d.label) d.week.label = d.label;
     if (d.date) d.week.date = d.date;
     if (d.weekTag || d.label) d.week.tag = d.weekTag || d.label;
-    if (Array.isArray(d.summary)) {
-      d.summary = { core: d.summary.map(function(s){ return '<strong>【' + s.title + '】</strong>' + s.desc; }).join('<br>'), keyEvents: [], coreConcerns: [] };
+
+    // 计算 Top5
+    if (d.wechatTop20 && d.wechatTop20.length) {
+      d.stats.wxTop5 = d.wechatTop20.slice(0, 5).map(function(r) { return r[0]; });
     }
-    if (d.wechatTop20 && !d.top20.wx.length) {
-      d.top20.wx = d.wechatTop20.map(function(r, i){
-        return { rank: i + 1, name: r[0], category: r[2], change: r[3], isCrossPlatform: !!r[1] };
-      });
+    if (d.douyinTop20 && d.douyinTop20.length) {
+      d.stats.dyTop5 = d.douyinTop20.slice(0, 5).map(function(r) { return r[0]; });
     }
-    if (d.douyinTop20 && !d.top20.dy.length) {
-      d.top20.dy = d.douyinTop20.map(function(r, i){
-        return { rank: i + 1, name: r[0], category: r[2], change: r[3], isCrossPlatform: !!r[1] };
-      });
+
+    // summary 迁移：4 卡片数组/对象 → core HTML + highlight
+    if (d.summary && !d.summary.core && (Array.isArray(d.summary) || typeof d.summary === 'object')) {
+      var cardsArr = Array.isArray(d.summary) ? d.summary : Object.keys(d.summary).map(function(k){ return d.summary[k]; });
+      var cards = [];
+      for (var ci = 0; ci < cardsArr.length; ci++) {
+        var card = cardsArr[ci];
+        if (card && card.title) {
+          // 老数据 title 已含【】，直接包 <strong>；无【】则补全
+          var t = card.title;
+          if (t.indexOf('【') < 0) t = '【' + t + '】';
+          cards.push('<strong>' + t + '</strong>' + (card.desc || ''));
+        }
+      }
+      d.summary = {
+        core: cards.join('<br>'),
+        highlight: meta ? meta.highlight : '',
+        keyEvents: [],
+        coreConcerns: []
+      };
     }
+
+    // Top20 迁移 + 跨平台检测
+    if (d.wechatTop20 && d.douyinTop20) {
+      var dyNames = {}, wxNames = {};
+      d.douyinTop20.forEach(function(r) { dyNames[r[0]] = true; });
+      d.wechatTop20.forEach(function(r) { wxNames[r[0]] = true; });
+      if (!d.top20.wx.length) {
+        d.top20.wx = d.wechatTop20.map(function(r, i){
+          return { rank: i + 1, name: r[0], category: r[2], change: r[3], isCrossPlatform: !!dyNames[r[0]] };
+        });
+      }
+      if (!d.top20.dy.length) {
+        d.top20.dy = d.douyinTop20.map(function(r, i){
+          return { rank: i + 1, name: r[0], category: r[2], change: r[3], isCrossPlatform: !!wxNames[r[0]] };
+        });
+      }
+    }
+
+    // 模拟经营迁移
     if (d.simData && !d.simulation.games.length) {
-      function cleanRank(v) { v = (v || '').replace('#', ''); return (v === '─' || v === '未上榜' || v === '--') ? '' : v; }
+      function cleanRank(v) {
+        v = (v || '').toString().replace('#', '').trim();
+        if (v === '─' || v === '未上榜' || v === '--' || v === '') return '-';
+        var n = parseInt(v);
+        return isNaN(n) ? '-' : n;
+      }
       d.simulation.games = d.simData.map(function(s){
         return { name: s[0] || '', company: s[1] || '', mergePlay: s[2] || '', theme: s[3] || '', wxRank: cleanRank(s[4]), dyRank: cleanRank(s[5]), diff: s[6] || '' };
       });
     }
-    if (d.simOverview && (!d.simulation.wxCount || !d.simulation.dyCount)) {
-      var m1 = d.simOverview.match(/微信上榜(\d+)款/);
-      var m2 = d.simOverview.match(/抖音上榜(\d+)款/);
-      if (m1) d.simulation.wxCount = parseInt(m1[1]);
-      if (m2) d.simulation.dyCount = parseInt(m2[1]);
+    if (d.simOverview) {
+      var mWx = d.simOverview.match(/微信上榜(\d+)款(?:[，,]\s*Top10内(\d+)款)?(?:[，,]\s*Top20内(\d+)款)?/);
+      var mDy = d.simOverview.match(/抖音上榜(\d+)款(?:[，,]\s*Top10内(\d+)款)?(?:[，,]\s*Top20内(\d+)款)?/);
+      if (mWx) {
+        d.simulation.wxCount = parseInt(mWx[1]);
+        d.simulation.wxTop10 = mWx[2] ? parseInt(mWx[2]) : 0;
+        d.simulation.wxTop20 = mWx[3] ? parseInt(mWx[3]) : 0;
+      }
+      if (mDy) {
+        d.simulation.dyCount = parseInt(mDy[1]);
+        d.simulation.dyTop10 = mDy[2] ? parseInt(mDy[2]) : 0;
+        d.simulation.dyTop20 = mDy[3] ? parseInt(mDy[3]) : 0;
+      }
+      // 默认 reps 字段（老数据无此字段）
+      d.simulation.wxReps = d.simulation.wxReps || '--';
+      d.simulation.dyReps = d.simulation.dyReps || '--';
     }
+
+    // 飙升迁移
     if (d.surgeData && !d.movers.length) {
       d.movers = d.surgeData.map(function(sg){
         var rawRise = sg[3] || '';
@@ -848,15 +901,20 @@ function normalizeData(d, meta) {
         return { name: sg[0] || '', platform: sg[1] || '', category: sg[2] || '', rise: riseNum, company: sg[4] || '', insight: sg[5] || '', bgClass: sg[6] || '' };
       });
     }
+
+    // 政策迁移
     if (d.policyContent) { d.policies = { _combinedHtml: d.policyContent }; }
+
+    // trends 迁移
     if (Array.isArray(d.trends) && d.trends.length && typeof d.trends[0] === 'string') {
       d.trends = d.trends.map(function(t){ return { title: t, content: '' }; });
     }
+
     d.top20Insight = d.top20Insight || '';
     d.simConclusion = d.simConclusion || '';
     d.surgeConclusion = d.surgeConclusion || '';
     d.catDesc = d.catDesc || '';
-    d.highlight = meta ? meta.highlight : '';
+    d.summary.highlight = d.summary.highlight || (meta ? meta.highlight : '');
   }
   return d;
 }
