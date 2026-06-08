@@ -162,44 +162,31 @@
     ]
   ],
   "simOverview": "微信上榜24款，抖音上榜23款。模拟经营双平台均占约1/4。",
-  "simData": [
-    [
-      "QQ经典农场",
-      "腾讯",
-      "纯经营+社交",
-      "田园农场",
-      "#1",
-      "未上榜",
-      "社交偷菜黏性极强"
-    ],
-    [
-      "我的花园世界",
-      "麟贝互娱",
-      "二合+模拟经营",
-      "花园种花",
-      "#4",
-      "─",
-      "7日ROI 3.40%"
-    ],
-    [
-      "织梦森林",
-      "雷虎网络",
-      "二合+经营+种花",
-      "异世界种田",
-      "#67",
-      "─",
-      "7日ROI 8.81%领跑"
-    ],
-    [
-      "我的休闲时光",
-      "卓动信息",
-      "放置经营+空间装修",
-      "佛系装修",
-      "#82",
-      "─",
-      "7日ROI 7.86%"
+  "simulation": {
+    "wxCount": 24,
+    "dyCount": 23,
+    "wxTop10": 2,
+    "wxTop20": 3,
+    "dyTop10": 0,
+    "dyTop20": 1,
+    "wxReps": "QQ经典农场(#1)、我的花园世界(#9)",
+    "dyReps": "生存33天(#1，SLG+模拟经营)",
+    "games": [
+      {"name":"QQ经典农场","company":"腾讯","mergePlay":"纯经营+社交","theme":"田园农场","wxRank":1,"dyRank":"-","diff":"微信霸榜7天"},
+      {"name":"我的花园世界","company":"麟贝互娱","mergePlay":"二合+模拟经营","theme":"花草经营","wxRank":4,"dyRank":"-","diff":"微信头部，7日ROI 3.40%"},
+      {"name":"梦幻消除战","company":"--","mergePlay":"三消+模拟经营","theme":"古风茶楼","wxRank":23,"dyRank":"-","diff":"日均消耗20万，7日ROI 3.10%"},
+      {"name":"时尚百货城","company":"--","mergePlay":"经营+放置+多店","theme":"百货+换装","wxRank":31,"dyRank":"-","diff":"日均消耗46万，首日ROI 2.23%"},
+      {"name":"向往的生活","company":"--","mergePlay":"二合+模拟经营","theme":"田园经营（综艺IP）","wxRank":38,"dyRank":"-","diff":"综艺IP深度还原"},
+      {"name":"肥鹅美食街","company":"豪腾创想","mergePlay":"二合+模拟经营","theme":"美食街经营+治愈","wxRank":42,"dyRank":99,"diff":"双平台上榜，新进抖音"},
+      {"name":"四季合合","company":"蓝飞互娱","mergePlay":"二合+模拟经营","theme":"家园建造","wxRank":59,"dyRank":"-","diff":"7日ROI 2.20%"},
+      {"name":"织梦森林","company":"雷虎网络","mergePlay":"二合+经营+种花","theme":"异世界种田","wxRank":67,"dyRank":"-","diff":"7日ROI 8.81%领跑"},
+      {"name":"我的休闲时光","company":"卓动信息","mergePlay":"放置经营+空间装修","theme":"佛系装修","wxRank":82,"dyRank":"-","diff":"7日ROI 7.86%"},
+      {"name":"浪漫餐厅","company":"柠檬微趣","mergePlay":"合成+经营+剧情","theme":"餐厅恋爱","wxRank":18,"dyRank":"-","diff":"合成餐厅经营"},
+      {"name":"幸福小渔村","company":"五秒互娱","mergePlay":"渔村建设+宠物养成","theme":"钓鱼养殖","wxRank":94,"dyRank":"-","diff":"微信新进榜，差异化题材"},
+      {"name":"宫廷风云","company":"苏州沁游网络","mergePlay":"模拟养成+换装","theme":"古风宫廷","wxRank":"-","dyRank":51,"diff":"抖音新进榜"},
+      {"name":"伐木高高手","company":"重庆很开心科技","mergePlay":"订单经营+资源管理","theme":"伐木主题","wxRank":"-","dyRank":81,"diff":"抖音新进榜"}
     ]
-  ],
+  },
   "simConclusion": "二合+模拟经营吸金稳健，织梦森林7日ROI 8.81%领跑。新游题材垂直化、玩法轻量化。",
   "charts": {
     "cats": [
