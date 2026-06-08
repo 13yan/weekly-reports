@@ -760,6 +760,32 @@ button { font-family: inherit; cursor: pointer; }
   .surge-grid { grid-template-columns: 1fr; }
   .trend-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   响应式改进 — 表格 + 移动端适配
+   ============================================================ */
+@media (max-width: 768px) {
+  .sim-overview .table-wrap table { min-width: 0; }
+  .sim-overview .progress-bar { flex-direction: column; gap: 2px; }
+  .sim-overview .progress-text { min-width: 0; text-align: center; }
+  .section { border-radius: var(--radius); }
+  .insight-box { font-size: 13px; padding: 12px 14px; }
+  .table-wrap th, .table-wrap td { white-space: normal; word-break: break-word; }
+  .top100-capsules { flex-direction: column; gap: 8px; }
+  .top100-capsule { width: 100%; justify-content: center; }
+  .surge-grid { grid-template-columns: 1fr; }
+  .trend-grid { grid-template-columns: 1fr; }
+  .chart-grid { grid-template-columns: 1fr; }
+  .content { padding-bottom: calc(80px + var(--safe-bottom)); }
+}
+@media (max-width: 480px) {
+  .section { padding: 12px 14px; }
+  .kanban-body { font-size: 12px; }
+  .stat-card .stat-num { font-size: 15px; }
+  .mobile-cards td { font-size: 12px; }
+  .table-wrap th { font-size: 11px; padding: 8px 10px; }
+  .table-wrap td { font-size: 12px; padding: 8px 10px; }
+}
 </style>
 </head>
 <body>
@@ -1337,16 +1363,16 @@ function renderSimOverview(sim) {
   var dyT10 = sim.dyTop10 || 0, dyT20 = sim.dyTop20 || 0;
   var wxReps = sim.wxReps || '--', dyReps = sim.dyReps || '--';
   el.innerHTML = '<div class="table-wrap"><table><thead><tr><th>平台</th><th>上榜数</th><th>Top10 内</th><th>Top20 内</th><th>头部代表</th></tr></thead><tbody>' +
-    '<tr><td><span class="platform-name wx">微信小游戏</span></td>' +
-      '<td><strong>' + wxCount + '</strong> 款</td>' +
-      '<td><div class="progress-bar"><div class="progress-track"><div class="progress-fill wx" style="width:' + (wxCount ? Math.min(wxT10/wxCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + wxT10 + ' 款</span></div></td>' +
-      '<td><div class="progress-bar"><div class="progress-track"><div class="progress-fill wx" style="width:' + (wxCount ? Math.min(wxT20/wxCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + wxT20 + ' 款</span></div></td>' +
-      '<td style="text-align:left">' + escHTML(wxReps) + '</td></tr>' +
-    '<tr><td><span class="platform-name dy">抖音小游戏</span></td>' +
-      '<td><strong>' + dyCount + '</strong> 款</td>' +
-      '<td><div class="progress-bar"><div class="progress-track"><div class="progress-fill dy" style="width:' + (dyCount ? Math.min(dyT10/dyCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + dyT10 + ' 款</span></div></td>' +
-      '<td><div class="progress-bar"><div class="progress-track"><div class="progress-fill dy" style="width:' + (dyCount ? Math.min(dyT20/dyCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + dyT20 + ' 款</span></div></td>' +
-      '<td style="text-align:left">' + escHTML(dyReps) + '</td></tr>' +
+    '<tr><td data-label="平台"><span class="platform-name wx">微信小游戏</span></td>' +
+      '<td data-label="上榜数"><strong>' + wxCount + '</strong> 款</td>' +
+      '<td data-label="Top10内"><div class="progress-bar"><div class="progress-track"><div class="progress-fill wx" style="width:' + (wxCount ? Math.min(wxT10/wxCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + wxT10 + ' 款</span></div></td>' +
+      '<td data-label="Top20内"><div class="progress-bar"><div class="progress-track"><div class="progress-fill wx" style="width:' + (wxCount ? Math.min(wxT20/wxCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + wxT20 + ' 款</span></div></td>' +
+      '<td data-label="头部代表">' + escHTML(wxReps) + '</td></tr>' +
+    '<tr><td data-label="平台"><span class="platform-name dy">抖音小游戏</span></td>' +
+      '<td data-label="上榜数"><strong>' + dyCount + '</strong> 款</td>' +
+      '<td data-label="Top10内"><div class="progress-bar"><div class="progress-track"><div class="progress-fill dy" style="width:' + (dyCount ? Math.min(dyT10/dyCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + dyT10 + ' 款</span></div></td>' +
+      '<td data-label="Top20内"><div class="progress-bar"><div class="progress-track"><div class="progress-fill dy" style="width:' + (dyCount ? Math.min(dyT20/dyCount*100, 100) : 0) + '%"></div></div><span class="progress-text">' + dyT20 + ' 款</span></div></td>' +
+      '<td data-label="头部代表">' + escHTML(dyReps) + '</td></tr>' +
     '</tbody></table></div>';
 }
 
