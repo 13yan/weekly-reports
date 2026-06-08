@@ -541,5 +541,140 @@
     "题材跨界(综艺/哲学/体育)和剧情化成为长线留存核心",
     "抖音对新题材接受度更高，剧情驱动游戏快速获量",
     "微信头部固化，抖音榜首更迭频繁"
-  ]
+  ],
+  "marketing": {
+    "consumeOverview": {
+      "title": "永远的蔚蓝星球 · 日均消耗（万元）",
+      "channels": [
+        {
+          "name": "抖小",
+          "value": 200,
+          "color": "#e0a75e"
+        },
+        {
+          "name": "微小-广点通",
+          "value": 450,
+          "color": "#6f9e7c"
+        },
+        {
+          "name": "微小-头条",
+          "value": 340,
+          "color": "#8fc27e"
+        }
+      ],
+      "wxTotal": 790,
+      "allTotal": 990,
+      "conclusion": "《永远的蔚蓝星球》全渠道日均消耗近千万，微小端广点通占比57%，头条43%，抖音侧贡献200万/天。塔防+竞技玩法买量效率极高，成为当前消耗标杆。"
+    },
+    "consumeChartTop5": {
+      "labels": [
+        "永远的蔚蓝星球",
+        "向僵尸开炮",
+        "三国冰河时代",
+        "寻道大千",
+        "无尽冬日"
+      ],
+      "values": [
+        450,
+        270,
+        200,
+        160,
+        140
+      ]
+    },
+    "consumeTop15": [
+      {
+        "rank": 1,
+        "name": "永远的蔚蓝星球",
+        "dailyConsume": 450,
+        "category": "塔防"
+      },
+      {
+        "rank": 2,
+        "name": "向僵尸开炮",
+        "dailyConsume": 270,
+        "category": "塔防"
+      },
+      {
+        "rank": 3,
+        "name": "三国冰河时代",
+        "dailyConsume": 200,
+        "category": "SLG"
+      },
+      {
+        "rank": 4,
+        "name": "寻道大千",
+        "dailyConsume": 160,
+        "category": "RPG"
+      },
+      {
+        "rank": 5,
+        "name": "无尽冬日",
+        "dailyConsume": 140,
+        "category": "SLG"
+      },
+      {
+        "rank": 6,
+        "name": "烈焰觉醒",
+        "dailyConsume": 140,
+        "category": "RPG"
+      },
+      {
+        "rank": 7,
+        "name": "向往的生活",
+        "dailyConsume": 120,
+        "category": "模拟经营"
+      },
+      {
+        "rank": 8,
+        "name": "疯狂水世界",
+        "dailyConsume": 120,
+        "category": "SLG"
+      },
+      {
+        "rank": 9,
+        "name": "奔奔王国",
+        "dailyConsume": 110,
+        "category": "塔防"
+      },
+      {
+        "rank": 10,
+        "name": "保卫向日葵",
+        "dailyConsume": 110,
+        "category": "塔防"
+      },
+      {
+        "rank": 11,
+        "name": "梦幻消除战",
+        "dailyConsume": 80,
+        "category": "休闲"
+      },
+      {
+        "rank": 12,
+        "name": "肥鹅美食街",
+        "dailyConsume": 80,
+        "category": "模拟经营"
+      },
+      {
+        "rank": 13,
+        "name": "城主别慌张",
+        "dailyConsume": 80,
+        "category": "RPG"
+      },
+      {
+        "rank": 14,
+        "name": "时尚百货城小游戏",
+        "dailyConsume": 80,
+        "fixed": "每日合计(万元)",
+        "category": "模拟经营"
+      },
+      {
+        "rank": 15,
+        "name": "浪漫餐厅",
+        "dailyConsume": 60,
+        "category": "模拟经营"
+      }
+    ],
+    "totalConsume": 2200
+  }
 }

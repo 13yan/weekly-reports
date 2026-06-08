@@ -305,5 +305,162 @@
     "抖音头部竞争加剧，每周涌现飙升黑马",
     "二合+模拟经营吸金稳健，织梦森林7日ROI 8.81%领跑",
     "新游题材垂直化、玩法轻量化趋势"
-  ]
+  ],
+  "marketing": {
+    "roi": [
+      {
+        "name": "我的花园世界",
+        "wxRank": 4,
+        "dailyConsume": 28,
+        "d1Roi": 1.34,
+        "d7Roi": 3.4,
+        "corePlay": "二合+模拟经营",
+        "themeHighlight": "花草经营"
+      },
+      {
+        "name": "浪漫餐厅",
+        "wxRank": 18,
+        "dailyConsume": 5,
+        "d1Roi": 0.48,
+        "d7Roi": 1.64,
+        "corePlay": "合成+经营+剧情",
+        "themeHighlight": "餐厅恋爱"
+      },
+      {
+        "name": "时尚百货城",
+        "wxRank": 31,
+        "dailyConsume": 46,
+        "d1Roi": 2.23,
+        "d7Roi": 5.56,
+        "corePlay": "经营+放置+多店",
+        "themeHighlight": "百货+换装"
+      },
+      {
+        "name": "四季合合",
+        "wxRank": 59,
+        "dailyConsume": 8,
+        "d1Roi": 0.41,
+        "d7Roi": 2.2,
+        "corePlay": "二合+模拟经营",
+        "themeHighlight": "家园建造"
+      },
+      {
+        "name": "织梦森林",
+        "wxRank": 67,
+        "dailyConsume": 8,
+        "d1Roi": 3.08,
+        "d7Roi": 8.81,
+        "corePlay": "二合+经营+种花",
+        "themeHighlight": "异世界种田"
+      },
+      {
+        "name": "我的休闲时光",
+        "wxRank": 82,
+        "dailyConsume": 1,
+        "d1Roi": 4.1,
+        "d7Roi": 7.86,
+        "corePlay": "放置经营+空间装修",
+        "themeHighlight": "佛系装修"
+      },
+      {
+        "name": "梦幻消除战",
+        "wxRank": 23,
+        "dailyConsume": 20,
+        "d1Roi": 0.47,
+        "d7Roi": 3.1,
+        "corePlay": "三消+模拟经营",
+        "themeHighlight": "古风茶楼"
+      },
+      {
+        "name": "向往的生活",
+        "wxRank": 38,
+        "dailyConsume": null,
+        "d1Roi": null,
+        "d7Roi": null,
+        "corePlay": "二合+模拟经营",
+        "themeHighlight": "田园经营（综艺IP）"
+      },
+      {
+        "name": "肥鹅美食街",
+        "wxRank": 42,
+        "dailyConsume": null,
+        "d1Roi": null,
+        "d7Roi": null,
+        "corePlay": "二合+模拟经营",
+        "themeHighlight": "美食街经营+治愈"
+      }
+    ],
+    "roiChart7d": {
+      "labels": [
+        "织梦森林",
+        "我的休闲时光",
+        "时尚百货城",
+        "梦幻消除战",
+        "我的花园世界",
+        "四季合合"
+      ],
+      "values": [
+        8.81,
+        7.86,
+        5.56,
+        3.1,
+        3.4,
+        2.2
+      ]
+    },
+    "roiChartDaily": {
+      "labels": [
+        "时尚百货城",
+        "我的花园世界",
+        "梦幻消除战",
+        "我的休闲时光",
+        "织梦森林"
+      ],
+      "dailyConsume": [
+        46,
+        28,
+        20,
+        1,
+        8
+      ],
+      "d1Roi": [
+        2.23,
+        1.34,
+        0.47,
+        4.1,
+        3.08
+      ]
+    },
+    "blueStar": [
+      {
+        "date": "4月26日(代言前)",
+        "dyRank": 95,
+        "wxRank": 19,
+        "dailyConsume": "30-40",
+        "d1Roi": "-"
+      },
+      {
+        "date": "4月28日(官宣代言)",
+        "dyRank": 77,
+        "wxRank": 60,
+        "dailyConsume": "8",
+        "d1Roi": "-"
+      },
+      {
+        "date": "5月1日(五一高峰)",
+        "dyRank": 38,
+        "wxRank": "-",
+        "dailyConsume": "160",
+        "d1Roi": "1%+"
+      },
+      {
+        "date": "5月5日~5月9日",
+        "dyRank": "20~26",
+        "wxRank": "2",
+        "dailyConsume": "380",
+        "d1Roi": "1.5%"
+      }
+    ],
+    "blueStarConclusion": "代言后日均消耗从30-40万暴涨至380万元/天，五一首日消耗达160万元，首日ROI提升至1.5%，表现比肩头部塔防爆款《向僵尸开炮》（首日ROI 1%）。微小&抖小双榜排名持续攀升，验证\"顶流代言+塔防竞技\"在微信小游戏赛道的跑通。"
+  }
 }

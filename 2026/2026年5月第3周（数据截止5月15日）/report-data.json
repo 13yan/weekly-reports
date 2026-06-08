@@ -418,5 +418,193 @@
     "二合+模拟经营是绝对主流融合范式",
     "抖音每周涌现飙升黑马，头部竞争加剧",
     "融合创新（二合+剧情/社交/跨界）仍是突围关键"
-  ]
+  ],
+  "marketing": {
+    "roi": [
+      {
+        "name": "我的花园世界",
+        "dailyConsume": 36,
+        "activateCost": 6,
+        "payCost": 1017,
+        "d1Roi": 1.31,
+        "d7Roi": 4.77
+      },
+      {
+        "name": "时尚百货城",
+        "dailyConsume": 44,
+        "activateCost": 8,
+        "payCost": 723,
+        "d1Roi": 2.12,
+        "d7Roi": 6.96
+      },
+      {
+        "name": "四季合合",
+        "dailyConsume": 8,
+        "activateCost": 10,
+        "payCost": 800,
+        "d1Roi": 0.42,
+        "d7Roi": 2.13
+      },
+      {
+        "name": "浪漫餐厅",
+        "dailyConsume": 8,
+        "activateCost": 13,
+        "payCost": 871,
+        "d1Roi": 0.57,
+        "d7Roi": 3.35
+      },
+      {
+        "name": "空格之境",
+        "dailyConsume": 8,
+        "activateCost": 9,
+        "payCost": 855,
+        "d1Roi": 0.72,
+        "d7Roi": 5.67
+      },
+      {
+        "name": "织梦森林",
+        "dailyConsume": 6,
+        "activateCost": 16,
+        "payCost": 852,
+        "d1Roi": 2.91,
+        "d7Roi": 9.07
+      },
+      {
+        "name": "向往的生活",
+        "dailyConsume": 3,
+        "activateCost": 7,
+        "payCost": 1835,
+        "d1Roi": 0.64,
+        "d7Roi": 1.01
+      }
+    ],
+    "roiChart7d": {
+      "labels": [
+        "时尚百货城",
+        "四季合合",
+        "浪漫餐厅",
+        "空格之境",
+        "织梦森林",
+        "向往的生活",
+        "我的花园世界"
+      ],
+      "values": [
+        6.96,
+        2.13,
+        3.35,
+        5.67,
+        9.07,
+        1.01,
+        4.77
+      ],
+      "footnote": "织梦森林9.07%领跑，时尚百货城6.96%紧随其后"
+    },
+    "keyMetrics": [
+      {
+        "name": "QQ经典农场",
+        "wxRank": 2,
+        "dyRank": "-",
+        "mergeElement": "纯经营+社交",
+        "monetization": "IAP+IAA",
+        "highlight": "复刻偷菜，一键收菜"
+      },
+      {
+        "name": "我的花园世界",
+        "wxRank": 6,
+        "dyRank": "1",
+        "mergeElement": "二合+家装剧情",
+        "monetization": "IAP为主",
+        "highlight": "组队合种、花车巡游"
+      },
+      {
+        "name": "浪漫餐厅",
+        "wxRank": 18,
+        "dyRank": "7",
+        "mergeElement": "二合+剧情叙事",
+        "monetization": "IAP为主",
+        "highlight": "狗血悬疑，食物中毒"
+      },
+      {
+        "name": "肥鹅美食街",
+        "wxRank": 25,
+        "dyRank": "79",
+        "mergeElement": "二合+美食街",
+        "monetization": "IAP为主",
+        "highlight": "合成料理，顾客故事"
+      },
+      {
+        "name": "时尚百货城",
+        "wxRank": 29,
+        "dyRank": "15",
+        "mergeElement": "纯经营+百货伙伴",
+        "monetization": "IAP为主",
+        "highlight": "店铺副玩法，时装搭配"
+      },
+      {
+        "name": "向往的生活",
+        "wxRank": 32,
+        "dyRank": "27↑",
+        "mergeElement": "二合+田园IP",
+        "monetization": "IAP为主",
+        "highlight": "综艺IP深度还原"
+      },
+      {
+        "name": "四季合合",
+        "wxRank": 48,
+        "dyRank": "16",
+        "mergeElement": "二合+四季装修",
+        "monetization": "IAP为主",
+        "highlight": "7x9棋盘，时空穿梭"
+      },
+      {
+        "name": "织梦森林",
+        "wxRank": "52↓16",
+        "dyRank": "-",
+        "mergeElement": "二合+花卉培育",
+        "monetization": "IAP为主",
+        "highlight": "种花+送真花商业模型"
+      },
+      {
+        "name": "空格之境",
+        "wxRank": 77,
+        "dyRank": "90新进榜",
+        "mergeElement": "二合+RPG闯关",
+        "monetization": "IAP为主",
+        "highlight": "哲学主题，空白能力"
+      },
+      {
+        "name": "大店小二",
+        "wxRank": "93新进榜",
+        "dyRank": "97",
+        "mergeElement": "古代商业+穿越",
+        "monetization": "IAA+IAP",
+        "highlight": "现代商业穿回盛唐"
+      },
+      {
+        "name": "深海花园",
+        "wxRank": "95新进榜",
+        "dyRank": "-",
+        "mergeElement": "二合+海岛经营",
+        "monetization": "IAA+IAP",
+        "highlight": "种花+送真花海岛版"
+      },
+      {
+        "name": "杜拉拉升职记",
+        "wxRank": "-",
+        "dyRank": "23",
+        "mergeElement": "经营+换装商战",
+        "monetization": "IAP为主",
+        "highlight": "捏脸换装，度假旅行"
+      },
+      {
+        "name": "逆袭的旅程",
+        "wxRank": "-",
+        "dyRank": "58↑11",
+        "mergeElement": "二合+逆袭剧情",
+        "monetization": "IAA+IAP",
+        "highlight": "资源合成+海岛扩建"
+      }
+    ],
+    "keyMetricsInsight": "双平台分化：微信依赖经典IP与社交，抖音偏好创新题材（杜拉拉、空格之境）；\"二合+\"成标配；新游差异化（空格之境哲学主题、深海花园海岛种花）借世界观突围；混合变现趋势（IAA+IAP）降低付费门槛。"
+  }
 }
