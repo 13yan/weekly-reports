@@ -820,6 +820,14 @@ button { font-family: inherit; cursor: pointer; }
 .delta-down::before { display: none; }
 .stat-card .stat-num { display: flex; align-items: center; gap: 2px; }
 #countdownDays { color: #fbbf24; font-weight: 700; }
+
+/* 趋势概览 */
+.trend-overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.trend-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; transition: box-shadow .2s; }
+.trend-card:hover { box-shadow: var(--shadow); }
+.trend-card-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+.trend-card canvas { width: 100% !important; height: 110px !important; }
+
 </style>
 </head>
 <body>
@@ -1224,7 +1232,20 @@ function buildPageHTML(d, key) {
         '<div class="section-text"><span>本周趋势观察</span><span class="section-sub">Weekly Trends</span></div>',
       '</div>',
       '<div class="trend-grid" id="trendCards"></div>',
+    '</section>',    // 趋势概览
+    '<section class="section" id="trendOverviewSection">',
+      '<div class="section-title">',
+        '<span class="section-icon">◈</span>',
+        '<div class="section-text"><span>趋势概览</span><span class="section-sub">Multi-Week Trends</span></div>',
+      '</div>',
+      '<div class="trend-overview-grid">',
+        '<div class="trend-card"><div class="trend-card-title">微信上榜</div><canvas id="trendWxChart"></canvas></div>',
+        '<div class="trend-card"><div class="trend-card-title">抖音上榜</div><canvas id="trendDyChart"></canvas></div>',
+        '<div class="trend-card"><div class="trend-card-title">跨平台</div><canvas id="trendCrossChart"></canvas></div>',
+        '<div class="trend-card"><div class="trend-card-title">品类数量</div><canvas id="trendCatChart"></canvas></div>',
+      '</div>',
     '</section>',
+
 
     // Footer
     '<div class="site-footer">',
@@ -1253,6 +1274,7 @@ function fillData(d, key) {
   renderInsightBox('surgeConclusionWrap', d.surgeConclusion, '飙升结论');
   renderPolicies(d.policies || {});
   renderTrends(d.trends || []);
+  renderTrendOverview();
 }
 
 /* ============================================================
@@ -1879,6 +1901,59 @@ function renderInsightBox(id, content, label) {
   if (!el) return;
   if (content) el.innerHTML = '<strong>📌 ' + (label || '核心发现') + '：</strong>' + sanitizeHtml(content);
   else el.innerHTML = '';
+}
+
+/* ============================================================
+   趋势概览 — 跨周指标折线图
+   ============================================================ */
+function renderTrendOverview() {
+  var labels = [];
+  var wxData = [], dyData = [], crossData = [], catData = [];
+  var keys = weekKeys.slice().reverse();
+  keys.forEach(function(k) {
+    var d = DATA[k];
+    if (!d || !d.stats) return;
+    var label = d.week && d.week.label ? d.week.label.replace(/^(d+月第d+周).*$/, '$1') : k;
+    labels.push(label);
+    wxData.push(d.stats.wxCount || 0);
+    dyData.push(d.stats.dyCount || 0);
+    crossData.push(d.stats.crossPlatform || 0);
+    catData.push(d.stats.categories || 0);
+  });
+  if (!labels.length) return;
+  function makeChart(id, data, color) {
+    var canvas = document.getElementById(id);
+    if (!canvas) return;
+    try { new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data,
+          borderColor: color,
+          backgroundColor: color + '22',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 4,
+          pointBackgroundColor: color,
+          borderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+          y: { beginAtZero: false, grid: { color: '#f0f0f0' }, ticks: { font: { size: 10 } } }
+        }
+      }
+    }); } catch(e) { /* chart render error */ }
+  }
+  makeChart('trendWxChart', wxData, '#1e3a8a');
+  makeChart('trendDyChart', dyData, '#60a5fa');
+  makeChart('trendCrossChart', crossData, '#8b5cf6');
+  makeChart('trendCatChart', catData, '#f97316');
 }
 
 function renderWeekButtons(activeKey) {
