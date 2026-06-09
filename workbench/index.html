@@ -70,7 +70,7 @@
   /* 尺寸 */
   --sidebar-w: 232px;
   --topbar-h: 56px;
-  --content-max: 1480px;
+  --content-max: 1620px;
 
   /* 动画 */
   --t-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -177,7 +177,7 @@ button { font-family: inherit; cursor: pointer; }
 .topbar-right .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); display: inline-block; margin-right: 4px; box-shadow: 0 0 0 3px var(--primary-glow); animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-.content { padding: 28px 32px calc(60px + var(--safe-bottom)); max-width: var(--content-max); }
+.content { padding: 28px 20px calc(60px + var(--safe-bottom)); max-width: var(--content-max); margin: 0 auto; }
 .content > * { animation: fadeUp 0.4s ease; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
