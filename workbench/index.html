@@ -803,6 +803,13 @@ button { font-family: inherit; cursor: pointer; }
 .top20-scroll tbody::-webkit-scrollbar { width: 4px; }
 .top20-scroll tbody::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
 .top20-scroll .scroll-hint { text-align: center; font-size: 11px; color: #999; padding: 4px 0 0; }
+
+/* 大幅上升 Tab 切换 */
+.surge-tabs { display: flex; gap: 0; margin: 0 0 14px 0; background: var(--bg); border-radius: var(--radius); padding: 3px; width: fit-content; border: 1px solid var(--border-light); }
+.surge-tab { padding: 6px 18px; font-size: 12.5px; font-weight: 500; border: none; background: transparent; color: var(--text-tertiary); cursor: pointer; border-radius: calc(var(--radius) - 2px); transition: all var(--t-fast); }
+.surge-tab:hover { color: var(--text); background: rgba(10,124,66,0.05); }
+.surge-tab.active { background: var(--primary); color: #fff; font-weight: 600; box-shadow: 0 1px 3px rgba(10,124,66,0.3); }
+.surge-tab.active:hover { background: var(--primary-600); }
 </style>
 </head>
 <body>
@@ -876,6 +883,8 @@ var CHART_COLORS = ['#0a7c42', '#3b82f6', '#f97316', '#8b5cf6', '#ef4444', '#06b
 var DATA = {}, weekKeys = [], currentKey = null, reportMap = {};
 var chartInstances = {}, navSections = [];
 var isMobile = window.innerWidth <= 768;
+var _allMovers = [];
+var _surgeTab = 'all';
 
 window.addEventListener('resize', function() {
   var newMobile = window.innerWidth <= 768;
@@ -1162,6 +1171,7 @@ function buildPageHTML(d, key) {
         '<span class="section-icon">↑</span>',
         '<div class="section-text"><span>本周大幅上升游戏（≥15位）</span><span class="section-sub">Movers — Rising Stars</span></div>',
       '</div>',
+      '<div class="surge-tabs" id="surgeTabs"><button class="surge-tab active" data-surge="all">全部</button><button class="surge-tab" data-surge="wx">微小</button><button class="surge-tab" data-surge="dy">抖小</button></div>',
       '<div class="surge-grid" id="surgeGrid"></div>',
       '<div class="insight-box" id="surgeConclusionWrap" style="margin-top:14px"></div>',
     '</section>',
@@ -1207,7 +1217,7 @@ function fillData(d, key) {
   if (charts.cats && charts.cats.length) { renderCharts(charts); document.getElementById('chartGrid').style.display = 'grid'; }
   else { document.getElementById('chartGrid').style.display = 'none'; }
   renderInsightBox('catDescWrap', d.catDesc, '品类结构结论');
-  renderSurgeGrid(d.movers || []);
+  _allMovers = d.movers || []; _surgeTab = 'all'; renderSurgeGrid(_allMovers);
   renderInsightBox('surgeConclusionWrap', d.surgeConclusion, '飙升结论');
   renderPolicies(d.policies || {});
   renderTrends(d.trends || []);
@@ -1427,14 +1437,19 @@ function renderSimTable(games) {
    飙升卡片
    ============================================================ */
 function renderSurgeGrid(movers) {
+  // Filter by active tab
+  var filtered = movers;
+  if (_surgeTab === 'wx') filtered = movers.filter(function(m) { return m.platform === '微信'; }); // 微信
+  else if (_surgeTab === 'dy') filtered = movers.filter(function(m) { return m.platform === '抖音'; }); // 抖音
+
   var el = document.getElementById('surgeGrid');
   if (!el) return;
   el.innerHTML = '';
-  if (!movers || !movers.length) {
+  if (!filtered || !filtered.length) {
     el.innerHTML = '<div style="color:#999;padding:24px;text-align:center">本周无大幅上升游戏</div>';
     return;
   }
-  movers.forEach(function(m) {
+  filtered.forEach(function(m) {
     var rise = m.rise || 0;
     var isNew = rise >= 999 || rise === 'NEW' || (m.rise === 'NEW');
     var riseDisplay = isNew ? 'NEW' : '↑' + rise;
@@ -1456,9 +1471,23 @@ function renderSurgeGrid(movers) {
   });
 }
 
+
 /* ============================================================
    政策 / 趋势
    ============================================================ */
+
+
+/* Surge tab switching */
+function switchSurgeTab(tab) {
+  _surgeTab = tab;
+  document.querySelectorAll('#surgeTabs .surge-tab').forEach(function(t) { t.classList.toggle('active', t.dataset.surge === tab); });
+  renderSurgeGrid(_allMovers);
+}
+document.addEventListener('click', function(e) {
+  var tab = e.target.closest('#surgeTabs .surge-tab');
+  if (tab) switchSurgeTab(tab.dataset.surge);
+});
+
 function renderPolicies(policies) {
   var el = document.getElementById('policyContent');
   if (!el) return;
