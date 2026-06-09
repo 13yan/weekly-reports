@@ -813,6 +813,13 @@ button { font-family: inherit; cursor: pointer; }
 .surge-tab:hover { color: var(--text); background: rgba(10,124,66,0.05); }
 .surge-tab.active { background: var(--primary); color: #fff; font-weight: 600; box-shadow: 0 1px 3px rgba(10,124,66,0.3); }
 .surge-tab.active:hover { background: var(--primary-600); }
+
+/* 新鲜感指标 - 环比箭头 + 倒计时 */
+.delta-up { color: var(--red); font-size: 11px; font-weight: 700; margin-left: 3px; }
+.delta-down { color: var(--primary); font-size: 11px; font-weight: 700; margin-left: 3px; }
+.delta-down::before { display: none; }
+.stat-card .stat-num { display: flex; align-items: center; gap: 2px; }
+#countdownDays { color: #fbbf24; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -1083,13 +1090,15 @@ function buildPageHTML(d, key) {
             '<span class="meta-item">微小畅销榜 Top100 · 抖小畅销榜 Top100</span>',
             '<span class="divider">·</span>',
             '<span class="meta-item hide-mobile">双平台同步监测</span>',
+            '<span class="divider">·</span>',
+            '<span class="meta-item">距下次更新 <strong id="countdownDays">' + daysUntilNextUpdate() + '</strong> 天</span>',
           '</div>',
         '</div>',
         '<div class="banner-stats">',
-          '<div class="stat-card stat-wx"><div class="stat-icon">◉</div><div class="stat-num">' + (stats.wxCount || '--') + '</div><div class="stat-label">微信上榜</div></div>',
-          '<div class="stat-card stat-dy"><div class="stat-icon">◉</div><div class="stat-num">' + (stats.dyCount || '--') + '</div><div class="stat-label">抖音上榜</div></div>',
-          '<div class="stat-card stat-cross"><div class="stat-icon">♦</div><div class="stat-num">' + (stats.crossPlatform || '--') + '</div><div class="stat-label">跨平台</div></div>',
-          '<div class="stat-card stat-cat"><div class="stat-icon">☰</div><div class="stat-num">' + (stats.categories || '--') + '</div><div class="stat-label">品类数量</div></div>',
+          '<div class="stat-card stat-wx"><div class="stat-icon">◉</div><div class="stat-num">' + (stats.wxCount || '--') + calcDelta(stats.wxCount, prevStats.wxCount) + '</div><div class="stat-label">微信上榜</div></div>',
+          '<div class="stat-card stat-dy"><div class="stat-icon">◉</div><div class="stat-num">' + (stats.dyCount || '--') + calcDelta(stats.dyCount, prevStats.dyCount) + '</div><div class="stat-label">抖音上榜</div></div>',
+          '<div class="stat-card stat-cross"><div class="stat-icon">♦</div><div class="stat-num">' + (stats.crossPlatform || '--') + calcDelta(stats.crossPlatform, prevStats.crossPlatform) + '</div><div class="stat-label">跨平台</div></div>',
+          '<div class="stat-card stat-cat"><div class="stat-icon">☰</div><div class="stat-num">' + (stats.categories || '--') + calcDelta(stats.categories, prevStats.categories) + '</div><div class="stat-label">品类数量</div></div>',
         '</div>',
       '</div>',
     '</div>',
@@ -1858,7 +1867,7 @@ function renderWeekButtons(activeKey) {
   el.innerHTML = weekKeys.map(function(k, i) {
     var d = DATA[k];
     var label = d && d.week ? (d.week.label || k) : k;
-    return '<button class="week-btn' + (k === activeKey ? ' active' : '') + '" data-week="' + k + '">' + escHTML(label) + (i === 0 ? '<span class="new-dot"></span>' : '') + '</button>';
+    return '<button class="week-btn' + (k === activeKey ? ' active' : '') + '" data-week="' + k + '" title="' + (i === 0 ? '最新周报' : '') + '">' + escHTML(label) + (i === 0 ? '<span class="new-dot" title="最新"></span>' : '') + '</button>';
   }).join('');
   el.querySelectorAll('.week-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -1872,7 +1881,7 @@ function renderSidebarList(reports) {
   var el = document.getElementById('sidebarWeekList');
   if (!el) return;
   el.innerHTML = reports.map(function(r, i) {
-    return '<a class="nav-item" href="#" data-sidebar-week="' + r.id + '" data-dir="' + escAttr(r.dirName) + '" data-hasdata="' + (r.hasData !== false) + '"><span class="nav-icon">' + (i + 1) + '</span><span>' + escHTML(r.label) + '</span>' + (i === 0 ? '<span class="badge">最新</span>' : '') + '</a>';
+    return '<a class="nav-item" href="#" data-sidebar-week="' + r.id + '" data-dir="' + escAttr(r.dirName) + '" data-hasdata="' + (r.hasData !== false) + '"><span class="nav-icon">' + (i + 1) + '</span><span>' + escHTML(r.label) + '</span>' + (i === 0 ? '<span class="badge live">LIVE</span>' : (i < 3 ? '<span class="badge">历史</span>' : '')) + '</a>';
   }).join('');
   el.querySelectorAll('[data-sidebar-week]').forEach(function(a) {
     a.addEventListener('click', function(e) {
