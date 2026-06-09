@@ -805,7 +805,7 @@ button { font-family: inherit; cursor: pointer; }
 .top20-scroll .scroll-hint { text-align: center; font-size: 11px; color: #999; padding: 4px 0 0; }
 
 /* 大幅上升 Tab 切换 */
-.surge-tabs { display: flex; gap: 0; margin: 0 0 14px 0; background: var(--bg); border-radius: var(--radius); padding: 3px; width: fit-content; border: 1px solid var(--border-light); }
+.surge-tabs { display: flex; gap: 0; background: var(--bg); border-radius: var(--radius); padding: 3px; width: fit-content; border: 1px solid var(--border-light); flex-shrink: 0; }
 .surge-tab { padding: 6px 18px; font-size: 12.5px; font-weight: 500; border: none; background: transparent; color: var(--text-tertiary); cursor: pointer; border-radius: calc(var(--radius) - 2px); transition: all var(--t-fast); }
 .surge-tab:hover { color: var(--text); background: rgba(10,124,66,0.05); }
 .surge-tab.active { background: var(--primary); color: #fff; font-weight: 600; box-shadow: 0 1px 3px rgba(10,124,66,0.3); }
@@ -1170,8 +1170,8 @@ function buildPageHTML(d, key) {
       '<div class="section-title">',
         '<span class="section-icon">↑</span>',
         '<div class="section-text"><span>本周大幅上升游戏（≥15位）</span><span class="section-sub">Movers — Rising Stars</span></div>',
+        '<div class="surge-tabs" id="surgeTabs" style="margin-left:auto"><button class="surge-tab active" data-surge="all">全部</button><button class="surge-tab" data-surge="wx">微小</button><button class="surge-tab" data-surge="dy">抖小</button></div>',
       '</div>',
-      '<div class="surge-tabs" id="surgeTabs"><button class="surge-tab active" data-surge="all">全部</button><button class="surge-tab" data-surge="wx">微小</button><button class="surge-tab" data-surge="dy">抖小</button></div>',
       '<div class="surge-grid" id="surgeGrid"></div>',
       '<div class="insight-box" id="surgeConclusionWrap" style="margin-top:14px"></div>',
     '</section>',
