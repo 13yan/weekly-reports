@@ -895,6 +895,24 @@ var chartInstances = {}, navSections = [];
 var isMobile = window.innerWidth <= 768;
 var _allMovers = [];
 var _surgeTab = 'all';
+/* 新鲜感辅助函数 */
+function getPrevWeekKey(key) {
+  var idx = weekKeys.indexOf(key);
+  return (idx >= 0 && idx < weekKeys.length - 1) ? weekKeys[idx + 1] : null;
+}
+function daysUntilNextUpdate() {
+  var now = new Date();
+  var day = now.getDay();
+  var diff = (5 - day + 7) % 7;
+  return diff === 0 ? 7 : diff;
+}
+function calcDelta(cur, prev) {
+  if (cur === null || cur === undefined || prev === null || prev === undefined || cur === '--' || prev === '--' || cur == prev) return '';
+  var d = Number(cur) - Number(prev);
+  if (d === 0) return '';
+  return '<span class="' + (d > 0 ? 'delta-up' : 'delta-down') + '">' + (d > 0 ? '▲' : '▼') + Math.abs(d) + '</span>';
+}
+
 
 window.addEventListener('resize', function() {
   var newMobile = window.innerWidth <= 768;
@@ -1078,6 +1096,8 @@ function buildPageHTML(d, key) {
   var stats = d.stats || {};
   var week = d.week || {};
   var movers = d.movers || [];
+  var prevKey = getPrevWeekKey(key);
+  var prevStats = prevKey && DATA[prevKey] ? (DATA[prevKey].stats || {}) : {};
   return [
     // Banner
     '<div class="banner">',
