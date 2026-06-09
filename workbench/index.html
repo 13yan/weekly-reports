@@ -820,6 +820,32 @@ button { font-family: inherit; cursor: pointer; }
 .delta-down::before { display: none; }
 .stat-card .stat-num { display: flex; align-items: center; gap: 2px; }
 #countdownDays { color: #fbbf24; font-weight: 700; }
+
+/* 月份分组 */
+.month-group { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.month-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px 10px 16px; cursor: pointer;
+  color: rgba(255, 255, 255, 0.45); font-size: 11px;
+  font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  transition: color .2s; user-select: none;
+}
+.month-header:hover { color: rgba(255,255,255,0.8); }
+.month-header .arrow {
+  display: inline-block; width: 14px; text-align: center;
+  transition: transform .2s; font-size: 10px; color: rgba(255,255,255,0.3);
+}
+.month-header .arrow.collapsed { transform: rotate(-90deg); }
+.month-body { overflow: hidden; transition: max-height .25s ease; }
+.month-body.collapsed { max-height: 0 !important; }
+.month-body .nav-item { padding-left: 28px; font-size: 12px; }
+.month-body .badge-latest {
+  display: inline-block; font-size: 9px; font-weight: 700;
+  background: var(--primary); color: #fff;
+  padding: 1px 6px; border-radius: 8px; margin-left: 6px;
+  letter-spacing: 0; text-transform: none;
+}
+
 </style>
 </head>
 <body>
@@ -1900,9 +1926,48 @@ function renderWeekButtons(activeKey) {
 function renderSidebarList(reports) {
   var el = document.getElementById('sidebarWeekList');
   if (!el) return;
-  el.innerHTML = reports.map(function(r, i) {
-    return '<a class="nav-item" href="#" data-sidebar-week="' + r.id + '" data-dir="' + escAttr(r.dirName) + '" data-hasdata="' + (r.hasData !== false) + '"><span class="nav-icon">' + (i + 1) + '</span><span>' + escHTML(r.label) + '</span>' + (i === 0 ? '<span class="badge live">LIVE</span>' : (i < 3 ? '<span class="badge">历史</span>' : '')) + '</a>';
-  }).join('');
+  // Group reports by month (from id: YYYYMMDD)
+  var months = {};
+  var monthNames = ['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  reports.forEach(function(r) {
+    var m = r.id.substring(0, 6);
+    if (!months[m]) months[m] = { key: m, name: r.id.substring(0, 4) + '年' + monthNames[parseInt(r.id.substring(4, 6), 10)], list: [] };
+    months[m].list.push(r);
+  });
+  // Sort months descending (latest first), and weeks within each month descending
+  var sortedMonths = Object.keys(months).sort().reverse();
+  var firstMonth = sortedMonths[0];
+  var html = '';
+  sortedMonths.forEach(function(mk) {
+    var m = months[mk];
+    var isFirst = (mk === firstMonth);
+    var bodyId = 'monthBody_' + mk;
+    html += '<div class="month-group">';
+    html += '<div class="month-header" data-month-body="' + bodyId + '">';
+    html += '<span class="arrow' + (isFirst ? '' : ' collapsed') + '">▼</span>';
+    html += escHTML(m.name) + '</div>';
+    html += '<div id="' + bodyId + '" class="month-body' + (isFirst ? '' : ' collapsed') + '">';
+    m.list.sort(function(a,b) { return b.id.localeCompare(a.id); }).forEach(function(r, j) {
+      html += '<a class="nav-item" href="#" data-sidebar-week="' + r.id + '" data-dir="' + escAttr(r.dirName) + '" data-hasdata="' + (r.hasData !== false) + '">';
+      html += '<span class="nav-icon">' + (j + 1) + '</span>';
+      html += '<span>' + escHTML(r.label) + '</span>';
+      if (isFirst && j === 0) html += '<span class="badge-latest">最新</span>';
+      html += '</a>';
+    });
+    html += '</div>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  // Click handlers for month headers
+  el.querySelectorAll('.month-header').forEach(function(h) {
+    h.addEventListener('click', function() {
+      var body = document.getElementById(this.dataset.monthBody);
+      if (!body) return;
+      body.classList.toggle('collapsed');
+      this.querySelector('.arrow').classList.toggle('collapsed');
+    });
+  });
+  // Click handlers for week items
   el.querySelectorAll('[data-sidebar-week]').forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault();
