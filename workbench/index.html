@@ -1250,7 +1250,7 @@ function buildPageHTML(d, key) {
 }
 
 function fillData(d, key) {
-  document.getElementById('currentWeekLabel').textContent = d.week ? (d.week.label || '') : '';
+  var cwl = document.getElementById('currentWeekLabel'); if (cwl) cwl.textContent = d.week ? (d.week.label || '') : '';
   renderWeekButtons(key);
   renderSummary(d);
   renderTable('wxTop20Body', d.top20 && d.top20.wx ? d.top20.wx : [], 'wx');
