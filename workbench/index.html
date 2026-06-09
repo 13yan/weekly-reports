@@ -891,15 +891,7 @@ button { font-family: inherit; cursor: pointer; }
 </aside>
 
 <div class="main">
-  <div class="topbar">
-    <div class="topbar-title">市场资讯<span>工作台</span></div>
-    <div class="topbar-right">
-      <span><span class="status-dot"></span>实时监测</span>
-      <span class="hide-mobile">|</span>
-      <span id="currentWeekLabel" class="hide-mobile">加载中...</span>
-    </div>
-  </div>
-  <div class="content" id="mainContent">
+<div class="content" id="mainContent">
     <div class="loading-state">
       <div class="spinner"></div>
       <p>正在加载周报数据...</p>
@@ -1148,9 +1140,6 @@ function buildPageHTML(d, key) {
         '</div>',
       '</div>',
     '</div>',
-
-    // 周选择器
-    '<div class="week-selector" id="weekSelector"></div>',
 
     // ★ 摘要
     '<section class="section" id="summary">',
