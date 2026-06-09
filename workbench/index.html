@@ -11,25 +11,25 @@
    设计系统 (Design Tokens)
    ============================================================ */
 :root {
-  /* 主色 — 微信绿，作为视觉锚点 */
-  --primary: #0a7c42;
-  --primary-50: #f0faf4;
-  --primary-100: #d9f1e2;
-  --primary-200: #b3e2c4;
-  --primary-500: #0a7c42;
-  --primary-600: #076333;
-  --primary-700: #054f29;
-  --primary-glow: rgba(10, 124, 66, 0.12);
+  /* 主色 — 深邃商务蓝，参考彭博/FT/麦肯锡 */
+  --primary: #1e3a8a;
+  --primary-50: #eef2ff;
+  --primary-100: #dbe4ff;
+  --primary-200: #b3c5ff;
+  --primary-500: #1e3a8a;
+  --primary-600: #172554;
+  --primary-700: #0c1834;
+  --primary-glow: rgba(30, 58, 138, 0.12);
 
   /* 中性色 */
-  --bg: #f5f7fa;
-  --bg-soft: #fafbfc;
+  --bg: #f8fafc;
+  --bg-soft: #f1f5f9;
   --card-bg: #ffffff;
-  --text: #1a2233;
-  --text-secondary: #5a6678;
+  --text: #0f172a;
+  --text-secondary: #475569;
   --text-tertiary: #94a0b0;
-  --border: #e8ebf0;
-  --border-light: #f0f2f6;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
 
   /* 状态色 */
   --orange: #f97316;
@@ -106,7 +106,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .sidebar-logo h1 {
   font-size: 16px; font-weight: 700;
-  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -139,11 +139,11 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 10.5px; color: rgba(255, 255, 255, 0.25); line-height: 1.7;
 }
 .sidebar-footer .sync-btn {
-  margin-top: 10px; background: rgba(34, 197, 94, 0.12); color: #4ade80;
+  margin-top: 10px; background: rgba(96, 165, 250, 0.12); color: #93c5fd;
   border: none; padding: 7px 14px; border-radius: var(--radius-sm); cursor: pointer;
   font-size: 11.5px; transition: all var(--t-fast); width: 100%; font-weight: 500;
 }
-.sidebar-footer .sync-btn:hover { background: rgba(34, 197, 94, 0.2); }
+.sidebar-footer .sync-btn:hover { background: rgba(96, 165, 250, 0.2); }
 .sidebar-footer .sync-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .menu-toggle {
@@ -186,9 +186,9 @@ button { font-family: inherit; cursor: pointer; }
    ============================================================ */
 .banner {
   background:
-    radial-gradient(ellipse at top right, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
     radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-    linear-gradient(135deg, #0b1424 0%, #142137 50%, #1a2942 100%);
+    linear-gradient(135deg, #0c1834 0%, #15285c 50%, #1e3a8a 100%);
   border-radius: var(--radius-lg);
   padding: 32px 36px;
   color: #fff;
@@ -210,11 +210,11 @@ button { font-family: inherit; cursor: pointer; }
   background: linear-gradient(135deg, #fff 0%, #a7f3d0 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.banner-left .week-tag { color: #4ade80; font-weight: 700; }
+.banner-left .week-tag { color: #93c5fd; font-weight: 700; }
 .banner-meta { display: flex; align-items: center; gap: 14px; margin-top: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.6); flex-wrap: wrap; }
 .banner-meta .meta-item { display: flex; align-items: center; gap: 5px; }
 .banner-meta .divider { color: rgba(255, 255, 255, 0.15); }
-.banner-meta .pulse { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+.banner-meta .pulse { width: 6px; height: 6px; border-radius: 50%; background: #60a5fa; box-shadow: 0 0 8px #60a5fa; }
 .banner-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; min-width: 360px; }
 .stat-card {
   background: rgba(255, 255, 255, 0.06);
@@ -228,7 +228,7 @@ button { font-family: inherit; cursor: pointer; }
 .stat-card .stat-icon { font-size: 14px; opacity: 0.5; margin-bottom: 6px; }
 .stat-card .stat-num { font-size: 22px; font-weight: 800; font-family: var(--font-num); line-height: 1.1; }
 .stat-card .stat-label { font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-top: 2px; }
-.stat-card.stat-wx .stat-num { color: #4ade80; }
+.stat-card.stat-wx .stat-num { color: #93c5fd; }
 .stat-card.stat-dy .stat-num { color: #60a5fa; }
 .stat-card.stat-cross .stat-num { color: #fbbf24; }
 .stat-card.stat-cat .stat-num { color: #a78bfa; }
@@ -319,7 +319,7 @@ button { font-family: inherit; cursor: pointer; }
 .summary-hero::before {
   content: ''; position: absolute; top: 0; right: 0;
   width: 100px; height: 100px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.08) 0%, transparent 70%);
 }
 .summary-hero .hero-tag {
   flex-shrink: 0;
@@ -448,7 +448,7 @@ button { font-family: inherit; cursor: pointer; }
 .cross-tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 9.5px; background: var(--primary-50); color: var(--primary); margin-left: 4px; font-weight: 700; vertical-align: middle; }
 .platform-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; vertical-align: middle; }
 .platform-tag.wx { background: var(--primary-50); color: var(--primary); }
-.platform-tag.dy { background: var(--amber-soft); color: var(--amber); }
+.platform-tag.dy { background: #e0f2fe; color: #075985; }
 
 .up { color: var(--red); font-weight: 600; }
 .down { color: var(--primary); font-weight: 600; }
@@ -459,8 +459,8 @@ button { font-family: inherit; cursor: pointer; }
 .tag-cat { display: inline-block; padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 500; background: var(--bg-soft); color: var(--text-secondary); }
 
 /* 表格头部彩色 */
-.table-wrap th.col-wx { background: linear-gradient(180deg, var(--primary-50) 0%, #f0faf4 100%); color: var(--primary-700); }
-.table-wrap th.col-dy { background: linear-gradient(180deg, var(--amber-soft) 0%, #fffbf0 100%); color: #92400e; }
+.table-wrap th.col-wx { background: linear-gradient(180deg, var(--primary-50) 0%, #f5f7ff 100%); color: var(--primary-700); }
+.table-wrap th.col-dy { background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%); color: #075985; }
 
 /* 买量/ROI 板块辅助 */
 .insight-box { background: var(--primary-50); border-radius: var(--radius); padding: 14px 16px; font-size: 13px; line-height: 1.7; color: var(--text-secondary); border-left: 3px solid var(--primary); }
@@ -479,12 +479,12 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; align-items: center; justify-content: center; gap: 8px;
   transition: all var(--t-fast); box-shadow: var(--shadow-sm);
 }
-.top100-capsule.wx { background: #e8f5e9; color: #2e7d32; }
-.top100-capsule.wx:hover { background: #c8e6c9; transform: translateY(-1px); box-shadow: var(--shadow); }
+.top100-capsule.wx { background: #dbe4ff; color: #1e3a8a; }
+.top100-capsule.wx:hover { background: #c7d6ff; transform: translateY(-1px); box-shadow: var(--shadow); }
 .top100-capsule.dy { background: #e3f2fd; color: #1565c0; }
 .top100-capsule.dy:hover { background: #bbdefb; transform: translateY(-1px); box-shadow: var(--shadow); }
 .top100-capsule .capsule-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-.top100-capsule.wx .capsule-dot { background: #4caf50; }
+.top100-capsule.wx .capsule-dot { background: #1e3a8a; }
 .top100-capsule.dy .capsule-dot { background: #42a5f5; }
 
 /* Top100 弹窗遮罩 */
@@ -555,7 +555,7 @@ button { font-family: inherit; cursor: pointer; }
 .sim-overview .progress-bar { display: flex; align-items: center; gap: 8px; }
 .sim-overview .progress-track { flex: 1; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
 .sim-overview .progress-fill { height: 100%; border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-.sim-overview .progress-fill.wx { background: linear-gradient(90deg, #22c55e 0%, #4ade80 100%); }
+.sim-overview .progress-fill.wx { background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%); }
 .sim-overview .progress-fill.dy { background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%); }
 .sim-overview .progress-text { font-size: 11px; color: var(--text-tertiary); font-family: var(--font-num); min-width: 36px; text-align: right; }
 
@@ -569,9 +569,9 @@ button { font-family: inherit; cursor: pointer; }
 .chart-card:hover { border-color: var(--primary-200); box-shadow: var(--shadow-sm); }
 .chart-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
 .chart-title .dot { width: 6px; height: 6px; border-radius: 50%; }
-.chart-title .dot.wx { background: #22c55e; }
+.chart-title .dot.wx { background: #1e3a8a; }
 .chart-title .dot.dy { background: #3b82f6; }
-.chart-title .dot.cmp { background: linear-gradient(135deg, #22c55e 0%, #3b82f6 100%); }
+.chart-title .dot.cmp { background: linear-gradient(135deg, #1e3a8a 0%, #60a5fa 100%); }
 .chart-box { height: 240px; position: relative; }
 .chart-box canvas { width: 100% !important; height: 100% !important; }
 
@@ -622,7 +622,7 @@ button { font-family: inherit; cursor: pointer; }
   border-left: 3px solid var(--border);
 }
 .policy-card:hover { box-shadow: var(--shadow-sm); }
-.policy-card.wx { border-left-color: #22c55e; }
+.policy-card.wx { border-left-color: #1e3a8a; }
 .policy-card.dy { border-left-color: #f59e0b; }
 .policy-card.apple { border-left-color: #8b5cf6; }
 .policy-card.android { border-left-color: #3b82f6; }
@@ -881,7 +881,7 @@ button { font-family: inherit; cursor: pointer; }
    ============================================================ */
 
 var BASE = '../', MANIFEST_URL = './manifest.json';
-var CHART_COLORS = ['#0a7c42', '#3b82f6', '#f97316', '#8b5cf6', '#ef4444', '#06b6d4', '#84cc16', '#ec4899', '#6366f1', '#14b8a6', '#f59e0b', '#a855f7', '#10b981', '#dc2626', '#0ea5e9', '#7c3aed'];
+var CHART_COLORS = ['#1e3a8a', '#60a5fa', '#f97316', '#8b5cf6', '#ef4444', '#06b6d4', '#84cc16', '#ec4899', '#6366f1', '#14b8a6', '#f59e0b', '#a855f7', '#10b981', '#dc2626', '#0ea5e9', '#7c3aed'];
 
 var DATA = {}, weekKeys = [], currentKey = null, reportMap = {};
 var chartInstances = {}, navSections = [];
@@ -1904,7 +1904,7 @@ function renderCharts(charts) {
   if (cmpC) chartInstances.cmp = new Chart(cmpC, {
     type: 'bar',
     data: { labels: cats, datasets: [
-      { label: '微信', data: wxData, backgroundColor: 'rgba(10, 124, 66, 0.85)', borderRadius: 4, maxBarThickness: 28 },
+      { label: '微信', data: wxData, backgroundColor: 'rgba(30, 58, 138, 0.85)', borderRadius: 4, maxBarThickness: 28 },
       { label: '抖音', data: dyData, backgroundColor: 'rgba(59, 130, 246, 0.85)', borderRadius: 4, maxBarThickness: 28 }
     ]},
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { font: { size: 10 }, boxWidth: 12 } } }, scales: { x: { grid: { display: false }, ticks: { font: { size: 9 } } }, y: { beginAtZero: true, ticks: { stepSize: 2, font: { size: 9 } }, grid: { color: 'rgba(0,0,0,0.06)' } } } }
