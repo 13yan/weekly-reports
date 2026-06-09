@@ -786,6 +786,23 @@ button { font-family: inherit; cursor: pointer; }
   .table-wrap th { font-size: 11px; padding: 8px 10px; }
   .table-wrap td { font-size: 12px; padding: 8px 10px; }
 }
+
+/* Top20 表格仅显示前5行，其余通过滚动查看 */
+.top20-scroll thead { display: table; width: 100%; table-layout: fixed; }
+.top20-scroll tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: 230px;
+  scrollbar-width: thin;
+}
+.top20-scroll tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.top20-scroll tbody::-webkit-scrollbar { width: 4px; }
+.top20-scroll tbody::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+.top20-scroll .scroll-hint { text-align: center; font-size: 11px; color: #999; padding: 4px 0 0; }
 </style>
 </head>
 <body>
@@ -1088,11 +1105,11 @@ function buildPageHTML(d, key) {
       '<div class="top20-grid">',
         '<div>',
           '<div class="subsection-title">微信小游戏 Top20</div>',
-          '<div class="table-wrap"><table><thead><tr><th style="width:46px">#</th><th>游戏</th><th>品类</th><th style="width:80px">变化</th></tr></thead><tbody id="wxTop20Body"></tbody></table></div>',
+          '<div class="table-wrap top20-scroll"><table><thead><tr><th style="width:46px">#</th><th>游戏</th><th>品类</th><th style="width:80px">变化</th></tr></thead><tbody id="wxTop20Body"></tbody></table><div class="scroll-hint">▼ 向下滚动查看更多</div></div>',
         '</div>',
         '<div>',
           '<div class="subsection-title">抖音小游戏 Top20</div>',
-          '<div class="table-wrap"><table><thead><tr><th style="width:46px">#</th><th>游戏</th><th>品类</th><th style="width:80px">变化</th></tr></thead><tbody id="dyTop20Body"></tbody></table></div>',
+          '<div class="table-wrap top20-scroll"><table><thead><tr><th style="width:46px">#</th><th>游戏</th><th>品类</th><th style="width:80px">变化</th></tr></thead><tbody id="dyTop20Body"></tbody></table><div class="scroll-hint">▼ 向下滚动查看更多</div></div>',
         '</div>',
       '</div>',
       '<div class="insight-box" id="top20InsightWrap" style="margin-top:16px"></div>',
