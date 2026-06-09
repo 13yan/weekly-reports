@@ -579,6 +579,9 @@ button { font-family: inherit; cursor: pointer; }
    飙升卡片
    ============================================================ */
 .surge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; }
+.surge-scroll { max-height: 360px; overflow-y: auto; scrollbar-width: thin; }
+.surge-scroll::-webkit-scrollbar { width: 4px; }
+.surge-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
 .surge-card {
   background: var(--card-bg);
   border: 1px solid var(--border-light);
@@ -1172,7 +1175,7 @@ function buildPageHTML(d, key) {
         '<div class="section-text"><span>本周大幅上升游戏（≥15位/新上榜）</span><span class="section-sub">Movers — Rising Stars</span></div>',
         '<div class="surge-tabs" id="surgeTabs" style="margin-left:auto"><button class="surge-tab active" data-surge="all">全部</button><button class="surge-tab" data-surge="wx">微小</button><button class="surge-tab" data-surge="dy">抖小</button></div>',
       '</div>',
-      '<div class="surge-grid" id="surgeGrid"></div>',
+      '<div class="surge-grid surge-scroll" id="surgeGrid"></div>',
       '<div class="insight-box" id="surgeConclusionWrap" style="margin-top:14px"></div>',
     '</section>',
 
