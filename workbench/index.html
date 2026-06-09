@@ -1635,7 +1635,13 @@ function renderMarketing(mkt, weekKey) {
 
       // 结论
       if (mkt.consumeOverview.conclusion) {
-        html += '<div class="insight-box" style="margin-top:16px"><strong>📌 数据解读：</strong>' + sanitizeHtml(mkt.consumeOverview.conclusion.replace(/\n/g, '<br>')) + '</div>';
+        html += '<div class="insight-box" style="margin-top:16px"><strong>📌 数据解读：</strong><br>';
+        var ps = (mkt.consumeOverview.conclusion || '').split('\n\n').filter(function(p) { return p.trim(); });
+        ps.forEach(function(p, i) {
+          if (i > 0) html += '<br><br>';
+          html += '<strong>' + (i + 1) + '.</strong> ' + sanitizeHtml(p.trim());
+        });
+        html += '</div>';
       }
 
       useNewChart = true;
