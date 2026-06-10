@@ -1,0 +1,26 @@
+name: Sync to Aliyun OSS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'weekly-reports/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            weekly-reports
+          sparse-checkout-cone-mode: false
+
+      - name: Deploy to OSS
+        uses: fangbinwei/aliyun-oss-website-action@v1
+        with:
+          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          bucket: ${{ secrets.ALIYUN_OSS_BUCKET }}
+          endpoint: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
