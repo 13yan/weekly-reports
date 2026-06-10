@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - 'weekly-reports/**'
+      - '.github/workflows/sync-aliyun.yml'
+  workflow_dispatch:
 
 jobs:
   deploy:
