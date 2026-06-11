@@ -14,10 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            weekly-reports
-          sparse-checkout-cone-mode: false
 
       - name: Deploy to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
