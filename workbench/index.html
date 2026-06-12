@@ -729,7 +729,6 @@ button { font-family: inherit; cursor: pointer; }
 /* ============================================================
    通用
    ============================================================ */
-#simTableBody .sim-more-row { display: none; }
 .loading-state {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 100px 20px; color: var(--text-tertiary);
@@ -1238,7 +1237,7 @@ function buildPageHTML(d, key) {
       '<div class="subsection-title">双平台模拟经营上榜概况</div>',
       '<div class="sim-overview" id="simOverview"></div>',
       '<div class="subsection-title">模拟经营游戏双平台排名对比</div>',
-      '<div class="table-wrap"><table><thead><tr><th>游戏名</th><th>融合玩法</th><th>题材</th><th style="width:80px">微信排名</th><th style="width:80px">抖音排名</th><th>双平台差异</th></tr></thead><tbody id="simTableBody"></tbody></table></div>',
+      '<div class="table-wrap table-scroll"><table><thead><tr><th>游戏名</th><th>融合玩法</th><th>题材</th><th style="width:80px">微信排名</th><th style="width:80px">抖音排名</th><th>双平台差异</th></tr></thead><tbody id="simTableBody"></tbody></table></div>',
       '<div class="insight-box" id="simConclusionWrap" style="margin-top:14px"></div>',
     '</section>',
 
@@ -1540,10 +1539,9 @@ function renderSimTable(games) {
     if (d < 0) return '微信领先' + Math.abs(d) + '位';
     return '排名接近';
   }
-  games.forEach(function(g, idx) {
+  games.forEach(function(g) {
     var diff = g.diff || calcDiff(g.wxRank, g.dyRank);
-    var isHidden = idx >= 5;
-    el.innerHTML += '<tr' + (isHidden ? ' class="sim-more-row"' : '') + '>' +
+    el.innerHTML += '<tr>' +
       '<td data-label="游戏"><strong>' + escHTML(g.name || '') + '</strong><br><span style="font-size:10.5px;color:var(--text-tertiary)">' + escHTML(g.company || '') + '</span></td>' +
       '<td data-label="融合玩法">' + escHTML(g.mergePlay || '') + '</td>' +
       '<td data-label="题材">' + escHTML(g.theme || '') + '</td>' +
@@ -1552,25 +1550,6 @@ function renderSimTable(games) {
       '<td data-label="差异" style="font-size:11.5px;color:var(--text-secondary)">' + escHTML(diff) + '</td>' +
     '</tr>';
   });
-  // 添加展开/收起按钮和样式
-  var parent = el.closest('.table-wrap') || el.parentNode;
-  var toggle = document.getElementById('simToggleBtn');
-  if (!toggle) {
-    toggle = document.createElement('button');
-    toggle.id = 'simToggleBtn';
-    toggle.className = 'sim-toggle-btn';
-    toggle.textContent = '展开全部 ↓';
-    toggle.style.cssText = 'display:block;width:100%;padding:8px;margin-top:6px;border:1px dashed #dce0e8;border-radius:6px;background:#f8f9ff;color:#667eea;font-size:12px;cursor:pointer;text-align:center;';
-    toggle.onclick = function() {
-      var rows = el.querySelectorAll('.sim-more-row');
-      var expanded = this.dataset.expanded === '1';
-      rows.forEach(function(r) { r.style.display = expanded ? 'none' : 'table-row'; });
-      this.textContent = expanded ? '展开全部 ↓' : '收起完整表格 ↑';
-      this.dataset.expanded = expanded ? '0' : '1';
-    };
-    toggle.dataset.expanded = '0';
-    parent.parentNode.insertBefore(toggle, parent.nextSibling);
-  }
 }
 
 /* ============================================================
