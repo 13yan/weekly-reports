@@ -644,6 +644,12 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: 2px solid var(--primary);
   display: flex; align-items: center; gap: 8px;
 }
+.policy-card.policy-combined > h2 { display: none; }
+.policy-card.policy-combined .combined-header {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin: 0 0 16px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary);
+}
 .policy-card.policy-combined h3 {
   font-size: 14px; color: var(--text); font-weight: 700;
   margin: 18px 0 12px; padding: 8px 12px;
@@ -1606,7 +1612,7 @@ function renderPolicies(policies) {
   if (!el) return;
   if (policies._combinedHtml) {
     // 包装combinedHtml：保留原本HTML结构但用统一policy-card样式 + 美化排版
-    el.innerHTML = '<div class="policy-card policy-combined">' + policies._combinedHtml + '</div>';
+    el.innerHTML = '<div class="policy-card policy-combined"><div class="combined-header">📋 平台政策与市场动态</div>' + policies._combinedHtml + '</div>';
     return;
   }
   var sections = [
