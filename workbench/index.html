@@ -405,6 +405,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--red); font-weight: 700;
   background: rgba(229, 62, 62, 0.08);
   padding: 1px 5px; border-radius: 3px;
+  font-size: 0.95em;
 }
 .kanban-body .hl-green { color: var(--primary); font-weight: 700; }
 .kanban-body .hl-blue { color: var(--blue); font-weight: 700; }
@@ -1315,7 +1316,17 @@ function renderSummary(d) {
         // 对多段落内容按；或；加序号
         var items = body.split(/[；;]\s*/).filter(function(s) { return s.trim(); });
         if (items.length > 1 && label === '核心关注') {
-          body = items.map(function(s, i) { return '<strong>' + (i + 1) + '.</strong> ' + s.trim(); }).join('<br>');
+          body = items.map(function(s, i) {
+            // 红字高亮关键数字：百分比、日期、金额、倍数
+            var highlighted = s
+              .replace(/(\d+月\d+日)/g, '<span class="hl">$1</span>')
+              .replace(/(\d+%)/g, '<span class="hl">$1</span>')
+              .replace(/(\+\d+%)/g, '<span class="hl">$1</span>')
+              .replace(/(\d+→\d+%)/g, '<span class="hl">$1</span>')
+              .replace(/(\d+倍)/g, '<span class="hl">$1</span>')
+              .replace(/封停\/降星/g, '<span class="hl">封停/降星</span>');
+            return '<strong>' + (i + 1) + '.</strong> ' + highlighted.trim();
+          }).join('<br>');
         }
         return '<div class="kanban-card' + featuredClass + wideClass + '">' +
           '<div class="kanban-header">' +
