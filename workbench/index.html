@@ -1550,6 +1550,9 @@ function renderSimTable(games) {
       '<td data-label="差异" style="font-size:11.5px;color:var(--text-secondary)">' + escHTML(diff) + '</td>' +
     '</tr>';
   });
+  // JS强制设置滚动容器
+  var wrap = el.closest('.table-wrap');
+  if (wrap) { wrap.style.maxHeight = '340px'; wrap.style.overflowY = 'auto'; }
 }
 
 /* ============================================================
