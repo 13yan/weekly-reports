@@ -1310,6 +1310,11 @@ function renderSummary(d) {
         var meta = KANBAN_META[label] || { icon: '•', tag: '本周要点', tagClass: 'tag-data' };
         var featuredClass = meta.featured ? ' kanban-featured' : '';
         var wideClass = meta.wide ? ' kanban-wide' : '';
+        // 对多段落内容按；或；加序号
+        var items = body.split(/[；;]\s*/).filter(function(s) { return s.trim(); });
+        if (items.length > 1 && label === '核心关注') {
+          body = items.map(function(s, i) { return '<strong>' + (i + 1) + '.</strong> ' + s.trim(); }).join('<br>');
+        }
         return '<div class="kanban-card' + featuredClass + wideClass + '">' +
           '<div class="kanban-header">' +
             '<span class="kanban-icon">' + meta.icon + '</span>' +
