@@ -634,6 +634,52 @@ button { font-family: inherit; cursor: pointer; }
 .policy-card.banhao { border-left-color: #0d9488; }
 .policy-card.industry { border-left-color: #ec4899; }
 .policy-card.policy-empty { opacity: 0.55; }
+.policy-card.policy-combined {
+  background: linear-gradient(135deg, var(--card-bg) 0%, #f9faff 100%);
+  padding: 20px 24px;
+}
+.policy-card.policy-combined h2 {
+  font-size: 16px; color: var(--text); font-weight: 700;
+  margin: 0 0 16px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary);
+  display: flex; align-items: center; gap: 8px;
+}
+.policy-card.policy-combined h3 {
+  font-size: 14px; color: var(--text); font-weight: 700;
+  margin: 18px 0 12px; padding: 8px 12px;
+  background: linear-gradient(90deg, var(--primary-50) 0%, transparent 100%);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 4px 4px 0;
+}
+.policy-card.policy-combined h4 {
+  font-size: 13px; color: var(--text); font-weight: 700;
+  margin: 14px 0 8px;
+  padding: 6px 10px;
+  background: var(--bg-soft);
+  border-radius: 4px;
+}
+.policy-card.policy-combined .insight-box {
+  margin: 0 0 18px; padding: 12px 16px;
+  background: linear-gradient(90deg, #fff3e0 0%, transparent 100%);
+  border-left: 4px solid #ff9800;
+  border-radius: 0 6px 6px 0;
+  font-size: 13px; line-height: 1.85;
+}
+.policy-card.policy-combined .policy-box {
+  margin: 12px 0; padding: 14px 16px;
+  background: #f9faff;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px; line-height: 1.85;
+}
+.policy-card.policy-combined .policy-box.wx { border-left-color: #1e3a8a; }
+.policy-card.policy-combined .policy-box.dy { border-left-color: #f59e0b; }
+.policy-card.policy-combined .policy-box.apple { border-left-color: #8b5cf6; }
+.policy-card.policy-combined .policy-box.android { border-left-color: #3b82f6; }
+.policy-card.policy-combined .policy-box.industry { border-left-color: #ec4899; }
+.policy-card.policy-combined ul, .policy-card.policy-combined ol { margin: 8px 0; padding-left: 22px; }
+.policy-card.policy-combined li { margin: 6px 0; line-height: 1.7; }
+.policy-card.policy-combined p { margin: 8px 0; }
 .policy-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 .policy-title .policy-icon { font-size: 16px; }
 .policy-title .policy-tag { margin-left: auto; font-size: 10.5px; padding: 2px 8px; border-radius: 4px; background: var(--bg-soft); color: var(--text-tertiary); font-weight: 500; }
@@ -1558,7 +1604,11 @@ document.addEventListener('click', function(e) {
 function renderPolicies(policies) {
   var el = document.getElementById('policyContent');
   if (!el) return;
-  if (policies._combinedHtml) { el.innerHTML = policies._combinedHtml; return; }
+  if (policies._combinedHtml) {
+    // 包装combinedHtml：保留原本HTML结构但用统一policy-card样式 + 美化排版
+    el.innerHTML = '<div class="policy-card policy-combined">' + policies._combinedHtml + '</div>';
+    return;
+  }
   var sections = [
     { key: 'wechat', cls: 'wx', icon: '📣', label: '微信小游戏' },
     { key: 'douyin', cls: 'dy', icon: '🎵', label: '抖音小游戏' },
