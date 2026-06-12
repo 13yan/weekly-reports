@@ -1612,7 +1612,7 @@ function renderPolicies(policies) {
   if (!el) return;
   if (policies._combinedHtml) {
     // 包装combinedHtml：保留原本HTML结构但用统一policy-card样式 + 美化排版
-    el.innerHTML = '<div class="policy-card policy-combined"><div class="combined-header">📋 平台政策与市场动态</div>' + policies._combinedHtml + '</div>';
+    el.innerHTML = '<div class="policy-card policy-combined">' + policies._combinedHtml + '</div>';
     return;
   }
   var sections = [
