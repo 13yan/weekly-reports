@@ -48,8 +48,14 @@ if (typeof Chart === 'undefined') {
   .company { color:#999; font-size:11px; max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; }
 
   /* ===== Scrollable Table ===== */
-  .table-scroll { max-height:420px; overflow-y:auto; border:1px solid #eef0f4; border-radius:8px; margin-top:10px; }
-  .table-scroll thead th { position:sticky; top:0; z-index:2; }
+  .sim-scroll-wrap {
+    max-height: 420px; overflow-y: auto;
+    border: 1px solid #eef0f4; border-radius: 8px; margin-top: 10px;
+  }
+  .sim-scroll-wrap table { margin-top: 0 !important; }
+  .sim-scroll-wrap thead th { position: sticky; top: 0; z-index: 1; }
+  .sim-scroll-wrap .sim-more-row { display: none; }
+  .sim-scroll-wrap.expanded .sim-more-row { display: table-row; }
 
   /* ===== Tags & Badges ===== */
   .cross-tag { display:inline-block; padding:1px 5px; border-radius:3px; font-size:9px; background:#e8f8f5; color:#27ae60; margin-left:3px; font-weight:600; }
@@ -484,6 +490,7 @@ if (typeof Chart === 'undefined') {
     </table>
   
     <h3>模拟经营游戏双平台排名对比</h3>
+    <div class="sim-scroll-wrap">
     <table class="data-table sim-detail">
       <thead><tr><th>游戏名</th><th>厂商</th><th>融合玩法</th><th>题材</th><th>微信排名</th><th>抖音排名</th><th>双平台差异</th></tr></thead>
       <tbody>
@@ -533,7 +540,7 @@ if (typeof Chart === 'undefined') {
               <td>未上榜</td>
               <td>仅微信</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>向往的生活</td>
               <td class="company">深圳市必凡娱乐科技有限公...</td>
               <td>二合+田园综艺IP</td>
@@ -542,7 +549,7 @@ if (typeof Chart === 'undefined') {
               <td>#18</td>
               <td>排名接近</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>肥鹅美食街</td>
               <td class="company">北京豪腾创想科技有限公司</td>
               <td>二合+模拟经营</td>
@@ -551,7 +558,7 @@ if (typeof Chart === 'undefined') {
               <td>#48</td>
               <td>微信领先24位</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>杜拉拉升职记</td>
               <td class="company">苏州沁游网络科技有限公司</td>
               <td>模拟养成+剧情换装</td>
@@ -560,7 +567,7 @@ if (typeof Chart === 'undefined') {
               <td>#51</td>
               <td>仅抖音</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>时光大爆炸</td>
               <td class="company">安徽盈趣网络科技有限公司</td>
               <td>模拟经营+RPG</td>
@@ -569,7 +576,7 @@ if (typeof Chart === 'undefined') {
               <td>#52</td>
               <td>抖音领先43位</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>空格之境</td>
               <td class="company">江西启游互动科技有限公司</td>
               <td>二合+纺织经营</td>
@@ -578,7 +585,7 @@ if (typeof Chart === 'undefined') {
               <td>#72</td>
               <td>微信领先17位</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>这城有良田</td>
               <td class="company">上海益玩网络科技有限公司</td>
               <td>模拟经营+种田</td>
@@ -587,7 +594,7 @@ if (typeof Chart === 'undefined') {
               <td>未上榜</td>
               <td>仅微信</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>梦幻经理人</td>
               <td class="company">上海望伯纳乌科技有限公司</td>
               <td>模拟经营+体育</td>
@@ -596,7 +603,7 @@ if (typeof Chart === 'undefined') {
               <td>未上榜</td>
               <td>仅微信</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>肥鹅健身房</td>
               <td class="company">北京豪腾创想科技有限公司</td>
               <td>二合+模拟经营</td>
@@ -605,7 +612,7 @@ if (typeof Chart === 'undefined') {
               <td>未上榜</td>
               <td>仅微信</td>
             </tr>
-            <tr>
+            <tr class="sim-more-row">
               <td>织梦森林</td>
               <td class="company">安徽雷虎网络科技有限公司</td>
               <td>二合+模拟经营</td>
@@ -616,6 +623,8 @@ if (typeof Chart === 'undefined') {
             </tr>
       </tbody>
     </table>
+    </div>
+    <button class="sim-toggle-btn" onclick="this.previousElementSibling.classList.toggle('expanded');this.textContent=this.previousElementSibling.classList.contains('expanded')?'收起完整表格 ↑':'展开全部 ↓'" style="display:block;width:100%;padding:8px;margin-top:6px;border:1px dashed #dce0e8;border-radius:6px;background:#f8f9ff;color:#667eea;font-size:12px;cursor:pointer;text-align:center;">展开全部 ↓</button>
   <div class="insight-box">
     <strong>结论：</strong>模拟经营是双平台<strong>最稳定品类</strong>，用户生命周期长、付费模型健康。"二合+模拟经营"占比超40%。微信端社交裂变（QQ经典农场）驱动自然量；抖音端剧情/题材差异化（杜拉拉升职记、时光杂货店）吸量能力更强。修仙/怀旧/体育/宫廷等细分赛道仍有蓝海机会。
   </div>
