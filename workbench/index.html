@@ -1358,8 +1358,8 @@ function renderSummary(d) {
   if (coreEl) {
     if (summary.core) {
       var html = summary.core;
-      // 按 <br> 拆段（每段以 <strong>【...】</strong> 开头）
-      var parts = html.split(/<br>\s*(?=<strong>)/);
+      // 按 <br><strong>【...】 拆段（只匹配标签开头，避免匹配内部序号<strong>数字</strong>）
+      var parts = html.split(/(?=<strong>【.+?】<\/strong>)/).filter(function(s) { return s.trim(); });
       coreEl.innerHTML = parts.map(function(p) {
         // 抽取 <strong>【标签】</strong>
         var m = p.match(/<strong>【(.+?)】<\/strong>/);
