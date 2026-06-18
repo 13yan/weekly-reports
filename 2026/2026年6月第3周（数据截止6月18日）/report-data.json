@@ -2643,67 +2643,7 @@
   "policies": {
     "_combinedHtml": "<div class=\"insight-box\" style=\"background:#fff3e0;border-left-color:#ff9800;\">\n    <strong>&#9200; 本周政策速览：</strong>本周（6/12-6/18）各平台均<span class=\"hl\">无新政策发布</span>。\n  </div>\n\n  <p style=\"margin-top:12px;color:#888;font-size:13px;\">本周无新增平台政策或行业动态。过往已报政策细节请参考往期周报。</p>"
   },
-  "marketing": {
-    "beastGame": {
-      "gameName": "斗兽战场",
-      "channelRatings": [
-        {
-          "channel": "华为",
-          "rating": "B+"
-        },
-        {
-          "channel": "荣耀",
-          "rating": "B+"
-        },
-        {
-          "channel": "小米",
-          "rating": "A"
-        },
-        {
-          "channel": "OPPO",
-          "rating": "A"
-        },
-        {
-          "channel": "vivo",
-          "rating": "A"
-        }
-      ],
-      "launchDate": "2026-06-11",
-      "dailyCost": [
-        {
-          "channel": "小米",
-          "cost": "1",
-          "payCost": "1700",
-          "d1Roi": "9%"
-        },
-        {
-          "channel": "华为",
-          "cost": "2",
-          "payCost": null,
-          "d1Roi": "4%"
-        },
-        {
-          "channel": "鸿蒙",
-          "cost": "2",
-          "payCost": null,
-          "d1Roi": "2%"
-        },
-        {
-          "channel": "OPPO",
-          "cost": "预估1+",
-          "payCost": null,
-          "d1Roi": null
-        },
-        {
-          "channel": "vivo",
-          "cost": "预估1+",
-          "payCost": null,
-          "d1Roi": null
-        }
-      ],
-      "conclusion": "斗兽战场首发日（6月11日）获OPPO/vivo/小米A级首发资源评级，硬核渠道已覆盖5家。首日买量以OPPO/vivo/华为/鸿蒙/小米为主，投放处于测试阶段，整体消耗偏低（合计预估6万+），首日ROI分别为小米9%、华为4%、鸿蒙2%，尚在冷启动期。小米渠道已产生付费数据（付费成本1700元），后续需关注7日回收表现。"
-    }
-  },
+  "marketing": {},
   "trends": [
     {
       "title": "SLG品类双平台领先",
