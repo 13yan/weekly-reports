@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手游市场资讯工作台</title>
+<style>
+:root {
+  --bg: #f5f6fa; --card: #ffffff; --muted: #eef0f5;
+  --text: #1a1d26; --t2: #5b677d; --t3: #8e99af;
+  --line: #e1e4ea; --ll: #eef0f4;
+  --blue: #2563eb; --cyan: #0891b2; --green: #059669;
+  --orange: #ea580c; --purple: #7c3aed; --rose: #dc2626; --amber: #d97706;
+  --sw: 232px; --th: 54px; --r: 10px; --rs: 6px; --rl: 14px;
+  --f: -apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --fn: 'SF Pro Display',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.app{display:flex;height:100vh}
+
+/* Sidebar */
+.sidebar{width:var(--sw);flex-shrink:0;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:100}
+.sh{padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+.sh h1{font-size:15px;font-weight:700;color:var(--blue)}
+.sh p{font-size:10px;color:var(--t3);margin-top:2px}
+.sh .bdg{display:inline-block;margin-top:8px;background:var(--muted);color:var(--blue);font-size:9px;font-weight:600;padding:2px 7px;border-radius:4px}
+.sn{flex:1;overflow-y:auto;padding:4px 0}
+.ns{padding:14px 18px 4px;font-size:9.5px;color:var(--t3);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 18px;cursor:pointer;color:var(--t2);font-size:12.5px;font-weight:500;border-left:2px solid transparent;text-decoration:none;transition:all .12s ease}
+.ni:hover{background:var(--muted);color:var(--text)}
+.ni.act{background:#eef2ff;color:var(--blue);font-weight:600;border-left-color:var(--blue)}
+.ni .ic{width:16px;text-align:center;font-size:11px;opacity:.5;flex-shrink:0}
+.ni.act .ic{opacity:1}
+.sf{padding:12px 18px;border-top:1px solid var(--line);font-size:10px;color:var(--t3)}
+.sf .sb{width:100%;margin-top:8px;background:var(--blue);color:#fff;border:none;padding:6px 12px;border-radius:var(--rs);font-size:11px;font-weight:600;cursor:pointer}
+.sf .sb:hover{background:#1d4ed8}
+
+/* Main */
+.mn{flex:1;display:flex;flex-direction:column;min-width:0}
+.tb{height:var(--th);flex-shrink:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:50}
+.tb .ttl{font-size:13px;font-weight:600}
+.tb .ttl span{color:var(--blue)}
+.tb .rt{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--t3)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px;vertical-align:middle}
+.ct{flex:1;overflow-y:auto;padding:22px 26px 48px}
+.pg{display:none}
+.pg.act{display:block}
+
+/* Components */
+.ph{margin-bottom:20px}
+.ph h2{font-size:21px;font-weight:700;letter-spacing:-.3px}
+.ph p{font-size:13px;color:var(--t3);margin-top:2px}
+
+.banner{background:linear-gradient(135deg,#eef2ff,#fff 60%,#f0f9ff);border-radius:var(--rl);padding:22px 26px;margin-bottom:18px;border:1px solid var(--blue);border-left:4px solid var(--blue)}
+.banner h2{font-size:18px;font-weight:700}
+.banner .meta{font-size:12px;color:var(--t3);margin-top:4px;display:flex;gap:16px;flex-wrap:wrap}
+.sr{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:16px}
+.sc{background:#fff;border:1px solid var(--ll);border-radius:var(--rs);padding:10px 14px}
+.sc .n{font-size:22px;font-weight:700;font-family:var(--fn);line-height:1.1}
+.sc .l{font-size:10.5px;color:var(--t3);margin-top:1px}
+
+.card{background:var(--card);border-radius:var(--rl);padding:20px 24px;margin-bottom:16px;border:1px solid var(--line)}
+.ch{display:flex;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line);font-size:15px;font-weight:600}
+.tg{display:inline-flex;background:var(--muted);color:var(--blue);font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:4px;margin-left:8px}
+
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border-radius:var(--r);padding:14px 16px;border:1px solid var(--line);border-top:3px solid transparent}
+.kpi:nth-child(1){border-top-color:var(--blue)}
+.kpi:nth-child(2){border-top-color:var(--cyan)}
+.kpi:nth-child(3){border-top-color:var(--orange)}
+.kpi:nth-child(4){border-top-color:var(--purple)}
+.kpi .kt{display:flex;align-items:center;justify-content:space-between}
+.kpi .kl{font-size:11px;color:var(--t3);font-weight:500}
+.kpi .kv{font-size:20px;font-weight:700;font-family:var(--fn);margin-top:6px}
+.kpi .kc{font-size:11px;margin-top:2px}
+
+/* Table */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:7px 10px;font-size:10.5px;font-weight:600;color:var(--t3);letter-spacing:.3px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:6px 10px;border-bottom:1px solid var(--ll);font-size:12.5px;color:var(--t2)}
+tr:hover{background:var(--bg)}
+.gn{color:var(--text);font-weight:600}
+.rk{font-weight:700;font-family:var(--fn)}
+.cu{color:var(--green);font-weight:600}
+.cd{color:var(--rose);font-weight:600}
+
+/* Grids */
+.tg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.ti{background:#fff;border-radius:var(--rs);padding:14px;border:1px solid var(--line)}
+.ti .ico{font-size:18px;margin-bottom:6px}
+.ti h4{font-size:12.5px;font-weight:600;margin-bottom:3px}
+.ti p{font-size:11.5px;color:var(--t2);line-height:1.6}
+
+.pg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.pi{background:#fff;border-radius:var(--rs);padding:14px 16px;border:1px solid var(--line)}
+.pi .pn{font-size:12.5px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.pi .pe{font-size:11.5px;color:var(--t2);padding:3px 0;border-bottom:1px solid var(--ll)}
+.pi .pe:last-child{border:none}
+.pi .pd{color:var(--t3);font-size:10px}
+
+/* Event */
+.ev{background:var(--bg);border-radius:var(--rs);padding:10px 14px;border-left:3px solid var(--blue);margin-bottom:8px}
+.ev .ew{font-size:10.5px;color:var(--t3)}
+.ev h4{font-size:12.5px;font-weight:600;margin-top:1px}
+.ev p{font-size:11.5px;color:var(--t2);margin-top:2px}
+
+/* Surge chips */
+.sgg{margin-bottom:10px}
+.sgw{font-size:12px;font-weight:600;margin-bottom:4px}
+.sgc{display:flex;flex-wrap:wrap;gap:4px}
+.sg{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:4px 8px;font-size:11px}
+.sg .sn{font-weight:600;color:var(--text)}
+.sg .sc2{color:var(--green);font-weight:600}
+.sg .si{color:var(--t3);font-size:10px;margin-top:1px}
+
+/* Timeline */
+.tlr{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--ll)}
+.tlr:last-child{border:none}
+.tlb{flex-shrink:0;width:52px}
+.tlb .n2{font-size:15px;font-weight:700;color:var(--blue);font-family:var(--fn)}
+.tlb .d2{font-size:9.5px;color:var(--t3)}
+.tlbd{flex:1}
+.tlbd p{font-size:12px;color:var(--t2)}
+
+.ib{background:var(--muted);border-radius:var(--rs);padding:12px 16px;border-left:3px solid var(--green);margin-bottom:12px}
+.ib .ibl{font-size:11px;font-weight:600;color:var(--green);margin-bottom:2px}
+.ib p{font-size:12px;color:var(--t2);line-height:1.7}
+
+/* Placeholder */
+.ph2{text-align:center;padding:40px;color:var(--t3)}
+.ph2 .big{font-size:36px;margin-bottom:12px}
+.ph2 h3{font-size:15px;color:var(--text);margin-bottom:6px}
+.ph2 p{font-size:12.5px;line-height:1.7}
+
+.mt{display:none;position:fixed;top:10px;left:10px;z-index:200;background:#fff;color:var(--text);border:1px solid var(--line);width:34px;height:34px;border-radius:8px;font-size:15px;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+@media(max-width:768px){
+  .sidebar{position:fixed;inset:0;width:100%;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .mt{display:flex}
+  .ct{padding:14px}
+  .kr{grid-template-columns:repeat(2,1fr)}
+  .sr{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="sh"><h1>手游市场资讯</h1><p>Mobile Game Market Intelligence</p><div class="bdg" id="db">工作台 v2.0</div></div>
+  <nav class="sn">
+    <div class="ns">概览</div>
+    <a class="ni act" data-p="overview" href="#"><span class="ic">◉</span>仪表盘总览</a>
+    <div class="ns">畅销榜</div>
+    <a class="ni" data-p="wx" href="#"><span class="ic">①</span>微信畅销榜</a>
+    <a class="ni" data-p="dy" href="#"><span class="ic">②</span>抖音畅销榜</a>
+    <a class="ni" data-p="monthly" href="#"><span class="ic">③</span>月度趋势分析</a>
+    <div class="ns">新游 &amp; 厂商</div>
+    <a class="ni" data-p="launch" href="#"><span class="ic">⧩</span>开测 &amp; 首发日历</a>
+    <a class="ni" data-p="vendors" href="#"><span class="ic">☰</span>厂商动态与布局</a>
+    <div class="ns">政策</div>
+    <a class="ni" data-p="policy" href="#"><span class="ic">◎</span>平台政策追踪</a>
+    <a class="ni" data-p="national" href="#"><span class="ic">⊙</span>国家政策 &amp; 版号</a>
+    <div class="ns">洞察</div>
+    <a class="ni" data-p="trends" href="#"><span class="ic">⟐</span>趋势洞察</a>
+    <a class="ni" data-p="ai" href="#"><span class="ic">◆</span>AI &amp; AIGC</a>
+  </nav>
+  <div class="sf"><div id="di">数据来源：引力引擎 · 自动采集</div><button class="sb" onclick="tst('数据同步已触发')">⟳ 同步最新数据</button></div>
+</aside>
+<div class="sidebar-overlay" id="ol" style="display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.4)" onclick="tsb()"></div>
+<button class="mt" id="mb" onclick="tsb()">☰</button>
+
+<div class="mn">
+<div class="tb"><div class="ttl"><span>手游市场资讯</span> 工作台</div><div class="rt"><span><span class="dot"></span><span id="st">数据已就绪</span></span><span id="lu">2026-06-17</span></div></div>
+<div class="ct" id="mc">
+<div class="pg act" id="p-overview"></div>
+<div class="pg" id="p-wx"></div>
+<div class="pg" id="p-dy"></div>
+<div class="pg" id="p-monthly"></div>
+<div class="pg" id="p-launch"></div>
+<div class="pg" id="p-vendors"></div>
+<div class="pg" id="p-policy"></div>
+<div class="pg" id="p-national"></div>
+<div class="pg" id="p-trends"></div>
+<div class="pg" id="p-ai"></div>
+</div></div></div>
+<div id="toast" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#fff;color:var(--text);padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.12);border:1px solid var(--line);display:none;z-index:9999"></div>
+
+<script>
+/* =============================================
+   5月 手游市场数据（内嵌）
+   ============================================= */
+var D = {
+  month: "2026年5月",
+  weeks: 4,
+  crossAvg: 46,
+  banner: {w:100, d:100, c:46, cat:17},
+  
+  // 微信Top5 每周
+  wxT5: [
+    {wk:"5月W2", g:["QQ经典农场","永远的蔚蓝星球","向僵尸开炮","掌上谈兵","三国：冰河时代"]},
+    {wk:"5月W3", g:["永远的蔚蓝星球","QQ经典农场","向僵尸开炮","三国：冰河时代","无尽冬日"]},
+    {wk:"5月W4", g:["永远的蔚蓝星球","QQ经典农场","三国：冰河时代","向僵尸开炮","我的花园世界"]},
+    {wk:"5月W5", g:["三国：冰河时代","QQ经典农场","永远的蔚蓝星球","疯狂水世界","向僵尸开炮"]}
+  ],
+  
+  // 抖音Top5
+  dyT5: [
+    {wk:"5月W2", g:["生存33天","灵画师","向僵尸开炮","占城大师","我的花园世界"]},
+    {wk:"5月W3", g:["我的花园世界","三国：冰河时代","无尽冬日","占城大师","灵画师"]},
+    {wk:"5月W4", g:["无尽冬日","我的花园世界","灵画师","向僵尸开炮","占城大师"]},
+    {wk:"5月W5", g:["三国：冰河时代","灵画师","我的花园世界","向僵尸开炮","无尽冬日"]}
+  ],
+
+  // 摘要事件
+  events: [
+    {wk:"5月W2", t:"QQ经典农场霸榜7天", d:"社交偷菜玩法黏性极强。永远的蔚蓝星球×周杰伦代言消耗峰值380万/天。掌上谈兵(卡牌+轻度SLG)上线1天进微信Top6，验证融合范式。"},
+    {wk:"5月W3", t:"永远的蔚蓝星球超越QQ农场", d:"连续霸榜12天的QQ农场被超越。周杰伦代言模式在微信小游戏跑通。织梦森林7日ROI 9.07%领跑模拟经营。"},
+    {wk:"5月W4", t:"永远的蔚蓝星球消耗近千万", d:"全渠道日均消耗990万（微小790万+抖小200万）断层领先。抖音无尽冬日登顶，SLG+模拟经营融合爆发。"},
+    {wk:"5月W5", t:"微信开发者大会·三国双平台登顶", d:"三国：冰河时代同时登顶微信+抖音。5.27开发者大会发布历史最大力度政策：IAP最高5000万不分成、IAA最高90%分成、PC高性能模式。"}
+  ],
+
+  // 平台政策
+  policies: {
+    wechat: [
+      {d:"5.27发布", t:"IAP首发新游最高5000万流水全额不分成+2000万激励金；IAA最高90%分成（现金50%+广告金40%）；PC额外10%广告金返还"},
+      {d:"5.28发布", t:"安全三升级：动态反外挂（零接入）+代码加固3.0（Unity WASM）+一站式维权平台"},
+      {d:"战略转向", t:"'从连接到长青'：MAU 5亿接近天花板，聚焦生态繁荣。重点：经典+IP、女性用户、玩法融合创新"}
+    ],
+    douyin: [
+      {d:"5月执行", t:"历史任务金激活：单款≥1万元可激活，有效期180天，5月7日已陆续到账"},
+      {d:"持续至Q2", t:"IAP最高40%现金消耗赠款，单款封顶400万；模拟经营/塔防/RPG额外20%返点；多项活动6.30截止"},
+      {d:"4.20生效", t:"版本提审新规：通过后自动上线至所有合作App；需配置安全域名白名单"}
+    ],
+    apple: [
+      {d:"3.15生效", t:"标准佣金30%→25%；小型企业/小程序15%→12%；首年后订阅15%→12%"},
+      {d:"iOS支付", t:"苹果与腾讯达成协议（苹果抽成15%），微信确认流程已跑通"}
+    ],
+    android: [
+      {d:"5月", t:"ITGSA金标联盟：vivo/小米/OPPO/荣耀统一内存管理规范，6.30前完成适配"},
+      {d:"持续", t:"TapTap维持0分成策略，聚焦社区内容生态"}
+    ]
+  },
+
+  // 版号
+  banhao: [
+    {batch:"5月26日", n:"158款", detail:"国产154款+进口4款。累计779个(+19.66%)。移动79款(51.3%)，休闲益智56款(36.4%)"},
+    {batch:"重点", n:"腾讯·追逐卡蕾多", detail:"3D二次元机车RPG"},
+    {batch:"重点", n:"网易·诡影藏锋", detail:"中式志怪搜打撤（首次曝光）"},
+    {batch:"重点", n:"三七互娱·斗破苍穹觉醒", detail:"玄幻开放世界MMO"}
+  ],
+
+  // 飙升
+  surges: [
+    {wk:"5月W2", items:[
+      {n:"次神光之觉醒", p:"抖音", c:"↑23", i:"强力买量投放杀入TOP6"},
+      {n:"生存33天", p:"抖音", c:"登顶", i:"SLG+模拟经营融合"},
+      {n:"王者之弈", p:"抖音", c:"↑43", i:"自走棋+卡牌融合"}
+    ]},
+    {wk:"5月W3", items:[
+      {n:"最强祖师", p:"抖音", c:"↑50", i:"卡牌放置+开箱"},
+      {n:"魔灵纪元", p:"抖音", c:"↑22", i:"放置回合RPG黑马"},
+      {n:"织梦森林", p:"微信", c:"↑16", i:"二合+花卉培育，ROI 9.07%"}
+    ]},
+    {wk:"5月W4", items:[
+      {n:"杜拉拉升职记", p:"抖音", c:"↑20", i:"模拟养成+剧情换装"},
+      {n:"百炼英雄", p:"抖音", c:"↑21", i:"开放世界+放置RPG"},
+      {n:"欢乐战国", p:"抖音", c:"↑30", i:"放置卡牌+三国"}
+    ]},
+    {wk:"5月W5", items:[
+      {n:"魔灵纪元", p:"抖音", c:"↑61", i:"内容营销爆发"},
+      {n:"英雄没有闪", p:"抖音", c:"↑34", i:"2D卡通放置ARPG"},
+      {n:"我的休闲时光", p:"微信", c:"↑27", i:"放置经营+装修"}
+    ]}
+  ],
+
+  // 趋势
+  trends: [
+    {ico:"📈", t:"SLG品类双平台领跑", d:"三国：冰河时代5月底双平台登顶。无尽冬日、疯狂水世界持续强势。小游戏渠道的SLG LTV潜力已被验证。"},
+    {ico:"🛡️", t:"永远的蔚蓝星球消耗标杆", d:"全渠道日均消耗近千万，周杰伦代言模式验证顶流代言+塔防竞技跑通。"},
+    {ico:"🏗️", t:"二合+模拟经营融合成标配", d:"融合玩法占比超40%。题材垂直化：修仙、怀旧、体育、宫廷等差异化题材表现亮眼。"},
+    {ico:"🔄", t:"跨平台发行持续强化", d:"46款游戏跨平台上榜。双平台头部产品持续同登，跨平台已成行业标配。"},
+    {ico:"🎬", t:"抖音内容营销效应凸显", d:"每周涌现黑马：魔灵纪元↑61、最强祖师↑50。中小团队可通过创意融合快速起量。"},
+    {ico:"💻", t:"PC端第二增长曲线", d:"PC独占用户40%，ARPU超移动130%。微信将推出PC高性能模式。"},
+    {ico:"🤖", t:"AI务实落地元年", d:"AIM+Q2消耗同比增390%，直玩转化率提升3倍。AI定位为效率基础设施。"},
+    {ico:"💰", t:"自然增长红利消退", d:"67%新用户来自付费买量（两年前40%）。IAP占比升至68%，转向中重度。"}
+  ],
+
+  // 行业动态
+  industry: [
+    {s:"AI落地", d:"腾讯定位AI为效率基础设施。AI智能体将原型开发从数周压缩至数小时。AIM+Q2消耗同比增390%，直玩转化率提升3倍，注册成本降80%"},
+    {s:"生活模拟", d:"头部厂商加速布局生活模拟赛道。腾讯《粒粒的小人国》（北极光工作室，已开启Alpha测试）、米哈游《星布谷地》（已开启二测）"},
+    {s:"获客报告", d:"热力引擎×Insightrackr报告：67%新用户来自付费买量（两年前约40%），自然增长红利消退。IAP占比升至68%，小游戏从IAA轻量转向IAP中重度"},
+    {s:"买量大盘", d:"广点通日均总消耗6700万（APP 1300万+小程序5400万）。Top3厂商：大梦410万、途游370万、9377万340万"}
+  ]
+};
+
+/* ========== Render Functions ========== */
+function esc(s){return s||''}
+function tbl5(arr){
+  if(!arr||!arr.length) return '<p style="color:var(--t3);padding:12px;text-align:center">暂无数据</p>';
+  var h='<table><thead><tr><th>周</th><th>#1</th><th>#2</th><th>#3</th><th>#4</th><th>#5</th></tr></thead><tbody>';
+  arr.forEach(function(w){
+    h+='<tr><td style="font-weight:600;white-space:nowrap">'+esc(w.wk)+'</td>';
+    for(var i=0;i<5;i++){h+='<td><span class="gn'+(i<3?' rk':'')+'">'+esc(w.g[i]||'—')+'</span></td>';}
+    h+='</tr>';
+  });
+  return h+'</tbody></table>';
+}
+
+function evts(arr){
+  if(!arr)return '';
+  var h='';
+  arr.forEach(function(e){
+    h+='<div class="ev"><div class="ew">'+esc(e.wk)+'</div><h4>'+esc(e.t)+'</h4><p>'+esc((e.d||'').substring(0,200))+'</p></div>';
+  });
+  return h;
+}
+
+function renderOverview(){
+  var h='<div class="ph"><h2>仪表盘总览</h2><p>2026年5月 · 覆盖4期周报 · 数据来源：引力引擎</p></div>';
+  h+='<div class="banner"><h2>5月市场概览</h2><div class="meta"><span>📊 4周数据 · 微信+抖音双平台</span><span>🏷️ 统一品类分类</span></div><div class="sr">';
+  h+='<div class="sc"><div class="n" style="color:var(--blue)">4</div><div class="l">周报期数</div></div>';
+  h+='<div class="sc"><div class="n" style="color:var(--cyan)">46</div><div class="l">跨平台平均/周</div></div>';
+  h+='<div class="sc"><div class="n" style="color:var(--purple)">158</div><div class="l">5月版号</div></div>';
+  h+='<div class="sc"><div class="n" style="color:var(--green)">5000万</div><div class="l">微信不分成额度</div></div>';
+  h+='</div></div>';
+
+  h+='<div class="kr">';
+  h+='<div class="kpi"><div class="kt"><span class="kl">微信畅销榜</span><span class="kl" style="font-size:16px">📱</span></div><div class="kv">'+(D.wxT5[D.wxT5.length-1].g[0])+'</div><div class="kc up">霸榜：5月底三国冰河时代</div></div>';
+  h+='<div class="kpi"><div class="kt"><span class="kl">抖音畅销榜</span><span class="kl" style="font-size:16px">🎬</span></div><div class="kv">'+(D.dyT5[D.dyT5.length-1].g[0])+'</div><div class="kc up">霸榜：5月底三国冰河时代</div></div>';
+  h+='<div class="kpi"><div class="kt"><span class="kl">最大事件</span><span class="kl" style="font-size:16px">📜</span></div><div class="kv">5.27开发者大会</div><div class="kc up">5000万不分成政策</div></div>';
+  h+='<div class="kpi"><div class="kt"><span class="kl">跨平台趋势</span><span class="kl" style="font-size:16px">🔄</span></div><div class="kv">'+D.crossAvg+'款/周</div><div class="kc up">占畅销榜近半数</div></div>';
+  h+='</div>';
+
+  h+='<div class="card"><div class="ch">🏆 微信 Top5 时间线</div><div class="tw">'+tbl5(D.wxT5)+'</div></div>';
+  h+='<div class="card"><div class="ch">🏆 抖音 Top5 时间线</div><div class="tw">'+tbl5(D.dyT5)+'</div></div>';
+  h+='<div class="card"><div class="ch">🔔 5月核心事件</div>'+evts(D.events)+'</div>';
+  gid('p-overview').innerHTML=h;
+}
+
+function renderTop(p){var h='<div class="ph"><h2>'+(p==='p-wx'?'微信':'抖音')+'畅销榜</h2><p>Top5 每周排行变化</p></div><div class="card"><div class="ch">🏆 Top5 时间线</div><div class="tw">'+tbl5(p==='p-wx'?D.wxT5:D.dyT5)+'</div></div>';gid(p).innerHTML=h;}
+
+function renderMonthly(){
+  var h='<div class="ph"><h2>月度趋势分析</h2><p>畅销榜变化 · 品类趋势 · 模拟经营专题</p></div>';
+  h+='<div class="card"><div class="ch">🔔 5月核心事件时间线</div>'+evts(D.events)+'</div>';
+  
+  // 品类分布表
+  var cats=[['模拟经营',24,15,15,13],['ARPG',24,24,28,15],['卡牌RPG',16,16,16,10],['塔防',14,14,14,10],['棋牌',10,11,11,5],['放置RPG',8,8,8,8],['SLG/策略',7,7,7,6],['休闲',8,8,8,7]];
+  h+='<div class="card"><div class="ch">📊 5月微信品类分布变化</div><div class="tw"><table><thead><tr><th>品类</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th></tr></thead><tbody>';
+  cats.forEach(function(c){h+='<tr><td class="gn">'+c[0]+'</td><td>'+c[1]+'</td><td>'+c[2]+'</td><td>'+c[3]+'</td><td>'+c[4]+'</td></tr>';});
+  h+='</tbody></table></div></div>';
+
+  h+='<div class="card"><div class="ch">🎯 模拟经营专题</div>';
+  h+='<div class="ib"><div class="ibl">📊 核心数据</div><p>微信端上榜数从W2的24款逐步降至W5的13款（品类均值回归），抖音端稳定在13~15款。二合+模拟经营融合玩法占比超40%。织梦森林7日ROI最高达9.07%领跑品类。</p></div>';
+  h+='<div class="ib"><div class="ibl">🎬 抖音端题材差异化</div><p>杜拉拉升职记（职场换装）↑20、时光杂货店（90年代怀旧）↑22、空格之境（哲学纺织）↑21。抖音对创新题材接受度显著更高。</p></div>';
+  h+='<div class="ib"><div class="ibl">🏗️ 微信端社交裂变</div><p>QQ经典农场复刻偷菜玩法，社交裂变驱动自然量。我的花园世界买量效率最高（日耗&lt;100万），组队合种模型为行业标杆。</p></div></div>';
+  gid('p-monthly').innerHTML=h;
+}
+
+function renderLaunch(){
+  var h='<div class="ph"><h2>开测 &amp; 首发日历</h2><p>新游开测 / 首发 / 预约监控</p></div>';
+  h+='<div class="card"><div class="ch">🏗️ 5月首发案例</div>';
+  h+='<div class="tlr"><div class="tlb"><div class="n2">🚀</div><div class="d2">5月W5</div></div><div class="tlbd"><p><strong>斗兽战场</strong>首发（6月11日）获OPPO/vivo/小米A级评级。首日ROI 2%~9%（小米9%领先），尚在冷启动期。</p></div></div></div>';
+  h+='<div class="card"><div class="ch">📋 预约榜 <span class="tg">待接入</span></div>';
+  h+='<div class="ph2"><div class="big">📅</div><h3>开测日历模块</h3><p>需要接入各平台开测/首发数据源<br>后续可配置采集脚本自动填充<br>当前框架已就绪</p></div></div>';
+  gid('p-launch').innerHTML=h;
+}
+
+function renderVendors(){
+  var h='<div class="ph"><h2>厂商动态与布局</h2><p>主要手游厂商最新动态</p></div>';
+  h+='<div class="card"><div class="ch">🏢 头部厂商动态 <span class="tg">5月</span></div>';
+  var vs=[
+    {s:"腾讯", d:"《粒粒的小人国》（Animula Nook，北极光工作室）已开启Alpha测试，布局生活模拟赛道。微信平台MAU突破5亿，开发者超50万。"},
+    {s:"三七互娱", d:"《斗破苍穹：觉醒》获版号。杜拉拉升职记抖音飙升20位，模拟经营新游储备丰富。"},
+    {s:"米哈游", d:"《星布谷地》已开启第二轮测试。招聘信息显示正在招聘模拟经营品类制作人。"},
+    {s:"网易", d:"《诡影藏锋》首次曝光获版号（中式志怪搜打撤）。无尽之冬SLG小游戏版持续运营。"},
+    {s:"字节跳动", d:"抖音小游戏5月执行历史任务金激活计划。IAP激励政策持续，多项活动6月30日截止。"}
+  ];
+  vs.forEach(function(v){
+    h+='<div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--ll)"><div style="flex-shrink:0;font-weight:700;font-size:12px;color:var(--blue);width:60px">'+esc(v.s)+'</div><div style="font-size:12px;color:var(--t2);line-height:1.6">'+esc(v.d)+'</div></div>';
+  });
+  h+='</div><div class="card"><div class="ch">🌏 行业动态</div>';
+  (D.industry||[]).forEach(function(i){
+    h+='<div style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--ll)"><div style="flex-shrink:0;font-size:10.5px;font-weight:600;color:var(--blue);width:70px">'+esc(i.s)+'</div><div style="font-size:12px;color:var(--t2)">'+esc(i.d)+'</div></div>';
+  });
+  h+='</div>';
+  gid('p-vendors').innerHTML=h;
+}
+
+function renderPolicy(){
+  var h='<div class="ph"><h2>平台政策追踪</h2><p>各平台政策更新 · 版号 · 行业政策</p></div>';
+  var pm={wechat:'微信小游戏',douyin:'抖音小游戏',apple:'Apple 苹果',android:'安卓渠道'};
+  var cl={wechat:'#2563eb',douyin:'#0891b2',apple:'#d97706',android:'#059669'};
+  var sh={wechat:'微',douyin:'抖',apple:'果',android:'安'};
+  h+='<div class="pg2">';
+  Object.keys(pm).forEach(function(k){
+    var items=D.policies[k]||[];
+    h+='<div class="pi"><div class="pn"><span style="background:'+cl[k]+';width:18px;height:18px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:700">'+sh[k]+'</span> '+pm[k]+'</div>';
+    if(items.length){items.forEach(function(it){h+='<div class="pe">'+esc(it.t)+' <span class="pd">['+it.d+']</span></div>';});}
+    else{h+='<div class="pe" style="color:var(--t3)">— 本周无政策更新 —</div>';}
+    h+='</div>';
+  });
+  h+='</div>';
+  gid('p-policy').innerHTML=h;
+}
+
+function renderNational(){
+  var h='<div class="ph"><h2>国家政策 &amp; 版号</h2><p>版号审批 · 行业政策</p></div>';
+  h+='<div class="card"><div class="ch">📜 5月版号发布</div>';
+  D.banhao.forEach(function(b){
+    h+='<div class="tlr"><div class="tlb"><div class="n2">'+esc(b.n)+'</div><div class="d2">'+esc(b.batch)+'</div></div><div class="tlbd"><p>'+esc(b.detail)+'</p></div></div>';
+  });
+  h+='</div><div class="card"><div class="ch">🏛️ 行业政策动态</div><div style="font-size:12px;color:var(--t2);line-height:1.9">';
+  (D.industry||[]).forEach(function(i){
+    h+='<p style="margin-bottom:4px">• <strong>'+esc(i.s)+'</strong>：'+esc(i.d)+'</p>';
+  });
+  h+='</div></div>';
+  gid('p-national').innerHTML=h;
+}
+
+function renderTrends(){
+  var h='<div class="ph"><h2>趋势洞察</h2><p>5月市场趋势汇总</p></div>';
+  h+='<div class="tg2">';
+  D.trends.forEach(function(t){
+    h+='<div class="ti"><div class="ico">'+esc(t.ico)+'</div><h4>'+esc(t.t)+'</h4><p>'+esc(t.d)+'</p></div>';
+  });
+  h+='</div>';
+  // Surges
+  h+='<div class="card"><div class="ch">🚀 每周飙升游戏</div>';
+  D.surges.forEach(function(s){
+    h+='<div class="sgg"><div class="sgw">'+esc(s.wk)+'</div><div class="sgc">';
+    s.items.forEach(function(g){
+      h+='<div class="sg"><span class="sn">'+esc(g.n)+'</span> <span style="color:var(--t3)">('+esc(g.p)+')</span> <span class="sc2">'+esc(g.c)+'</span><div class="si">'+esc(g.i)+'</div></div>';
+    });
+    h+='</div></div>';
+  });
+  h+='</div>';
+  gid('p-trends').innerHTML=h;
+}
+
+function renderAI(){
+  var h='<div class="ph"><h2>AI &amp; AIGC 动态</h2><p>AI在手游行业的应用</p></div>';
+  h+='<div class="card"><div class="ch">🤖 AI务实落地</div>';
+  var ais=[
+    {s:"AIM+智能投放", d:"Q2消耗同比增长390%，已成为微信小游戏买量首选方案"},
+    {s:"直玩形态", d:"点击转化率提升3倍，注册成本降低80%，IAA小游戏买量第一大形态"},
+    {s:"AI智能体", d:"腾讯游戏云AI智能体将原型开发从数周压缩至数小时"},
+    {s:"AIGC素材", d:"三七互娱、网易等已建立AIGC素材生产线，月产量提升5倍、成本降60%"},
+    {s:"行业定位", d:"AI是效率基础设施而非颠覆者，爆款仍需人工打磨。AI漫剧Q1在播量约18万部，与小游戏争夺低成本娱乐时间"}
+  ];
+  ais.forEach(function(a){
+    h+='<div style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--ll)"><div style="flex-shrink:0;font-size:11.5px;font-weight:600;color:var(--blue);width:90px">'+esc(a.s)+'</div><div style="font-size:12px;color:var(--t2)">'+esc(a.d)+'</div></div>';
+  });
+  h+='</div><div class="card"><div class="ch">🏗️ 生活模拟赛道</div><p style="font-size:12.5px;color:var(--t2);line-height:1.7">腾讯《粒粒的小人国》、米哈游《星布谷地》预计2026年上线。行业正从数值驱动ARPG疲劳转向治愈系低压力生活模拟。品类定位：抢占玩家"第二款游戏"位置。</p></div>';
+  gid('p-ai').innerHTML=h;
+}
+
+function gid(id){return document.getElementById(id);}
+function tsb(){var s=gid('sidebar'),o=gid('ol');s.classList.toggle('open');o.style.display=s.classList.contains('open')?'block':'none';}
+function tst(m){var t=gid('toast');t.textContent='✓ '+m;t.style.display='block';t.style.opacity='1';setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.style.display='none'},300)},2000);}
+
+// Init
+renderOverview();renderTop('p-wx');renderTop('p-dy');renderMonthly();renderLaunch();renderVendors();renderPolicy();renderNational();renderTrends();renderAI();
+
+// Nav
+document.addEventListener('click',function(e){
+  var it=e.target.closest('.ni');if(!it)return;e.preventDefault();var p=it.dataset.p;if(!p)return;
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('act')});it.classList.add('act');
+  document.querySelectorAll('.pg').forEach(function(g){g.classList.remove('act')});
+  var pg=gid('p-'+p);if(pg)pg.classList.add('act');
+  gid('sidebar').classList.remove('open');gid('ol').style.display='none';
+  var ns={overview:'仪表盘总览',wx:'微信畅销榜',dy:'抖音畅销榜',monthly:'月度趋势分析',launch:'开测 & 首发日历',vendors:'厂商动态与布局',policy:'平台政策追踪',national:'国家政策 & 版号',trends:'趋势洞察',ai:'AI & AIGC'};
+  document.querySelector('.ttl').innerHTML='<span>手游市场资讯</span> '+(ns[p]||p);
+});
+</script>
+</body>
+</html>
