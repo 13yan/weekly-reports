@@ -3,10 +3,7 @@ name: Sync to Aliyun OSS
 on:
   push:
     branches:
-      - main
-    paths:
-      - 'weekly-reports/**'
-      - '.github/workflows/sync-aliyun.yml'
+      - master
   workflow_dispatch:
 
 jobs:
@@ -33,15 +30,16 @@ jobs:
           python << 'EOF'
           import oss2
           import os
-          import glob
 
           auth = oss2.Auth(os.environ['ACCESS_KEY_ID'], os.environ['ACCESS_KEY_SECRET'])
           bucket = oss2.Bucket(auth, os.environ['ENDPOINT'], os.environ['BUCKET'])
 
-          for root, dirs, files in os.walk('weekly-reports'):
+          for root, dirs, files in os.walk('.'):
             for file in files:
+              if '.git' in root or '.github' in root:
+                continue
               local_path = os.path.join(root, file)
-              remote_path = local_path.replace('weekly-reports/', '')
+              remote_path = local_path.lstrip('./')
               bucket.put_object_from_file(remote_path, local_path)
               print(f'Uploaded: {remote_path}')
 
