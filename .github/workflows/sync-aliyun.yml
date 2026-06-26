@@ -20,6 +20,27 @@ jobs:
       - name: Install OSS SDK
         run: pip install oss2
 
+      - name: Configure static website (enable subdirectory index)
+        env:
+          ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          ENDPOINT: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
+          BUCKET: ${{ secrets.ALIYUN_OSS_BUCKET }}
+        run: |
+          python << 'EOF'
+          import oss2
+          import os
+
+          auth = oss2.Auth(os.environ['ACCESS_KEY_ID'], os.environ['ACCESS_KEY_SECRET'])
+          bucket = oss2.Bucket(auth, os.environ['ENDPOINT'], os.environ['BUCKET'])
+
+          config = oss2.models.BucketWebsite()
+          config.index = 'index.html'
+          config.support_sub_dir = True
+          bucket.put_bucket_website(config)
+          print('✅ Static website configured: index.html, subdirectory index enabled')
+          EOF
+
       - name: Upload to OSS
         env:
           ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
