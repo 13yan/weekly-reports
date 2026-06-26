@@ -306,7 +306,7 @@
         "category": "SLG/策略",
         "change": "4",
         "changeValue": 4,
-        "company": "\"《无尽冬日》是结合经营城建和角色养成玩法的多人在线策略游戏。\"",
+        "company": "点点互动（北京）科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -333,7 +333,7 @@
         "category": "合成消除",
         "change": "5",
         "changeValue": 5,
-        "company": "\"久违的四季岛，我来啦！\"",
+        "company": "青岛蓝飞互娱科技股份有限公司",
         "isCrossPlatform": true
       },
       {
@@ -396,7 +396,7 @@
         "category": "放置RPG",
         "change": "4",
         "changeValue": 4,
-        "company": "\"我辈修士，渡劫修仙；经营自己的宗门，与仙友和弟子携手突破飞升\"",
+        "company": "上海沛炫网络科技有限公司",
         "isCrossPlatform": true
       }
     ]
@@ -1390,7 +1390,7 @@
         "rank": 10,
         "name": "无尽冬日",
         "category": "SLG/策略",
-        "company": "\"《无尽冬日》是结合经营城建和角色养成玩法的多人在线策略游戏。\"",
+        "company": "点点互动（北京）科技有限公司",
         "change": "4",
         "changeValue": 4,
         "isCrossPlatform": true
@@ -1417,7 +1417,7 @@
         "rank": 13,
         "name": "四季合合",
         "category": "合成消除",
-        "company": "\"久违的四季岛，我来啦！\"",
+        "company": "青岛蓝飞互娱科技股份有限公司",
         "change": "5",
         "changeValue": 5,
         "isCrossPlatform": true
@@ -1480,7 +1480,7 @@
         "rank": 20,
         "name": "造化仙府",
         "category": "放置RPG",
-        "company": "\"我辈修士，渡劫修仙；经营自己的宗门，与仙友和弟子携手突破飞升\"",
+        "company": "上海沛炫网络科技有限公司",
         "change": "4",
         "changeValue": 4,
         "isCrossPlatform": true
@@ -1489,7 +1489,7 @@
         "rank": 21,
         "name": "指尖幻影",
         "category": "塔防",
-        "company": "\"编织幻影之力，合成背包武器，每一击都绽放你的策略光芒！\"",
+        "company": "海南异界科技有限公司",
         "change": "7",
         "changeValue": 7,
         "isCrossPlatform": true
@@ -1525,7 +1525,7 @@
         "rank": 25,
         "name": "保卫向日葵",
         "category": "塔防",
-        "company": "\"《保卫向日葵》是融合背包合成、Roguelike、塔防元素的休闲游戏\"",
+        "company": "深圳市一起梦游科技有限公司",
         "change": "3",
         "changeValue": 3,
         "isCrossPlatform": true
@@ -1552,7 +1552,7 @@
         "rank": 28,
         "name": "手机反恐特别行动",
         "category": "射击",
-        "company": "\"2024最爽快射击的割草游戏 成为英雄，迎击尸潮！\"",
+        "company": "成都疾风劲趣科技有限公司",
         "change": "2",
         "changeValue": 2,
         "isCrossPlatform": true
@@ -1615,7 +1615,7 @@
         "rank": 35,
         "name": "肥鹅美食街",
         "category": "模拟经营",
-        "company": "\"合成缤纷食材，烹饪美味佳肴，打造属于你的美食街！\"",
+        "company": "北京豪腾创想科技有限公司",
         "change": "3",
         "changeValue": 3,
         "isCrossPlatform": true
@@ -1696,7 +1696,7 @@
         "rank": 44,
         "name": "宫廷风云",
         "category": "模拟经营",
-        "company": "\"国风换装养成游戏，体验最真实的古代生活。\"",
+        "company": "",
         "change": "新进榜",
         "changeValue": 999,
         "isCrossPlatform": false
@@ -1723,7 +1723,7 @@
         "rank": 47,
         "name": "空格之境",
         "category": "模拟经营",
-        "company": "\"转生商贾之女，重振江南丝织厂\"",
+        "company": "",
         "change": "- 稳定",
         "changeValue": 0,
         "isCrossPlatform": true
@@ -1777,7 +1777,7 @@
         "rank": 53,
         "name": "爆裂守卫",
         "category": "塔防",
-        "company": "",
+        "company": "邯郸空岛科技有限公司",
         "change": "11",
         "changeValue": 11,
         "isCrossPlatform": true
@@ -1840,7 +1840,7 @@
         "rank": 60,
         "name": "杜拉拉升职记",
         "category": "模拟经营",
-        "company": "\"正版都市职场养成手游\"",
+        "company": "",
         "change": "4",
         "changeValue": 4,
         "isCrossPlatform": false
@@ -1858,7 +1858,7 @@
         "rank": 62,
         "name": "战龙之怒",
         "category": "ARPG",
-        "company": "杭州悦玩互娱网络科技有限公司",
+        "company": "",
         "change": "6",
         "changeValue": 6,
         "isCrossPlatform": false
@@ -1867,7 +1867,7 @@
         "rank": 63,
         "name": "元气蛋蛋王",
         "category": "放置RPG",
-        "company": "\"踏上一段充满挑战与惊喜的弹射之旅！\"",
+        "company": "",
         "change": "9",
         "changeValue": 9,
         "isCrossPlatform": false
@@ -1912,7 +1912,7 @@
         "rank": 68,
         "name": "奇遇西行",
         "category": "卡牌RPG",
-        "company": "\"抽神仙打工，挂机成仙！轻松神话卡牌\"",
+        "company": "广州焜耀网络科技有限公司",
         "change": "8",
         "changeValue": 8,
         "isCrossPlatform": true
@@ -1966,7 +1966,7 @@
         "rank": 74,
         "name": "最强祖师",
         "category": "放置RPG",
-        "company": "\"别卷了！来修仙吧！ 从零开始耕耘仙门盛景！\"",
+        "company": "",
         "change": "新进榜",
         "changeValue": 999,
         "isCrossPlatform": false
@@ -2101,7 +2101,7 @@
         "rank": 89,
         "name": "勇者乱斗",
         "category": "其他",
-        "company": "\"《勇者乱斗》是一款蔬果拟人风格的合成升级自走棋游戏。\"",
+        "company": "",
         "change": "19",
         "changeValue": 19,
         "isCrossPlatform": false
@@ -2164,7 +2164,7 @@
         "rank": 96,
         "name": "神奇波比",
         "category": "其他",
-        "company": "\"3D捉宠放置游戏，捕捉波比，建设家园，冒险路上击败邪恶强敌。\"",
+        "company": "",
         "change": "新进榜",
         "changeValue": 999,
         "isCrossPlatform": false
@@ -2200,7 +2200,7 @@
         "rank": 100,
         "name": "天天有球玩",
         "category": "其他",
-        "company": "上海极玩智擎科技有限公司",
+        "company": "",
         "change": "13",
         "changeValue": 13,
         "isCrossPlatform": false
@@ -2300,7 +2300,7 @@
       },
       {
         "name": "宫廷风云",
-        "company": "\"国风换装养成游戏，体验最真实的古代生活。\"",
+        "company": "",
         "mergePlay": "换装养成+经营",
         "theme": "古风宫廷",
         "wxRank": "-",
@@ -2318,7 +2318,7 @@
       },
       {
         "name": "杜拉拉升职记",
-        "company": "\"正版都市职场养成手游\"",
+        "company": "",
         "mergePlay": "模拟养成+剧情换装",
         "theme": "都市职场",
         "wxRank": "-",
@@ -2435,7 +2435,7 @@
       "platform": "抖音",
       "category": "模拟经营",
       "rise": 999,
-      "company": "\"国风换装养成游戏，体验最真实的古代生活。\"",
+      "company": "",
       "insight": "模拟经营题材"
     },
     {
@@ -2459,7 +2459,7 @@
       "platform": "抖音",
       "category": "放置RPG",
       "rise": 999,
-      "company": "\"别卷了！来修仙吧！ 从零开始耕耘仙门盛景！\"",
+      "company": "",
       "insight": "放置RPG题材"
     },
     {
@@ -2499,7 +2499,7 @@
       "platform": "抖音",
       "category": "其他",
       "rise": 999,
-      "company": "\"3D捉宠放置游戏，捕捉波比，建设家园，冒险路上击败邪恶强敌。\"",
+      "company": "",
       "insight": "其他题材"
     },
     {
@@ -2547,7 +2547,7 @@
       "platform": "抖音",
       "category": "其他",
       "rise": 19,
-      "company": "\"《勇者乱斗》是一款蔬果拟人风格的合成升级自走棋游戏。\"",
+      "company": "",
       "insight": "其他题材"
     },
     {
