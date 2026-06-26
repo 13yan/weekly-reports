@@ -20,7 +20,7 @@ jobs:
       - name: Install OSS SDK
         run: pip install oss2
 
-      - name: Configure static website (enable subdirectory index)
+      - name: Configure static website
         env:
           ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
           ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
@@ -29,20 +29,11 @@ jobs:
         run: |
           python << 'EOF'
           import oss2, os
-
           auth = oss2.Auth(os.environ['ACCESS_KEY_ID'], os.environ['ACCESS_KEY_SECRET'])
           bucket = oss2.Bucket(auth, os.environ['ENDPOINT'], os.environ['BUCKET'])
-
-          # Add routing rule: /workbench/ -> /workbench/index.html (prefix redirect)
-          from oss2.models import BucketWebsite, RoutingRule, RoutingRuleCondition, RoutingRuleRedirect
-          rule = RoutingRule(
-              RoutingRuleCondition(key_prefix_equals='workbench/'),
-              RoutingRuleRedirect(redirect_type='AliCDN', replace_key_prefix_with='workbench/index.html', http_redirect_code=302),
-              rule_num=1
-          )
-          config = BucketWebsite('index.html', '', rules=[rule])
-          bucket.put_bucket_website(config)
-          print('✅ Static website configured with routing rule: /workbench/ -> /workbench/index.html')
+          # Set static website with index.html and empty error (no routing rules)
+          bucket.put_bucket_website(oss2.models.BucketWebsite('index.html', ''))
+          print('✅ Static website configured: index.html')
           EOF
 
       - name: Upload to OSS
