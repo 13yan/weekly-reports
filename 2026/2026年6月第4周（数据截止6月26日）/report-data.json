@@ -2576,7 +2576,7 @@
     }
   ],
   "policies": {
-    "_combinedHtml": ""
+    "_combinedHtml": "<div class=\"insight-box\" style=\"background:#fff3e0;border-left-color:#ff9800;\">\n    <strong>&#9200; 本周政策速览：</strong>本周（6/21-6/26）<span class=\"hl\">巨量引擎发布2026年Q3抖音小游戏暑期激励政策</span>，针对IAP小游戏投放推出阶梯式返货激励，单款最高300万元、集团封顶1000万元。\n  </div>\n\n  <div class=\"policy-box dy\">\n    <h4>抖音小游戏暑期激励政策（Q3 2026）</h4>\n    <p><strong>政策来源：</strong>巨量引擎 - 中国广告销售平台 - 互动娱乐业务线</p>\n    <p><strong>适用对象：</strong>抖音小游戏IAP为主（付费转化消耗≥90%），排除棋牌/捕鱼类</p>\n    <p><strong>活动周期：</strong>2026年7月1日 — 8月31日（62天），参考期：4月1日 — 6月30日（91天）</p>\n    <ol>\n      <li><strong>激励逻辑：</strong>活动期日均消耗增量 × 返货点位 × 62天，增量越高返点越高</li>\n      <li><strong>返货分档：</strong>\n        <br/>· 历史日均≥60w + 增量≥45w → <span class=\"hl\">15%</span>\n        <br/>· 历史日均≥60w + 增量30w-45w → 10%\n        <br/>· 历史日均30w-60w + 增量≥40w → 10%\n        <br/>· 历史日均30w-60w + 增量20w-40w → 8%\n        <br/>· 历史日均&lt;30w + 增量≥30w → 8%\n        <br/>· 历史日均&lt;30w + 增量10w-30w → 5%</li>\n      <li><strong>封顶规则：</strong>单款游戏激励封顶 <span class=\"hl\">300万元</span>；同一集团所有游戏合计封顶 <span class=\"hl\">1000万元</span></li>\n      <li><strong>硬性红线：</strong>\n        <br/>① 严禁马甲包套利 — 仅改图标/名称/包名的换皮游戏属于马甲包，平台可取消全部赠款\n        <br/>② 赠款仅限抖音小游戏投放 — 不得用于微信小游戏及APP游戏\n        <br/>③ 必须自投，禁止代投\n        <br/>④ 禁止拆分关联组套取激励</li>\n    </ol>\n    <p style=\"margin-top:8px;\"><a href=\"https://bytedance.larkoffice.com/wiki/VBYGwMpwAi84aSk2GXYcHKXcnVB?sheet=0fad97\" target=\"_blank\" rel=\"noopener\" style=\"color:#1e3a8a;font-size:12px;\">&#128279; 查看原政策文档</a></p>\n  </div>"
   },
   "marketing": {},
   "trends": [
