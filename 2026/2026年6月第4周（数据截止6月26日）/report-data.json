@@ -43,6 +43,7 @@
         "category": "放置RPG",
         "change": "霸榜1天",
         "changeValue": 0,
+        "company": "",
         "isCrossPlatform": true
       },
       {
@@ -51,6 +52,7 @@
         "category": "ARPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "杭州运程网络技术有限公司",
         "isCrossPlatform": false
       },
       {
@@ -59,6 +61,7 @@
         "category": "SLG/策略",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "",
         "isCrossPlatform": true
       },
       {
@@ -67,6 +70,7 @@
         "category": "ARPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "广州光游网络科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -75,6 +79,7 @@
         "category": "SLG/策略",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "欢游互动（北京）科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -83,6 +88,7 @@
         "category": "塔防",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "海南盛昌网络科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -91,6 +97,7 @@
         "category": "ARPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "广州冠游信息科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -99,6 +106,7 @@
         "category": "放置RPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "厦门光环信息科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -107,6 +115,7 @@
         "category": "MMO",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "杭州悦轶网络科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -115,6 +124,7 @@
         "category": "塔防",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "",
         "isCrossPlatform": true
       },
       {
@@ -123,6 +133,7 @@
         "category": "塔防",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "广州颂悦信息技术有限公司",
         "isCrossPlatform": true
       },
       {
@@ -131,6 +142,7 @@
         "category": "放置RPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "深圳全民互动科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -139,6 +151,7 @@
         "category": "塔防",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "海南盛昌网络科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -147,6 +160,7 @@
         "category": "SLG/策略",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "点点互动（北京）科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -155,6 +169,7 @@
         "category": "模拟经营",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "深圳市腾讯计算机系统有限公司",
         "isCrossPlatform": false
       },
       {
@@ -163,6 +178,7 @@
         "category": "放置RPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "深圳雷霆信息技术有限公司",
         "isCrossPlatform": true
       },
       {
@@ -171,6 +187,7 @@
         "category": "模拟经营",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "厦门麟贝互娱科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -179,6 +196,7 @@
         "category": "塔防",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "福州点点松云网络有限公司",
         "isCrossPlatform": true
       },
       {
@@ -187,6 +205,7 @@
         "category": "卡牌RPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "郑州林凡网络科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -195,6 +214,7 @@
         "category": "塔防",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "深圳市一起梦游科技有限公司",
         "isCrossPlatform": true
       }
     ],
@@ -205,6 +225,7 @@
         "category": "其他",
         "change": "霸榜6天",
         "changeValue": 0,
+        "company": "北京蜜獾兄弟科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -213,6 +234,7 @@
         "category": "SLG/策略",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "欢游互动（北京）科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -221,6 +243,7 @@
         "category": "ARPG",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "广州光游网络科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -229,6 +252,7 @@
         "category": "放置RPG",
         "change": "1",
         "changeValue": 1,
+        "company": "柏项网络科技（上海）有限公司",
         "isCrossPlatform": true
       },
       {
@@ -237,6 +261,7 @@
         "category": "放置RPG",
         "change": "16",
         "changeValue": 16,
+        "company": "北京雪境科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -245,6 +270,7 @@
         "category": "塔防",
         "change": "1",
         "changeValue": 1,
+        "company": "海南盛昌网络科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -253,6 +279,7 @@
         "category": "放置RPG",
         "change": "5",
         "changeValue": 5,
+        "company": "世熠网络科技（上海）有限公司",
         "isCrossPlatform": true
       },
       {
@@ -261,6 +288,7 @@
         "category": "模拟经营",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "深圳市爱的番茄科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -269,6 +297,7 @@
         "category": "ARPG",
         "change": "1",
         "changeValue": 1,
+        "company": "杭州悦昭网络科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -277,6 +306,7 @@
         "category": "SLG/策略",
         "change": "4",
         "changeValue": 4,
+        "company": "\"《无尽冬日》是结合经营城建和角色养成玩法的多人在线策略游戏。\"",
         "isCrossPlatform": true
       },
       {
@@ -285,6 +315,7 @@
         "category": "模拟经营",
         "change": "- 稳定",
         "changeValue": 0,
+        "company": "海南途趣科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -293,6 +324,7 @@
         "category": "模拟经营",
         "change": "4",
         "changeValue": 4,
+        "company": "北京柠檬曲奇科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -301,6 +333,7 @@
         "category": "合成消除",
         "change": "5",
         "changeValue": 5,
+        "company": "\"久违的四季岛，我来啦！\"",
         "isCrossPlatform": true
       },
       {
@@ -309,6 +342,7 @@
         "category": "塔防",
         "change": "3",
         "changeValue": 3,
+        "company": "",
         "isCrossPlatform": true
       },
       {
@@ -317,6 +351,7 @@
         "category": "SLG/策略",
         "change": "11",
         "changeValue": 11,
+        "company": "",
         "isCrossPlatform": true
       },
       {
@@ -325,6 +360,7 @@
         "category": "模拟经营",
         "change": "1",
         "changeValue": 1,
+        "company": "深圳市必凡娱乐科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -333,6 +369,7 @@
         "category": "模拟经营",
         "change": "4",
         "changeValue": 4,
+        "company": "广州喜势网络科技有限公司",
         "isCrossPlatform": true
       },
       {
@@ -341,6 +378,7 @@
         "category": "SLG/策略",
         "change": "2",
         "changeValue": 2,
+        "company": "北京智诚互娱科技有限公司",
         "isCrossPlatform": false
       },
       {
@@ -349,6 +387,7 @@
         "category": "ARPG",
         "change": "4",
         "changeValue": 4,
+        "company": "广州信跃网络技术有限公司",
         "isCrossPlatform": false
       },
       {
@@ -357,6 +396,7 @@
         "category": "放置RPG",
         "change": "4",
         "changeValue": 4,
+        "company": "\"我辈修士，渡劫修仙；经营自己的宗门，与仙友和弟子携手突破飞升\"",
         "isCrossPlatform": true
       }
     ]
