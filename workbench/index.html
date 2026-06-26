@@ -4943,10 +4943,14 @@ function renderGameAnalysis(games) {
     var chartRows = (g.charts || []).map(function(c) {
       return '<tr><td>' + c.chart + '</td><td><strong>#' + c.rank + '</strong></td><td>' + c.change + '</td></tr>';
     }).join('');
+    var detailRows = (g.details || []).map(function(d) {
+      return '<p style="margin:6px 0;font-size:13px;line-height:1.8"><strong>' + d.label + '：</strong>' + d.content + '</p>';
+    }).join('');
     return '<div class="policy-card policy-combined" style="margin-bottom:14px">'
       + '<div class="combined-header">' + escHTML(g.name) + ' <span style="font-size:12px;color:var(--text-tertiary);font-weight:400">' + escHTML(g.category) + '</span></div>'
-      + '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">' + escHTML(g.summary) + '</p>'
-      + '<p style="font-size:12px;color:var(--text-tertiary);margin-bottom:10px">' + escHTML(g.company) + '</p>'
+      + '<div style="padding:4px 0 8px">'
+      + detailRows
+      + '</div>'
       + '<table style="width:100%;font-size:12px;border-collapse:collapse"><thead><tr style="background:#f8f9fb"><th style="padding:6px 8px;text-align:left">榜单</th><th style="padding:6px 8px;text-align:center">排名</th><th style="padding:6px 8px;text-align:center">变化</th></tr></thead><tbody>'
       + chartRows + '</tbody></table>'
       + '</div>';
