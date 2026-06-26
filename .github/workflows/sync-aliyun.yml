@@ -37,7 +37,7 @@ jobs:
           from oss2.models import BucketWebsite, RoutingRule, RoutingRuleCondition, RoutingRuleRedirect
           rule = RoutingRule(
               RoutingRuleCondition(key_prefix_equals='workbench/'),
-              RoutingRuleRedirect(redirect_type='External', replace_key_prefix_with='workbench/index.html'),
+              RoutingRuleRedirect(redirect_type='AliCDN', replace_key_prefix_with='workbench/index.html', http_redirect_code=302),
               rule_num=1
           )
           config = BucketWebsite('index.html', '', rules=[rule])
