@@ -1,0 +1,47 @@
+name: Sync to Aliyun OSS
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install OSS SDK
+        run: pip install oss2
+
+      - name: Upload to OSS
+        env:
+          ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          ENDPOINT: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
+          BUCKET: ${{ secrets.ALIYUN_OSS_BUCKET }}
+        run: |
+          python << 'EOF'
+          import oss2
+          import os
+
+          auth = oss2.Auth(os.environ['ACCESS_KEY_ID'], os.environ['ACCESS_KEY_SECRET'])
+          bucket = oss2.Bucket(auth, os.environ['ENDPOINT'], os.environ['BUCKET'])
+
+          for root, dirs, files in os.walk('.'):
+            for file in files:
+              if '.git' in root:
+                continue
+              local_path = os.path.join(root, file)
+              remote_path = local_path.lstrip('./')
+              bucket.put_object_from_file(remote_path, local_path)
+              print(f'Uploaded: {remote_path}')
+
+          print('Done!')
+          EOF
