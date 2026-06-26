@@ -29,15 +29,39 @@ jobs:
         run: |
           python << 'EOF'
           import oss2
-          import os
+          import os, hashlib, base64, hmac, urllib.request
+          from datetime import datetime
 
-          auth = oss2.Auth(os.environ['ACCESS_KEY_ID'], os.environ['ACCESS_KEY_SECRET'])
-          bucket = oss2.Bucket(auth, os.environ['ENDPOINT'], os.environ['BUCKET'])
+          key_id = os.environ['ACCESS_KEY_ID']
+          key_secret = os.environ['ACCESS_KEY_SECRET']
+          endpoint = os.environ['ENDPOINT']
+          bucket = os.environ['BUCKET']
 
-          config = oss2.models.BucketWebsite()
-          config.index = 'index.html'
-          config.support_sub_dir = True
-          bucket.put_bucket_website(config)
+          body = '''<?xml version="1.0" encoding="UTF-8"?>
+          <WebsiteConfiguration>
+            <IndexDocument><Suffix>index.html</Suffix></IndexDocument>
+            <SupportSubDir>true</SupportSubDir>
+          </WebsiteConfiguration>'''
+
+          date = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+          content_md5 = base64.b64encode(hashlib.md5(body.encode('utf-8')).digest()).decode()
+          content_type = 'application/xml'
+          resource = '/' + bucket + '/?website'
+          string_to_sign = f'PUT\n{content_md5}\n{content_type}\n{date}\n{resource}'
+          signature = base64.b64encode(
+              hmac.new(key_secret.encode(), string_to_sign.encode(), hashlib.sha1).digest()
+          ).decode()
+
+          url = f'https://{bucket}.{endpoint}/?website'
+          req = urllib.request.Request(url, data=body.encode('utf-8'), method='PUT')
+          req.add_header('Content-Type', content_type)
+          req.add_header('Content-MD5', content_md5)
+          req.add_header('Date', date)
+          req.add_header('Authorization', f'OSS {key_id}:{signature}')
+
+          with urllib.request.urlopen(req) as resp:
+              print(f'Status: {resp.status}')
+              print(f'Response: {resp.read().decode()}')
           print('✅ Static website configured: index.html, subdirectory index enabled')
           EOF
 
