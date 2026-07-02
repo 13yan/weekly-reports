@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抖店直播转化分析 · 0702</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #1e3a8a;
+  --primary-light: #dbe4ff;
+  --accent: #0ea5e9;
+  --up: #10b981;
+  --down: #ef4444;
+  --warn: #f59e0b;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --text2: #475569;
+  --text3: #94a0b0;
+  --border: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); }
+
+.header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+  color: #fff;
+  padding: 32px 40px;
+}
+.header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+.header .sub { font-size: 14px; opacity: 0.8; margin-top: 8px; }
+.header .meta { font-size: 12px; opacity: 0.6; margin-top: 4px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+/* Quick Stats Row */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 16px; text-align: center;
+}
+.stat-card .label { font-size: 12px; color: var(--text3); margin-bottom: 4px; }
+.stat-card .value { font-size: 24px; font-weight: 700; color: var(--primary); }
+.stat-card .sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.stat-card .value.warn { color: var(--warn); }
+.stat-card .value.down { color: var(--down); }
+.stat-card .value.up { color: var(--up); }
+
+/* Chart Grid */
+.chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.chart-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px;
+}
+.chart-card.full { grid-column: 1 / -1; }
+.chart-card h3 { font-size: 14px; color: var(--text2); margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.chart-card h3 .badge {
+  display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px;
+  background: var(--primary-light); color: var(--primary); font-weight: 500;
+}
+.chart-wrap { position: relative; width: 100%; height: 260px; }
+.chart-wrap.tall { height: 350px; }
+
+/* Data Table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  background: #f1f5f9; padding: 10px 12px; text-align: center;
+  font-weight: 600; color: var(--text2); border-bottom: 2px solid var(--border);
+}
+.data-table td { padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--border-light, #f1f5f9); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .section-header td {
+  background: var(--primary-light); font-weight: 700; color: var(--primary);
+  text-align: left; padding: 12px 12px;
+}
+
+/* Insight Box */
+.insight-box {
+  background: linear-gradient(135deg, #eef2ff, #f0f9ff);
+  border: 1px solid #b3c5ff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+.insight-box h3 { font-size: 15px; color: var(--primary); margin-bottom: 10px; }
+.insight-box ul { margin: 0; padding-left: 20px; }
+.insight-box li { font-size: 13px; color: var(--text); line-height: 1.8; margin-bottom: 2px; }
+.insight-box li strong { color: var(--primary); }
+
+/* Conversion card */
+.conversion-path {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 16px 0;
+}
+.conv-step {
+  display: flex; flex-direction: column; align-items: center; min-width: 80px;
+}
+.conv-step .num { font-size: 22px; font-weight: 700; color: var(--primary); }
+.conv-step .label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.conv-arrow { font-size: 20px; color: var(--accent); margin: 0 4px; }
+.conv-rate {
+  font-size: 12px; color: var(--text2); background: #f1f5f9;
+  padding: 2px 8px; border-radius: 6px; margin-top: 4px;
+}
+
+/* Funnel SVG */
+.funnel-wrap { display: flex; justify-content: center; padding: 10px 0; }
+
+@media (max-width: 700px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .chart-grid { grid-template-columns: 1fr; }
+  .header { padding: 24px 20px; }
+  .container { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 抖店直播转化分析</h1>
+  <div class="sub">直播数据 · 2026年7月2日 · 完整数据画像</div>
+  <div class="meta">数据来源：抖店后台 · 单场直播分析</div>
+</div>
+
+<div class="container">
+
+  <!-- Quick Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="label">👀 曝光人数</div>
+      <div class="value">2,721</div>
+      <div class="sub">直播间总曝光</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">🚪 进房人数</div>
+      <div class="value">193</div>
+      <div class="sub">进房率 7.09%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">🛒 商品曝光</div>
+      <div class="value">1,134</div>
+      <div class="sub">商品总曝光</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">✅ 成交人数</div>
+      <div class="value warn">2</div>
+      <div class="sub">点击→成交 10%</div>
+    </div>
+  </div>
+
+  <!-- Key Metrics Row 2 -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="label">📝 评论人数</div>
+      <div class="value">12</div>
+      <div class="sub">评论率 6.22%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">❤️ 点赞次数</div>
+      <div class="value">729</div>
+      <div class="sub">点赞率 6.22%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">⏱️ 人均停留</div>
+      <div class="value">5.53min</div>
+      <div class="sub">停留时长</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">👥 新增粉丝</div>
+      <div class="value">8</div>
+      <div class="sub">本场新增</div>
+    </div>
+  </div>
+
+  <!-- Analysis Summary -->
+  <div class="insight-box">
+    <h3>📋 核心结论</h3>
+    <ul>
+      <li><strong>引流能力尚可</strong>：曝光 2,721，进房 193（进房率 7.09%），抖店自然流量入口基本通畅，但绝对量偏小</li>
+      <li><strong>互动深度不够</strong>：仅 12 人评论、8 人关注，互动率偏低，说明内容吸引力有限或缺乏互动引导话术</li>
+      <li><strong>停留时长合格</strong>：人均停留 5.53 分钟，说明能留下的观众有一定观看意愿，但人数太少</li>
+      <li><strong>转化漏斗严重坍塌</strong>：商品曝光 1,134 → 点击 20（仅 1.76%）→ 成交 2 人。曝光到点击率极低，商品展示或价格吸引力不足</li>
+      <li><strong>整体评分</strong>：流量端 ⭐⭐⭐ | 互动端 ⭐⭐ | 转化端 ⭐</li>
+    </ul>
+  </div>
+
+  <!-- Charts -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>📈 流量漏斗 <span class="badge">曝光→进房→在线</span></h3>
+      <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>💬 互动指标 <span class="badge">评论 · 点赞 · 粉丝</span></h3>
+      <div class="chart-wrap"><canvas id="interactChart"></canvas></div>
+    </div>
+    <div class="chart-card full">
+      <h3>🛒 商品转化漏斗 <span class="badge">曝光→点击→成交</span></h3>
+      <div class="chart-wrap tall"><canvas id="funnelChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Conversion Path Visualization -->
+  <div class="chart-card" style="margin-bottom: 24px;">
+    <h3>🔄 核心转化链路 <span class="badge">每一步的流失</span></h3>
+    <div class="conversion-path">
+      <div class="conv-step">
+        <div class="num">2,721</div>
+        <div class="label">总曝光</div>
+      </div>
+      <div class="conv-arrow">→</div>
+      <div class="conv-step">
+        <div class="num">193</div>
+        <div class="label">进房</div>
+        <div class="conv-rate">7.09%</div>
+      </div>
+      <div class="conv-arrow">→</div>
+      <div class="conv-step">
+        <div class="num">5</div>
+        <div class="label">平均在线</div>
+        <div class="conv-rate">2.59%</div>
+      </div>
+      <div class="conv-arrow">→</div>
+      <div class="conv-step" style="min-width:100px;">
+        <div class="num" style="color:#f59e0b;">1,134</div>
+        <div class="label">商品曝光</div>
+      </div>
+      <div class="conv-arrow">→</div>
+      <div class="conv-step">
+        <div class="num" style="color:#f59e0b;">20</div>
+        <div class="label">商品点击</div>
+        <div class="conv-rate">1.76%</div>
+      </div>
+      <div class="conv-arrow">→</div>
+      <div class="conv-step">
+        <div class="num" style="color:#ef4444;">2</div>
+        <div class="label">成交</div>
+        <div class="conv-rate">10%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Data Table -->
+  <div class="chart-card full" style="margin-bottom: 24px;">
+    <h3>📃 完整数据明细</h3>
+    <table class="data-table">
+      <tr class="section-header"><td colspan="4">📺 直播间流量指标</td></tr>
+      <tr><th>曝光人数</th><th>进房人数</th><th>进房率</th><th>平均在线</th></tr>
+      <tr><td>2,721</td><td>193</td><td>7.09%</td><td style="font-weight:600;color:var(--warn)">5 人</td></tr>
+      <tr class="section-header"><td colspan="4">💬 直播间互动指标</td></tr>
+      <tr><th>评论人数</th><th>评论率</th><th>人均停留</th><th>新增粉丝</th></tr>
+      <tr><td>12</td><td>6.22%</td><td>5.53 min</td><td>8</td></tr>
+      <tr class="section-header"><td colspan="4">🛒 抖店商品数据</td></tr>
+      <tr><th>商品购买数据</th><th>商品曝光人数</th><th>商品点击人数</th><th>成交人数</th></tr>
+      <tr><td>1,134</td><td>126</td><td>20</td><td style="font-weight:700;color:var(--down)">2</td></tr>
+      <tr class="section-header"><td colspan="4">📊 转化率</td></tr>
+      <tr><th>曝光→点击转化</th><th>点击→成交转化</th><th colspan="2">综合转化率</th></tr>
+      <tr><td style="color:var(--warn)">15.87%</td><td style="color:var(--down)">10%</td><td colspan="2" style="color:var(--down)">0.176%（曝光→成交）</td></tr>
+    </table>
+  </div>
+
+  <!-- Improvement Suggestions -->
+  <div class="insight-box">
+    <h3>🚀 优化建议</h3>
+    <ul>
+      <li><strong>提升商品点击率</strong>（当前 1.76%）：优化商品主图和标题，增加限时优惠/秒杀标签，主播口播引导点击小黄车</li>
+      <li><strong>提高互动率</strong>（评论仅 12 人）：设置评论抽奖、扣屏号领券等互动玩法，避免单向讲解</li>
+      <li><strong>缩短转化路径</strong>：增加弹窗优惠券、满减信息，降低用户决策门槛</li>
+      <li><strong>延长停留时长</strong>（5.53min 尚有提升空间）：增加福利款预告、每隔 5 分钟一轮抽奖循环</li>
+      <li><strong>扩大流量基数</strong>：当前曝光 2,721 较小，可尝试千川投放或短视频引流到直播间</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+// ====== 流量漏斗（柱状图） ======
+new Chart(document.getElementById('trafficChart'), {
+  type: 'bar',
+  data: {
+    labels: ['曝光人数', '进房人数', '平均在线', '最高在线'],
+    datasets: [{
+      label: '人数',
+      data: [2721, 193, 5, 19],
+      backgroundColor: ['#1e3a8a', '#2563eb', '#f59e0b', '#10b981'],
+      borderRadius: 4,
+      barPercentage: 0.6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.y + ' 人' } }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(1)+'k' : v } }
+    }
+  }
+});
+
+// ====== 互动指标（雷达图） ======
+new Chart(document.getElementById('interactChart'), {
+  type: 'radar',
+  data: {
+    labels: ['评论人数', '点赞次数(÷60)', '新增粉丝', '人均停留(min)', '进房率(×100)'],
+    datasets: [{
+      label: '本场数据',
+      data: [12, 12.15, 8, 5.53, 7.09],
+      backgroundColor: 'rgba(30, 58, 138, 0.12)',
+      borderColor: '#1e3a8a',
+      borderWidth: 2,
+      pointBackgroundColor: '#1e3a8a',
+      pointRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      r: {
+        beginAtZero: true,
+        ticks: { backdropColor: 'transparent', font: { size: 10 } },
+        pointLabels: { font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ====== 商品转化漏斗 ======
+new Chart(document.getElementById('funnelChart'), {
+  type: 'bar',
+  data: {
+    labels: ['商品购买数据', '商品曝光人数', '商品点击人数', '成交人数'],
+    datasets: [{
+      label: '人数',
+      data: [1134, 126, 20, 2],
+      backgroundColor: ['#6366f1', '#3b82f6', '#f59e0b', '#ef4444'],
+      borderRadius: 4,
+      barPercentage: 0.5,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.parsed.x + ' 人',
+          afterLabel: ctx => {
+            const vals = [1134, 126, 20, 2];
+            const i = ctx.dataIndex;
+            if (i > 0) {
+              const rate = (vals[i] / vals[i-1] * 100).toFixed(2);
+              return '← 上一步转化率 ' + rate + '%';
+            }
+            return '';
+          }
+        }
+      }
+    },
+    scales: {
+      x: { beginAtZero: true, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(1)+'k' : v } }
+    }
+  }
+});
+</script>
+</body>
+</html>
