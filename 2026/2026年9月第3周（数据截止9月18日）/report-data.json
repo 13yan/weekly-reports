@@ -2448,7 +2448,7 @@
       "name": "王者舰队",
       "platform": "微信",
       "category": "卡牌RPG",
-      "rise": 0,
+      "rise": 50,
       "company": "北京赫德时代科技有限公司",
       "insight": "卡牌RPG题材"
     },
@@ -2456,7 +2456,7 @@
       "name": "王者征途",
       "platform": "抖音",
       "category": "MMO",
-      "rise": 12,
+      "rise": 45,
       "company": "上海巨人统平网络科技有限公司",
       "insight": "MMO题材"
     },
@@ -2464,7 +2464,7 @@
       "name": "梦回甄嬛传",
       "platform": "抖音",
       "category": "卡牌RPG",
-      "rise": 18,
+      "rise": 43,
       "company": "广州擎迅网络科技有限公司",
       "insight": "卡牌RPG题材"
     },
@@ -2472,7 +2472,7 @@
       "name": "百炼英雄",
       "platform": "微信",
       "category": "ARPG",
-      "rise": 0,
+      "rise": 42,
       "company": "深圳市九九互动科技有限公司",
       "insight": "英雄冒险ARPG，抖音新进榜双平台在榜"
     },
@@ -2480,7 +2480,7 @@
       "name": "超能下蛋鸭",
       "platform": "微信",
       "category": "放置RPG",
-      "rise": 0,
+      "rise": 42,
       "company": "世熠网络科技（上海）有限公司",
       "insight": "半回合制重力弹射RPG，品类创新"
     },
@@ -2488,7 +2488,7 @@
       "name": "王者征途",
       "platform": "微信",
       "category": "MMO",
-      "rise": 0,
+      "rise": 30,
       "company": "上海巨人统平网络科技有限公司",
       "insight": "MMO题材"
     },
@@ -2496,7 +2496,7 @@
       "name": "英雄没有闪",
       "platform": "抖音",
       "category": "ARPG",
-      "rise": 21,
+      "rise": 30,
       "company": "广州盈心网络科技有限公司",
       "insight": "2D卡通放置ARPG，抖音上升34位"
     },
@@ -2504,7 +2504,7 @@
       "name": "小镇派对",
       "platform": "微信",
       "category": "消除",
-      "rise": 0,
+      "rise": 29,
       "company": "上海趣滋滋网络科技有限公司",
       "insight": "消除题材"
     },
@@ -2512,7 +2512,7 @@
       "name": "次神光之觉醒",
       "platform": "抖音",
       "category": "放置RPG",
-      "rise": 5,
+      "rise": 26,
       "company": "北京雪境科技有限公司",
       "insight": "放置RPG题材"
     },
@@ -2520,7 +2520,7 @@
       "name": "奇遇西行",
       "platform": "抖音",
       "category": "卡牌RPG",
-      "rise": 1,
+      "rise": 23,
       "company": "广州焜耀网络科技有限公司",
       "insight": "西游题材卡牌，抖音新进榜#98"
     },
@@ -2528,7 +2528,7 @@
       "name": "改装大作战",
       "platform": "微信",
       "category": "模拟经营",
-      "rise": 0,
+      "rise": 22,
       "company": "深圳市必凡娱乐科技有限公司",
       "insight": "模拟经营题材"
     },
@@ -2536,7 +2536,7 @@
       "name": "最强斗王",
       "platform": "微信",
       "category": "卡牌RPG",
-      "rise": 0,
+      "rise": 22,
       "company": "广西天牛信息技术有限公司",
       "insight": "放置卡牌+IP授权，抖音↑25双平台在榜"
     },
@@ -2544,7 +2544,7 @@
       "name": "妖怪金手指",
       "platform": "抖音",
       "category": "卡牌RPG",
-      "rise": 28,
+      "rise": 20,
       "company": "霍尔果斯天翔信息技术有限公司",
       "insight": "塔防摸鱼休闲，抖音内容爆发"
     },
@@ -2552,7 +2552,7 @@
       "name": "不服来通关",
       "platform": "抖音",
       "category": "益智",
-      "rise": 5,
+      "rise": 19,
       "company": "长沙游品科技有限公司",
       "insight": "益智题材"
     },
@@ -2560,7 +2560,7 @@
       "name": "三界降妖录",
       "platform": "抖音",
       "category": "卡牌RPG",
-      "rise": 5,
+      "rise": 19,
       "company": "广州联动网络科技有限公司",
       "insight": "卡牌RPG题材"
     },
@@ -2568,7 +2568,7 @@
       "name": "百炼英雄",
       "platform": "抖音",
       "category": "ARPG",
-      "rise": 10,
+      "rise": 19,
       "company": "深圳市九九互动科技有限公司",
       "insight": "英雄冒险ARPG，抖音新进榜双平台在榜"
     },
@@ -2576,7 +2576,7 @@
       "name": "象棋达人",
       "platform": "抖音",
       "category": "棋牌",
-      "rise": 18,
+      "rise": 17,
       "company": "深圳市一锋科技有限公司",
       "insight": "棋牌题材"
     },
@@ -2584,7 +2584,7 @@
       "name": "次神：光之觉醒",
       "platform": "微信",
       "category": "放置RPG",
-      "rise": 0,
+      "rise": 16,
       "company": "在线途游（北京）科技有限公司",
       "insight": "放置RPG题材"
     },
@@ -2592,7 +2592,7 @@
       "name": "海盗来了",
       "platform": "微信",
       "category": "模拟经营",
-      "rise": 0,
+      "rise": 15,
       "company": "北京豪腾创想科技有限公司",
       "insight": "模拟经营题材"
     },
@@ -2600,7 +2600,7 @@
       "name": "指尖幻影",
       "platform": "微信",
       "category": "塔防",
-      "rise": 0,
+      "rise": 15,
       "company": "海南异界科技有限公司",
       "insight": "合成背包武器策略塔防，创意玩法"
     },
@@ -2608,7 +2608,7 @@
       "name": "奔奔王国",
       "platform": "抖音",
       "category": "塔防",
-      "rise": 11,
+      "rise": 15,
       "company": "福州点点松禾科技有限公司",
       "insight": "塔防题材"
     },
@@ -2616,7 +2616,7 @@
       "name": "王者之弈",
       "platform": "抖音",
       "category": "卡牌RPG",
-      "rise": 19,
+      "rise": 15,
       "company": "海南椰路信息科技有限公司",
       "insight": "自走棋+卡牌融合，策略竞技新方向"
     }
