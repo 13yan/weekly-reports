@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>市场资讯观察周报 - 2026年第47周</title>
+<script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+// CDN 备用：如果 BootCDN 也加载失败，尝试 jsdelivr
+if (typeof Chart === 'undefined') {
+  document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"><\/script>');
+}
+</script>
+<style>
+  /* ===== Reset & Base ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background:#f5f7fa; color:#333; line-height:2.0; }
+  .container { max-width:1400px; margin:0 auto; padding:20px; }
+
+  /* ===== Header ===== */
+  .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; padding:40px; border-radius:16px; margin-bottom:24px; }
+  .header h1 { font-size:28px; margin-bottom:8px; }
+  .header .date { opacity:0.85; font-size:14px; }
+  .header .badge-row { display:flex; justify-content:flex-start; gap:10px; flex-wrap:wrap; margin:12px 0; }
+  .header .badge { display:inline-block; background:rgba(255,255,255,0.2); padding:4px 12px; border-radius:12px; font-size:12px; }
+  .header .stats { display:flex; justify-content:flex-start; gap:32px; flex-wrap:wrap; margin-top:16px; font-size:13px; }
+  .header .stats span { display:inline-flex; align-items:center; gap:6px; opacity:0.92; }
+
+  /* ===== Section ===== */
+  .section { background:#fff; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .section h2 { font-size:18px; color:#444; margin:24px 0 20px; padding-bottom:8px; border-bottom:2px solid #667eea; }
+  .section h3 { font-size:15px; color:#555; margin:24px 0 14px; padding-left:10px; border-left:3px solid #667eea; }
+  .section h4 { font-size:14px; color:#444; margin:20px 0 10px; }
+  .section p, .section li { font-size:13px; }
+
+  /* ===== Summary Card ===== */
+  .summary-card { background:#f0f4ff; border-left:4px solid #667eea; border-radius:8px; padding:16px 20px; margin:14px 0; font-size:13px; line-height:2.0; color:#444; }
+  .hl { color:#e74c3c; font-weight:700; }
+  .policy-box .hl { color:#e74c3c; font-weight:700; background:rgba(231,76,60,0.06); padding:1px 4px; border-radius:3px; }
+
+  /* ===== Tables ===== */
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { background:#f0f2f5; padding:9px 8px; text-align:center; font-weight:600; color:#555; border-bottom:2px solid #dce0e8; white-space:nowrap; }
+  td { padding:7px 8px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle; }
+  tbody tr:hover td { background:#f8f9ff; }
+  td:first-child { font-weight:700; color:#667eea; }
+  td:nth-child(2) { text-align:left; }
+  .company { color:#999; font-size:11px; max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; }
+
+  /* ===== Scrollable Table ===== */
+  .sim-scroll-wrap {
+    max-height: 420px; overflow-y: auto;
+    border: 1px solid #eef0f4; border-radius: 8px; margin-top: 10px;
+  }
+  .sim-scroll-wrap table { margin-top: 0 !important; }
+  .sim-scroll-wrap thead th { position: sticky; top: 0; z-index: 1; }
+  .sim-scroll-wrap .sim-more-row { display: none; }
+  .sim-scroll-wrap.expanded .sim-more-row { display: table-row; }
+
+  /* ===== Tags & Badges ===== */
+  .cross-tag { display:inline-block; padding:1px 5px; border-radius:3px; font-size:9px; background:#e8f8f5; color:#27ae60; margin-left:3px; font-weight:600; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; }
+  .tag-iap { background:#fef3e2; color:#e67e22; }
+  .tag-iaa { background:#e8f8f5; color:#27ae60; }
+  .up { color:#e74c3c; font-weight:600; }
+  .down { color:#2ecc71; font-weight:600; }
+  .stable { color:#95a5a6; }
+  .new { color:#e67e22; font-weight:600; }
+  .dominate { color:#e67e22; font-weight:600; font-size:11px; }
+
+  /* ===== Dual Column ===== */
+  .dual-col { display:flex; gap:20px; }
+  .dual-col > div { flex:1; min-width:0; }
+  @media (max-width:860px) { .dual-col { flex-direction:column; } }
+
+  /* ===== Chart ===== */
+  .chart-row { display:flex; gap:20px; flex-wrap:wrap; margin:12px 0; }
+  .chart-row > * { min-width:300px; flex:1; }
+  .chart-box { background:#fafbfc; border:1px solid #eef0f4; border-radius:10px; padding:14px; text-align:center; }
+  .chart-box > strong { display:block; font-size:13px; color:#555; margin-bottom:8px; }
+  .chart-wrap { width:100%; height:300px; margin:6px auto; position:relative; }
+  .chart-wrap canvas { width:100% !important; height:100% !important; border-radius:8px; }
+
+  /* ===== Policy Box ===== */
+  .policy-box { background:#f8f9ff; border-left:4px solid #667eea; padding:14px 18px; border-radius:0 8px 8px 0; margin:10px 0; font-size:13px; }
+  .policy-box.wx { border-left-color:#27ae60; }
+  .policy-box.dy { border-left-color:#e67e22; }
+  .policy-box.apple { border-left-color:#8e44ad; }
+  .policy-box h4 { color:#667eea; margin-bottom:6px; font-size:14px; }
+  .policy-box.wx h4 { color:#27ae60; }
+  .policy-box.dy h4 { color:#e67e22; }
+  .policy-box.apple h4 { color:#8e44ad; }
+  .policy-box p + p { margin-top:4px; }
+  .policy-box ol { padding-left:20px; margin:6px 0; }
+  .policy-box ol li { font-size:13px; margin:4px 0; line-height:2.0; }
+  .policy-box a, .insight-box a { color:#1976d2; text-decoration:none; border-bottom:1px dashed rgba(25,118,210,0.45); font-weight:500; transition:all 0.15s; }
+  .policy-box a:hover, .insight-box a:hover { color:#0d47a1; border-bottom:1px solid #0d47a1; }
+
+  /* ===== Modal ===== */
+  .modal { display:none; position:fixed; z-index:1000; inset:0; background:rgba(0,0,0,0.4); backdrop-filter:blur(4px); }
+  .modal-content { position:absolute; left:5%; right:5%; top:5%; bottom:5%; background:#fff; max-width:1200px; margin:0 auto; border-radius:16px; display:flex; flex-direction:column; box-shadow:0 24px 48px -12px rgba(0,0,0,0.25); }
+  .modal-header { display:flex; justify-content:space-between; align-items:center; padding:14px 22px; border-bottom:1px solid #eef0f4; border-radius:16px 16px 0 0; flex-shrink:0; }
+  .modal-header h2 { font-size:17px; font-weight:600; color:#333; }
+  .modal-info { display:flex; gap:16px; flex-wrap:wrap; padding:8px 0 4px; font-size:12px; color:#888; }
+  .modal-info span { white-space:nowrap; }
+  .close-modal { font-size:28px; cursor:pointer; color:#999; line-height:1; padding:4px; background:none; border:none; border-radius:4px; width:32px; height:32px; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+  .close-modal:hover { color:#e74c3c; background:#fef0f0; }
+  .modal-body { padding:8px 18px 18px; overflow-y:auto; flex:1; min-height:0; }
+  .modal-body table { font-size:13px; }
+  .modal-body th { padding:9px 10px; font-size:12px; letter-spacing:0.5px; }
+  .modal-body td { padding:8px 10px; }
+  .modal-body tbody tr:nth-child(even) td { background:#f8f9fc; }
+  .modal-body tbody tr:hover td { background:#eef1ff; }
+  .modal-body td:first-child { font-weight:700; font-size:14px; }
+  .modal-body td:nth-child(2) { text-align:left; }
+  .modal-body td:nth-child(3) { font-size:12px; }
+  .modal-body td:nth-child(4) { font-size:12px; color:#666; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .modal-body td:nth-child(5) { font-weight:600; }
+  /* 排名装饰 */
+  .rank-badge { display:inline-block; width:24px; height:24px; line-height:24px; border-radius:6px; text-align:center; font-weight:700; font-size:13px; }
+  .rank-1 { background:linear-gradient(135deg,#f9d423,#f83600); color:#fff; }
+  .rank-2 { background:linear-gradient(135deg,#bdc3c7,#8e9eab); color:#fff; }
+  .rank-3 { background:linear-gradient(135deg,#e8a87c,#d4956b); color:#fff; }
+  .rank-top10 { color:#667eea; }
+  /* 平台标签 */
+  .platform-tag { display:inline-block; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:600; margin-left:4px; vertical-align:middle; }
+  .platform-tag.wx { background:#e8f8f5; color:#27ae60; }
+  .platform-tag.dy { background:#fef8e7; color:#e67e22; }
+
+  /* ===== Open Modal Buttons ===== */
+  .tab-buttons { display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+  .open-modal-btn { background:linear-gradient(135deg, #667eea, #764ba2); border:none; padding:8px 24px; border-radius:20px; font-size:13px; font-weight:600; color:#fff; cursor:pointer; transition:all 0.2s; }
+  .open-modal-btn:hover { opacity:0.9; transform:translateY(-1px); }
+
+  /* ===== Insight / Note ===== */
+  .insight-box { padding:12px 16px; background:#f0f4ff; border-radius:8px; margin-top:14px; font-size:13px; line-height:2.0; }
+  .insight-box strong { color:#444; }
+
+  /* ===== Trend List ===== */
+  .trend-list { padding-left:20px; font-size:13px; }
+  .trend-list li { margin:8px 0; padding-left:16px; }
+  .trend-list li strong { color:#444; }
+
+  /* ===== Top20 Panel ===== */
+  .top20-panel h3 { margin-top:0; }
+
+  /* ===== Footer ===== */
+  footer { text-align:center; padding:20px; color:#999; font-size:12px; }
+  .back-to-index { display:inline-block; background:linear-gradient(135deg, #667eea, #764ba2); color:#fff; text-decoration:none; padding:8px 20px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:12px; transition:all 0.2s; }
+  .back-to-index:hover { opacity:0.9; transform:translateY(-1px); }
+
+  /* ===== Responsive ===== */
+  @media (max-width:768px) {
+    .dual-col { flex-direction:column; }
+    .dual-col > div { width:100%; }
+    .header { padding:24px; }
+    .header h1 { font-size:22px; }
+    .container { padding:12px; }
+    .section { padding:16px; }
+    .modal-content { left:0; right:0; top:0; bottom:0; border-radius:0; }
+    .stats { gap:16px; }
+    table { font-size:11px; }
+    th, td { padding:5px 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ====== 头部 ====== -->
+<header class="header">
+  <h1>市场资讯观察周报</h1>
+  <div class="date">2026年11月20日 2026年第47周 | 数据来源：引力引擎（IAP 畅销榜 · 日榜口径） | 品类划分统一标准</div>
+  <div class="badge-row">
+    <span class="badge">微小畅销榜 Top100</span><span class="badge">抖小畅销榜 Top100</span><span class="badge">双平台同步监测</span>
+  </div>
+  <div class="stats">
+    <span>&#9673; 微信 100 款</span>
+    <span>&#9673; 抖音 100 款</span>
+    <span>&#9830; 跨平台 <span class="hl">47</span> 款</span>
+    <span>&#9776; 13 品类</span>
+  </div>
+</header>
+
+<!-- ====== 本周核心摘要 ====== -->
+<div class="section">
+  <h2>&#9733; 本周核心摘要</h2>
+  <div class="summary-card">
+    <strong>【市场格局】</strong>微信畅销榜 Top100 覆盖 13 个品类，<span class="hl">模拟经营 19 款（+2）继续第一并创近八期新高</span>；卡牌RPG 16 款持平居第二；塔防 13（+1）、ARPG 11（−2）、放置RPG 8（−1）、MMO 8、益智 7、棋牌 5、SLG/策略 4（−2）、消除 3（+1）、射击 3（+2）。抖音端：其他 19（未归类文案仍是最大"桶"）、塔防 13、卡牌RPG 10、ARPG 10、放置RPG 10、模拟经营 10、SLG/策略 8。双平台 Top100 中 <span class="hl">47 款跨平台上榜（上期 48，−1）</span>，双平台 Top20 共同款 <span class="hl">11 款（上期 10，+1）</span>。<br>
+    <strong>【头部表现】</strong>微信Top5：向僵尸开炮（#1，霸榜5天）、三国：冰河时代（#2）、灵画师（#3）、浪漫餐厅（#4）、向末日开炮（#5）；抖音Top5：疯狂水世界（#1）、镇邪人（#2）、向僵尸开炮（#3）、灵画师（#4）、造化仙府（#5）。<span class="hl">抖音 #1 两期两换</span>：造化仙府上期登顶、本期退到 #5，疯狂水世界 3→1 拿回——上期"王座进入周更"的判断得到二次验证。<span class="hl">微信 #1 也换回来了</span>：向僵尸开炮 2→1（霸榜5天），三国：冰河时代 1→2；七期内第 4 次换手，仍没有第三款进过 #1。<span class="hl">本周唯一空降 Top10 的新面孔是《仙临九界》（#10，新进榜）</span>，微信 18 款新面孔里只有它进了 Top20。<br>
+    <strong>【品类聚焦·模拟经营】</strong>微信 19 款（Top20 占 <span class="hl">6 席</span>）／抖音 10 款（Top20 占 7 席）。<span class="hl">双端 Top20 合计 13 席，连续第六期席位第一</span>，领先第二名（SLG/策略 6 席）7 席。但形状仍是<b>"宽底、无王"</b>：<span class="hl">13 席里没有一款进入任一平台前三</span>，两端最高分别是微信 #4（浪漫餐厅）、抖音 #6（肥鹅美食街）。<b>本期最大特征是"款数涨、席位不动"</b>——微信 17→19、抖音 9→10，增量全在腰部以下，头部一个没进。<br>
+    <strong>【政策动态】</strong>本期政策侧<b>无新增文件</b>，两件事要落到执行上：<span class="hl">微信 11-19 更新两项能力</span>——红包拉新组件（自定义入口／分享卡片／ROI 数据）、智能内容运营新增「抽奖」，<b>都不改变结算口径</b>；<span class="hl">抖音投放金／任务金 11/01–12/31 一期继续在行</span>，本周为第三个完整周、条款未变；<span class="hl">版号 11 月批次截至 11/20 仍未发布，暂无</span>。另：<span class="hl">腾讯 11/18 推出 WeFund（游可盈）</span>，媒体独家、未见官方公告，按转述处理。<br>
+    <strong>【核心关注】</strong>本期双端「变化」列<b>均正常生成</b>（口径：较昨日，不是周环比）：微信 <span class="hl">↑37／↓40／稳定 10／新进榜 12／霸榜 1</span>，抖音 <span class="hl">↑38／↓47／稳定 6／新进榜 9</span>；≥10 位筛出 <b>微信升 9／降 10、抖音升 9／降 14</b>。周环比（vs 11/13）：<span class="hl">微信 20 升／18 降、抖音 21 升／23 降</span>。升幅端 <span class="hl">《阿皮大冒险》+66（抖音 83→17）是本周期最大升幅</span>，其后《不服来通关》+46（微信 99→53）、《勇者乱斗》+43（微信 95→52）、《保卫向日葵》+35（抖音 78→43）；降幅端 <span class="hl">《新弹弹堂》−57（微信 41→98）、《青云诀之伏魔》−56（抖音 38→94）</span>。<b>⚠️ 两组口径方向相反的三款</b>：<span class="hl">《青云诀之伏魔》微信日 ↑3／周 −18 方向相反</span>、<span class="hl">《三国杀》日 ↑7／↑10、周 −4／−15 均为日涨周跌</span>；《咸鱼之王》（日 ↑23、周 +30）同向可合并表述。<br>
+    <strong>【竞品动态】</strong>本期最值钱的形态是"<b>抖音爆发→微信滞后一周补涨</b>"：<span class="hl">《造化仙府》上期抖音 +7 登顶、微信只动 1 位；本期抖音 −4、微信反而 +3 到 #11</span>。反向样本是<span class="hl">《青云诀之伏魔》双端一期回吐（微信 +18→−18、抖音 +43→−56）</span>，加上《占城大师》（抖音 +43→−22、微信掉出百强），上期三张重点卡全部"一期往返"。<b>双端同向＝产品／版本事件；单端异动＝投放动作</b>——《阿皮大冒险》抖音 +66 而微信未上榜，是本期最干净的单端样本。重点游戏深度分析见下方章节。
+  </div>
+</div>
+
+<!-- ====== 一、双平台畅销榜 Top20 对比 ====== -->
+<div class="section">
+  <h2>&#8544; 一、双平台畅销榜 Top20 对比</h2>
+  <div class="dual-col">
+    
+    <div class="top20-panel">
+      <h3>微信小游戏 Top20</h3>
+      <table class="data-table">
+        <thead><tr><th>#</th><th>游戏</th><th>厂商</th><th>品类</th><th>周变化</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td class="rank">1</td>
+              <td>向僵尸开炮<span class="cross-tag">双</span></td>
+              <td class="company">海南盛昌网络科技有限公司</td>
+              <td>塔防</td>
+              <td><span class="dominate">霸榜5天</span></td>
+            </tr>
+            <tr>
+              <td class="rank">2</td>
+              <td>三国：冰河时代<span class="cross-tag">双</span></td>
+              <td class="company">欢游互动（北京）科技有限公司</td>
+              <td>SLG/策略</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td class="rank">3</td>
+              <td>灵画师<span class="cross-tag">双</span></td>
+              <td class="company">广州光游网络科技有限公司</td>
+              <td>ARPG</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td class="rank">4</td>
+              <td>浪漫餐厅<span class="cross-tag">双</span></td>
+              <td class="company">北京柠檬微趣科技股份有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td class="rank">5</td>
+              <td>向末日开炮<span class="cross-tag">双</span></td>
+              <td class="company">海南易多量科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">6</td>
+              <td>疯狂水世界<span class="cross-tag">双</span></td>
+              <td class="company">益世界网络科技有限公司</td>
+              <td>SLG/策略</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td class="rank">7</td>
+              <td>向往的生活<span class="cross-tag">双</span></td>
+              <td class="company">深圳市必凡娱乐科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">8</td>
+              <td>无尽冬日<span class="cross-tag">双</span></td>
+              <td class="company">点点互动（北京）科技有限公司</td>
+              <td>SLG/策略</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">9</td>
+              <td>梦幻消除战<span class="cross-tag">双</span></td>
+              <td class="company">广州喜势网络科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">10</td>
+              <td>仙临九界</td>
+              <td class="company">--</td>
+              <td>卡牌RPG</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td class="rank">11</td>
+              <td>造化仙府<span class="cross-tag">双</span></td>
+              <td class="company">上海沛炫网络科技有限公司</td>
+              <td>放置RPG</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">12</td>
+              <td>跃动小子<span class="cross-tag">双</span></td>
+              <td class="company">波克科技集团有限公司</td>
+              <td>放置RPG</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td class="rank">13</td>
+              <td>我的花园世界<span class="cross-tag">双</span></td>
+              <td class="company">厦门麟贝互娱科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑8</span></td>
+            </tr>
+            <tr>
+              <td class="rank">14</td>
+              <td>原始征途<span class="cross-tag">双</span></td>
+              <td class="company">巨人网络集团股份有限公司</td>
+              <td>MMO</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td class="rank">15</td>
+              <td>腾讯欢乐斗地主</td>
+              <td class="company">深圳市腾讯计算机系统有限公司</td>
+              <td>棋牌</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td class="rank">16</td>
+              <td>空格之境<span class="cross-tag">双</span></td>
+              <td class="company">江西启游互动科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">17</td>
+              <td>奔奔王国<span class="cross-tag">双</span></td>
+              <td class="company">福州点点松云网络有限公司</td>
+              <td>塔防</td>
+              <td><span class="down">↓5</span></td>
+            </tr>
+            <tr>
+              <td class="rank">18</td>
+              <td>西游灵兽纪</td>
+              <td class="company">--</td>
+              <td>ARPG</td>
+              <td><span class="down">↓8</span></td>
+            </tr>
+            <tr>
+              <td class="rank">19</td>
+              <td>甄嬛传：归来<span class="cross-tag">双</span></td>
+              <td class="company">深圳市拾光筑梦文化传媒有限公司</td>
+              <td>益智</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td class="rank">20</td>
+              <td>工匠小能手<span class="cross-tag">双</span></td>
+              <td class="company">深圳市飞鸟与鱼科技开发有限公司</td>
+              <td>益智</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="top20-panel">
+      <h3>抖音小游戏 Top20</h3>
+      <table class="data-table">
+        <thead><tr><th>#</th><th>游戏</th><th>厂商</th><th>品类</th><th>周变化</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td class="rank">1</td>
+              <td>疯狂水世界<span class="cross-tag">双</span></td>
+              <td class="company">益世界网络科技有限公司</td>
+              <td>SLG/策略</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">2</td>
+              <td>镇邪人<span class="cross-tag">双</span></td>
+              <td class="company">安徽雷虎网络科技有限公司</td>
+              <td>卡牌RPG</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">3</td>
+              <td>向僵尸开炮<span class="cross-tag">双</span></td>
+              <td class="company">海南盛昌网络科技有限公司</td>
+              <td>塔防</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">4</td>
+              <td>灵画师<span class="cross-tag">双</span></td>
+              <td class="company">广州光游网络科技有限公司</td>
+              <td>ARPG</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td class="rank">5</td>
+              <td>造化仙府<span class="cross-tag">双</span></td>
+              <td class="company">上海沛炫网络科技有限公司</td>
+              <td>放置RPG</td>
+              <td><span class="up">↑6</span></td>
+            </tr>
+            <tr>
+              <td class="rank">6</td>
+              <td>肥鹅美食街</td>
+              <td class="company">北京豪腾创想科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">7</td>
+              <td>跃动小子<span class="cross-tag">双</span></td>
+              <td class="company">柏项网络科技（上海）有限公司</td>
+              <td>放置RPG</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">8</td>
+              <td>浪漫餐厅<span class="cross-tag">双</span></td>
+              <td class="company">北京柠檬曲奇科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">9</td>
+              <td>梦幻消除战<span class="cross-tag">双</span></td>
+              <td class="company">广州喜势网络科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">10</td>
+              <td>向往的生活<span class="cross-tag">双</span></td>
+              <td class="company">深圳市必凡娱乐科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td class="rank">11</td>
+              <td>狱国争霸</td>
+              <td class="company">北京智诚互娱科技有限公司</td>
+              <td>SLG/策略</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td class="rank">12</td>
+              <td>我的花园世界<span class="cross-tag">双</span></td>
+              <td class="company">海南途趣科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="up">↑15</span></td>
+            </tr>
+            <tr>
+              <td class="rank">13</td>
+              <td>三国：冰河时代<span class="cross-tag">双</span></td>
+              <td class="company">欢游互动（北京）科技有限公司</td>
+              <td>SLG/策略</td>
+              <td><span class="down">↓6</span></td>
+            </tr>
+            <tr>
+              <td class="rank">14</td>
+              <td>梦回甄嬛传<span class="cross-tag">双</span></td>
+              <td class="company">广州擎迅网络科技有限公司</td>
+              <td>卡牌RPG</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">15</td>
+              <td>时尚百货城<span class="cross-tag">双</span></td>
+              <td class="company">深圳市爱的番茄科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">16</td>
+              <td>烈焰觉醒</td>
+              <td class="company">杭州悦妙网络科技有限公司</td>
+              <td>ARPG</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td class="rank">17</td>
+              <td>阿皮大冒险</td>
+              <td class="company">北京豪腾创想科技有限公司</td>
+              <td>其他</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td class="rank">18</td>
+              <td>不服来通关<span class="cross-tag">双</span></td>
+              <td class="company">长沙游品科技有限公司</td>
+              <td>益智</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td class="rank">19</td>
+              <td>下方了<span class="cross-tag">双</span></td>
+              <td class="company">深圳飞鱼星空科技有限公司</td>
+              <td>其他</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td class="rank">20</td>
+              <td>空格之境<span class="cross-tag">双</span></td>
+              <td class="company">江西启游互动科技有限公司</td>
+              <td>模拟经营</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="insight-box">
+    <strong>头部格局发现：</strong>
+    双平台共同Top20：向僵尸开炮、三国：冰河时代、灵画师、浪漫餐厅、疯狂水世界、向往的生活、梦幻消除战、造化仙府、跃动小子、我的花园世界、空格之境，共 11 款（上期 10 款，+1）。微信Top20 中模拟经营 6 席、SLG/策略 3 席、塔防 2 席、ARPG 2 席、放置RPG 2 席、益智 2 席、卡牌RPG 1 席、MMO 1 席、棋牌 1 席；抖音Top20 中模拟经营 7 席、SLG/策略 3 席、卡牌RPG 2 席、ARPG 2 席、放置RPG 2 席、其他 2 席、塔防 1 席、益智 1 席。<br>
+    <b>★ 本期最该记的一件事：款数在涨，席位在掉。</b>微信 Top100 的模拟经营从 17 涨到 19，但双端 Top20 席位仍是 13、原地不动；反过来，<span class="hl">塔防款数 +1，Top20 席位从 7 掉到 3（−4）</span>，<span class="hl">放置RPG 款数 −1，席位从 7 掉到 4（−3）</span>。两组背离指向同一个事实——<b>本周不是品类结构变化，是头部换人</b>：掉出 Top20 的 10 款里，《青云诀之伏魔》《占城大师》《道友来挖宝》三款就带走了 7 个席位。<br>
+    <b>⚠️ 口径提示（本期必读）</b>：两端「变化」列本期均正常生成，可直接用平台口径，但它是<b>较昨日</b>、不是周环比——本期最典型的错位是<span class="hl">《青云诀之伏魔》：微信日榜 ↑3、抖音日榜 ↓19，而周环比是微信 3→21（−18）、抖音 38→94（−56）</span>，微信端当天在微弹、整周在大跌。判断趋势请用周环比，判断"昨天做了什么动作"才用单日。
+  
+</div>
+
+<!-- ====== 二、聚焦品类（模拟经营） · 双平台深度对比 ====== -->
+<div class="section">
+  <h2>&#9733; 二、模拟经营品类 · 双平台深度对比（本期选型由本周双端榜单数据推导）</h2>
+  <div class="insight-box" style="background:#f0f7ff;border-left-color:#2563eb;">
+    <strong>选型依据：</strong>把 13 个品类按「双平台 Top20 席位合计」排序，<span class="hl">模拟经营以 微信 6 席 + 抖音 7 席 = 13 席居首</span>，SLG/策略 6 席第二，ARPG 4、放置RPG 4 并列第三，塔防 3、卡牌RPG 3、益智 3 随后。<b>第一名领先 7 席，按规则选第一，本期继续聚焦模拟经营——这是"数据仍然指向它"，不是"沿用上周"。</b>同时必须写清两条限定：①<span class="hl">本期真正的变量不在模拟经营，而在塔防（席位 7→3）与放置RPG（席位 7→4）</span>，两者都能归因到具体产品；②<span class="hl">模拟经营是"款数涨、席位不动"</span>：微信 17→19（+2）、抖音 9→10（+1），增量全在 #20 之外。<br>
+    <span style="color:#6b7280;">（备选／本周第二优选是<b>SLG/策略</b>：6 席，且是唯一"两端各 3 席"完全对称的品类——比上期的备选塔防更稳，因为塔防本周席位掉了 4 席。如需轮换可一键改。）</span><br>
+    <span style="color:#b71c1c;">⚠️ <b>本章结论对归类敏感，必读</b>：《疯狂水世界》官方定位为"模拟经营＋SLG"双属性，本报告按既定口径归入 <b>SLG/策略</b>。若改归模拟经营，则模拟经营双端 Top20 变为 <b>15 席</b>（微信 7／抖音 8）、且抖音 #1 落在其中——"席位第一"不变，但"13 席里没有一款进前三"这句会反转。</span>
+  </div>
+  
+    <h3>双平台模拟经营上榜概况</h3>
+    <table class="data-table">
+      <thead><tr><th>平台</th><th>上榜数</th><th>Top20内</th><th>Top50内</th><th>头部代表（Top10）</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>微信小游戏</strong></td>
+          <td>19款</td>
+          <td>6款</td>
+          <td>8款</td>
+          <td>浪漫餐厅#4、向末日开炮#5、向往的生活#7、梦幻消除战#9</td>
+        </tr>
+        <tr>
+          <td><strong>抖音小游戏</strong></td>
+          <td>10款</td>
+          <td>7款</td>
+          <td>8款</td>
+          <td>肥鹅美食街#6、浪漫餐厅#8、梦幻消除战#9、向往的生活#10</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h3>模拟经营游戏双平台排名对比</h3>
+    <div class="sim-scroll-wrap">
+    <table class="data-table sim-detail">
+      <thead><tr><th>游戏名</th><th>厂商</th><th>榜单分类</th><th>微信排名</th><th>抖音排名</th><th>双平台差异</th></tr></thead>
+      <tbody>
+        
+            <tr>
+              <td>浪漫餐厅</td>
+              <td class="company">北京柠檬微趣科技股份有限公司</td>
+              <td>休闲 · 2名 益智</td>
+              <td>#4</td>
+              <td>#8</td>
+              <td>微信领先4位</td>
+            </tr>
+            <tr>
+              <td>向末日开炮</td>
+              <td class="company">海南易多量科技有限公司</td>
+              <td>休闲 · 3名 模拟经营</td>
+              <td>#5</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr>
+              <td>肥鹅美食街</td>
+              <td class="company">北京豪腾创想科技有限公司</td>
+              <td>合成缤纷食材，烹饪美味佳肴，打造属于你的美食街！</td>
+              <td>未上榜</td>
+              <td>#6</td>
+              <td>仅抖音</td>
+            </tr>
+            <tr>
+              <td>向往的生活</td>
+              <td class="company">深圳市必凡娱乐科技有限公司</td>
+              <td>休闲 · 5名 模拟经营</td>
+              <td>#7</td>
+              <td>#10</td>
+              <td>微信领先3位</td>
+            </tr>
+            <tr>
+              <td>梦幻消除战</td>
+              <td class="company">广州喜势网络科技有限公司</td>
+              <td>休闲 · 6名 模拟经营</td>
+              <td>#9</td>
+              <td>#9</td>
+              <td>排名接近</td>
+            </tr>
+            <tr>
+              <td>我的花园世界</td>
+              <td class="company">厦门麟贝互娱科技有限公司</td>
+              <td>休闲 · 9名 模拟经营</td>
+              <td>#13</td>
+              <td>#12</td>
+              <td>抖音领先1位</td>
+            </tr>
+            <tr>
+              <td>时尚百货城</td>
+              <td class="company">深圳市爱的番茄科技有限公司</td>
+              <td>休闲 · 36名 模拟经营</td>
+              <td>#70</td>
+              <td>#15</td>
+              <td>抖音领先55位</td>
+            </tr>
+            <tr>
+              <td>空格之境</td>
+              <td class="company">江西启游互动科技有限公司</td>
+              <td>休闲 · 10名 模拟经营</td>
+              <td>#16</td>
+              <td>#20</td>
+              <td>微信领先4位</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>QQ经典农场</td>
+              <td class="company">深圳市腾讯计算机系统有限公司</td>
+              <td>休闲 · 13名 模拟经营</td>
+              <td>#27</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>时光大爆炸</td>
+              <td class="company">安徽盈趣网络科技有限公司</td>
+              <td>《时光大爆炸》是一款带有模拟经营玩法的角色扮演类游戏。</td>
+              <td>未上榜</td>
+              <td>#30</td>
+              <td>仅抖音</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>奇幻果园</td>
+              <td class="company">杭州锦泽文化创意有限公司</td>
+              <td>休闲 · 20名 模拟经营</td>
+              <td>#40</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>海盗来了</td>
+              <td class="company">北京豪腾创想科技有限公司</td>
+              <td>休闲 · 28名 模拟经营</td>
+              <td>#56</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>小岛有晴天</td>
+              <td class="company">武汉达友网络科技有限公司</td>
+              <td>休闲 · 29名 模拟经营</td>
+              <td>#58</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>秘密花园HD</td>
+              <td class="company">深圳天苻科技有限公司</td>
+              <td>休闲 · 32名 模拟经营</td>
+              <td>#63</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>肥鹅健身房</td>
+              <td class="company">北京豪腾创想科技有限公司</td>
+              <td>休闲 · 33名 模拟经营</td>
+              <td>#64</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>花札物语</td>
+              <td class="company">深圳彩苻科技有限公司</td>
+              <td>休闲 · 34名 模拟经营</td>
+              <td>#67</td>
+              <td>#79</td>
+              <td>微信领先12位</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>改装大作战</td>
+              <td class="company">深圳市必凡娱乐科技有限公司</td>
+              <td>休闲 · 39名 模拟经营</td>
+              <td>#76</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>杜拉拉升职记</td>
+              <td class="company">苏州沁游网络科技有限公司</td>
+              <td>正版都市职场养成手游</td>
+              <td>未上榜</td>
+              <td>#86</td>
+              <td>仅抖音</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>我的休闲时光</td>
+              <td class="company">广州卓动信息科技有限公司</td>
+              <td>休闲 · 42名 模拟经营</td>
+              <td>#87</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>这城有良田</td>
+              <td class="company">上海益玩网络科技有限公司</td>
+              <td>休闲 · 43名 模拟经营</td>
+              <td>#91</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>去有梦的小岛</td>
+              <td class="company">深圳市必凡娱乐科技有限公司</td>
+              <td>休闲 · 45名 模拟经营</td>
+              <td>#93</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+            <tr class="sim-more-row">
+              <td>九霄仙府</td>
+              <td class="company">点点互动（北京）科技有限公司</td>
+              <td>其他 · 4名 模拟经营</td>
+              <td>#99</td>
+              <td>未上榜</td>
+              <td>仅微信</td>
+            </tr>
+      </tbody>
+    </table>
+    </div>
+    <button class="sim-toggle-btn" onclick="this.previousElementSibling.classList.toggle('expanded');this.textContent=this.previousElementSibling.classList.contains('expanded')?'收起完整表格 ↑':'展开全部 ↓'" style="display:block;width:100%;padding:8px;margin-top:6px;border:1px dashed #dce0e8;border-radius:6px;background:#f8f9ff;color:#667eea;font-size:12px;cursor:pointer;text-align:center;">展开全部 ↓</button>
+  <div class="insight-box">
+    <strong>结论：</strong>模拟经营是<strong>席位第一、也是微信款数第一的品类，但它的优势是"守"出来的，不是"涨"出来的</strong>：微信 <span class="hl">19 款</span>、Top20 占 <span class="hl">6 席</span>（浪漫餐厅 #4、向末日开炮 #5、向往的生活 #7、梦幻消除战 #9、我的花园世界 #13、空格之境 #16）；抖音 <span class="hl">10 款</span>、Top20 占 <span class="hl">7 席</span>（肥鹅美食街 #6、浪漫餐厅 #8、梦幻消除战 #9、向往的生活 #10、我的花园世界 #12、时尚百货城 #15、空格之境 #20）。<span class="hl">双端合计 13 席，与上期完全持平</span>——席位没动，款数涨了 3。<br>
+    ①<b>"宽底、无王"本周更极端</b>：13 席里<b>没有一款进入任一平台前三</b>，两端最高分别是微信 #4（浪漫餐厅）、抖音 #6（肥鹅美食街）。上期还有 2 席进各自平台前五，本期前五只剩 2 席且都在 #4–#6 之外。这解释了它为什么"席位一直第一、却总被别的品类抢头条"——<b>模拟经营靠数量占位，卡牌靠单品脉冲抢位</b>。<br>
+    ②<b>两端重合 5 款，与上期持平</b>：浪漫餐厅、梦幻消除战、向往的生活、我的花园世界、空格之境在两端都在 Top20。这说明模拟经营产品<b>不依赖单平台推荐机制</b>，跨端迁移成本低——这是它相对卡牌RPG 的结构性优势。<br>
+    ③<b>本期真正的变量在塔防与放置RPG，且都能归因到具体产品</b>：<span class="hl">塔防 Top20 席位 7→3（−4）</span>，直接对应《占城大师》抖音 14→36、微信掉出百强；微信款数反而 +1，是尾部补位——<b>席位掉、款数涨＝头部失守，不是品类收缩</b>。<span class="hl">放置RPG 席位 7→4（−3）</span>，对应《青云诀之伏魔》微信 3→21、抖音 38→94 与《道友来挖宝》微信 9→25。<b>含义</b>：一款头部产品掉出，就能带走 3–4 席，这个规律本周第三次被验证。<br>
+    <b>给发行侧的可操作结论</b>：模拟经营仍是"最稳的底仓"（双端对称、老 IP 可复活、席位不易丢），<b>但天花板很清楚——Top3 里看不到它</b>。组合策略是：<b>用模拟经营守流水基本盘，用 SLG/策略博位次弹性</b>（6 席且两端 3+3 最对称），本期不建议加塔防（头部正在失守）与卡牌（仍处退潮中段）。
+  </div>
+</div>
+
+<!-- ====== 三、畅销榜 Top100 品类分布全景 ====== -->
+<div class="section">
+  <h2>&#8545; 三、畅销榜 Top100 品类分布全景</h2>
+  <div class="dual-col">
+    <div class="chart-box"><strong>微信 Top100 品类分布</strong><div class="chart-wrap" style="height:320px;"><canvas id="wxPie"></canvas></div></div>
+    <div class="chart-box"><strong>抖音 Top100 品类分布</strong><div class="chart-wrap" style="height:320px;"><canvas id="dyPie"></canvas></div></div>
+  </div>
+  <div class="chart-box" style="margin-top:16px;"><strong>双平台品类数量对比</strong><div class="chart-wrap" style="height:320px;"><canvas id="barChart"></canvas></div></div>
+  <div class="insight-box" style="margin-top:14px;">
+    <strong>品类结构结论：</strong>
+    微信端：<span class="hl">模拟经营（19 款）继续第一并创近八期新高</span>，卡牌RPG（16 款）持平居第二，塔防（13 款）第三，ARPG（11 款）第四，放置RPG 8 款、MMO 8 款、益智 7 款、棋牌 5 款、SLG/策略 4 款、消除 3 款、射击 3 款。前四类合计 59 款、占 Top100 的 59%。<br>
+    抖音端：其他（未归类文案 19 款，仍是最大"桶"）、塔防（13 款）、卡牌RPG（10 款）、ARPG（10 款）、放置RPG（10 款）、模拟经营（10 款）领跑，SLG/策略 8 款、益智 7 款、消除 5 款、MMO 3 款。<br>
+    <span class="hl">本期两端最本质的差异：微信在"加厚底部"、抖音在"微调结构"</span>——微信端模拟经营 17→19（+2）、射击 1→3（+2）、塔防 12→13（+1）、消除 2→3（+1），同时 ARPG 13→11（−2）、SLG/策略 6→4（−2）；抖音端除卡牌RPG 11→10、SLG/策略 9→8、塔防 12→13 外，全部在 ±1 内。<b>抖音的"其他"桶仍在扩大（18→19）——平台描述文案的归类偏差没有收敛</b>。<b>双平台跨平台款数 47 款（上期 48，−1）、双平台 Top20 共同款 11 款（上期 10，+1）</b>——"一版通投"小幅回落，但"两端通吃"的阵容反而多了一款（《跃动小子》微信 22→12、抖音 18→7），说明头部产品的跨端能力在增强、长尾在收缩。
+  </div>
+  <div class="tab-buttons">
+    <button class="open-modal-btn" onclick="openModal('wx')">&#9776; 微信畅销榜 Top100</button>
+    <button class="open-modal-btn" onclick="openModal('dy')">&#9776; 抖音畅销榜 Top100</button>
+  </div>
+</div>
+
+<!-- ====== Top100 弹窗 ====== -->
+<div class="modal" id="modal-wx">
+  <div class="modal-content">
+    <div class="modal-header"><h2>微信畅销榜 Top100</h2><button class="close-modal" onclick="closeModal('wx')">&times;</button></div>
+    <div class="modal-body">
+    <div class="modal-info">
+      <span>共 <strong>100</strong> 款</span>
+      <span>品类 <strong>13</strong> 个</span>
+      <span>跨平台 <strong>47</strong> 款</span>
+      <span style="color:#e74c3c;">↑上升 <strong>37</strong></span>
+      <span style="color:#2ecc71;">↓下降 <strong>40</strong></span>
+      <span style="color:#e67e22;">新进榜 <strong>12</strong></span>
+    </div>
+    <div class="table-scroll" style="max-height:calc(100vh - 280px);">
+      <table>
+        <thead><tr><th>排名</th><th>游戏名称</th><th>品类</th><th>发行公司</th><th>周变化</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td><span class="rank-badge rank-1">1</span></td>
+              <td>向僵尸开炮<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南盛昌网络科技有限公司">海南盛昌网络科技有限公司</td>
+              <td><span class="dominate">霸榜5天</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge rank-2">2</span></td>
+              <td>三国：冰河时代<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="欢游互动（北京）科技有限公司">欢游互动（北京）科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge rank-3">3</span></td>
+              <td>灵画师<span class="cross-tag">双</span></td>
+              <td>ARPG</td>
+              <td title="广州光游网络科技有限公司">广州光游网络科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">4</span></td>
+              <td>浪漫餐厅<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="北京柠檬微趣科技股份有限公司">北京柠檬微趣科技股份有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">5</span></td>
+              <td>向末日开炮<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="海南易多量科技有限公司">海南易多量科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">6</span></td>
+              <td>疯狂水世界<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="益世界网络科技有限公司">益世界网络科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">7</span></td>
+              <td>向往的生活<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市必凡娱乐科技有限公司">深圳市必凡娱乐科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">8</span></td>
+              <td>无尽冬日<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="点点互动（北京）科技有限公司">点点互动（北京）科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">9</span></td>
+              <td>梦幻消除战<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="广州喜势网络科技有限公司">广州喜势网络科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">10</span></td>
+              <td>仙临九界<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="--">--</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>造化仙府<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="上海沛炫网络科技有限公司">上海沛炫网络科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>跃动小子<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="波克科技集团有限公司">波克科技集团有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>我的花园世界<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="厦门麟贝互娱科技有限公司">厦门麟贝互娱科技有限公司</td>
+              <td><span class="up">↑8</span></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>原始征途<span class="cross-tag">双</span></td>
+              <td>MMO</td>
+              <td title="巨人网络集团股份有限公司">巨人网络集团股份有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>腾讯欢乐斗地主<span class="platform-tag wx">微</span></td>
+              <td>棋牌</td>
+              <td title="深圳市腾讯计算机系统有限公司">深圳市腾讯计算机系统有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>空格之境<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="江西启游互动科技有限公司">江西启游互动科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>奔奔王国<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="福州点点松云网络有限公司">福州点点松云网络有限公司</td>
+              <td><span class="down">↓5</span></td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>西游灵兽纪<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="--">--</td>
+              <td><span class="down">↓8</span></td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>甄嬛传：归来<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="深圳市拾光筑梦文化传媒有限公司">深圳市拾光筑梦文化传媒有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>工匠小能手<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="深圳市飞鸟与鱼科技开发有限公司">深圳市飞鸟与鱼科技开发有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>青云诀之伏魔<span class="cross-tag">双</span></td>
+              <td>MMO</td>
+              <td title="海南元游信息技术有限公司">海南元游信息技术有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>永夜起源<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="广州招崭信息科技有限公司">广州招崭信息科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>王者征途<span class="cross-tag">双</span></td>
+              <td>MMO</td>
+              <td title="上海巨人统平网络科技有限公司">上海巨人统平网络科技有限公司</td>
+              <td><span class="up">↑10</span></td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>精英军团<span class="platform-tag wx">微</span></td>
+              <td>塔防</td>
+              <td title="杭州叙炽网络科技有限公司">杭州叙炽网络科技有限公司</td>
+              <td><span class="down">↓10</span></td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>道友来挖宝<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="深圳雷霆信息技术有限公司">深圳雷霆信息技术有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>大王请上阵<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="深圳市悦莱顺网络科技有限公司">深圳市悦莱顺网络科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>QQ经典农场<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市腾讯计算机系统有限公司">深圳市腾讯计算机系统有限公司</td>
+              <td><span class="down">↓14</span></td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>天命行者<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="广州大蓝网络科技有限公司">广州大蓝网络科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>武侠大明星<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南盛昌网络科技有限公司">海南盛昌网络科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>神器传说<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="深圳全民互动科技有限公司">深圳全民互动科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td>保卫向日葵<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="深圳市一起梦游科技有限公司">深圳市一起梦游科技有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>32</td>
+              <td>下方了<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="深圳飞鱼星空科技有限公司">深圳飞鱼星空科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td>镇邪人<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="安徽雷虎网络科技有限公司">安徽雷虎网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td>佣兵小镇<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="成都天象互动文化传播有限公司">成都天象互动文化传播有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td>永远的蔚蓝星球<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="广州颂悦信息技术有限公司">广州颂悦信息技术有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td>寻道大千<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="三七互娱网络科技集团股份有限公司">三七互娱网络科技集团股份有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td>梦幻西游网页版<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="上海以尚网络技术有限公司">上海以尚网络技术有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td>38</td>
+              <td>欢乐战三国<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="深圳市奥创互娱科技有限公司">深圳市奥创互娱科技有限公司</td>
+              <td><span class="up">↑11</span></td>
+            </tr>
+            <tr>
+              <td>39</td>
+              <td>开心消消乐<span class="platform-tag wx">微</span></td>
+              <td>消除</td>
+              <td title="乐元素科技(北京)股份有限公司">乐元素科技(北京)股份有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>40</td>
+              <td>奇幻果园<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="杭州锦泽文化创意有限公司">杭州锦泽文化创意有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>41</td>
+              <td>模拟城市：我是市长<span class="platform-tag wx">微</span></td>
+              <td>其他</td>
+              <td title="北京北纬通信科技股份有限公司">北京北纬通信科技股份有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>42</td>
+              <td>咸鱼之王<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="北京豪腾嘉科科技有限公司">北京豪腾嘉科科技有限公司</td>
+              <td><span class="up">↑23</span></td>
+            </tr>
+            <tr>
+              <td>43</td>
+              <td>四季合合<span class="cross-tag">双</span></td>
+              <td>合成消除</td>
+              <td title="青岛蓝飞互娱科技股份有限公司">青岛蓝飞互娱科技股份有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>44</td>
+              <td>暴走植物园<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南椰路信息科技有限公司">海南椰路信息科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>45</td>
+              <td>雀神广东麻将<span class="platform-tag wx">微</span></td>
+              <td>棋牌</td>
+              <td title="上海锋兮网络科技有限公司">上海锋兮网络科技有限公司</td>
+              <td><span class="up">↑6</span></td>
+            </tr>
+            <tr>
+              <td>46</td>
+              <td>梦回甄嬛传<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="广州擎迅网络科技有限公司">广州擎迅网络科技有限公司</td>
+              <td><span class="up">↑8</span></td>
+            </tr>
+            <tr>
+              <td>47</td>
+              <td>天龙八部荣耀版<span class="platform-tag wx">微</span></td>
+              <td>MMO</td>
+              <td title="成都初心互动科技有限公司">成都初心互动科技有限公司</td>
+              <td><span class="up">↑9</span></td>
+            </tr>
+            <tr>
+              <td>48</td>
+              <td>冲突小队<span class="platform-tag wx">微</span></td>
+              <td>放置RPG</td>
+              <td title="上饶市如玩信息技术有限公司">上饶市如玩信息技术有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>49</td>
+              <td>正中靶心2<span class="platform-tag wx">微</span></td>
+              <td>塔防</td>
+              <td title="北京金海部落文化有限公司">北京金海部落文化有限公司</td>
+              <td><span class="down">↓5</span></td>
+            </tr>
+            <tr>
+              <td>50</td>
+              <td>迷雾大陆<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="北京豪腾创想科技有限公司">北京豪腾创想科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>51</td>
+              <td>指尖无双<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="福州蓝琥珀网络科技有限公司">福州蓝琥珀网络科技有限公司</td>
+              <td><span class="up">↑6</span></td>
+            </tr>
+            <tr>
+              <td>52</td>
+              <td>勇者乱斗<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="杭州电梦网络科技有限公司">杭州电梦网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>53</td>
+              <td>不服来通关<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="长沙游品科技有限公司">长沙游品科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td>54</td>
+              <td>机智逃脱<span class="platform-tag wx">微</span></td>
+              <td>益智</td>
+              <td title="深圳市安立讯科技有限公司">深圳市安立讯科技有限公司</td>
+              <td><span class="up">↑7</span></td>
+            </tr>
+            <tr>
+              <td>55</td>
+              <td>星空神曲<span class="platform-tag wx">微</span></td>
+              <td>其他</td>
+              <td title="--">--</td>
+              <td><span class="down">↓12</span></td>
+            </tr>
+            <tr>
+              <td>56</td>
+              <td>海盗来了<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="北京豪腾创想科技有限公司">北京豪腾创想科技有限公司</td>
+              <td><span class="up">↑14</span></td>
+            </tr>
+            <tr>
+              <td>57</td>
+              <td>大话西游归来<span class="platform-tag wx">微</span></td>
+              <td>MMO</td>
+              <td title="上海以尚网络技术有限公司">上海以尚网络技术有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>58</td>
+              <td>小岛有晴天<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="武汉达友网络科技有限公司">武汉达友网络科技有限公司</td>
+              <td><span class="up">↑6</span></td>
+            </tr>
+            <tr>
+              <td>59</td>
+              <td>雷霆战机：集结<span class="platform-tag wx">微</span></td>
+              <td>射击</td>
+              <td title="北京爱乐游文化发展有限公司">北京爱乐游文化发展有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>60</td>
+              <td>塔塔冒险队<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="上海莉莉丝计算机技术有限公司">上海莉莉丝计算机技术有限公司</td>
+              <td><span class="up">↑15</span></td>
+            </tr>
+            <tr>
+              <td>61</td>
+              <td>次神光之觉醒<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="在线途游（北京）科技有限公司">在线途游（北京）科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>62</td>
+              <td>无畏冒险<span class="platform-tag wx">微</span></td>
+              <td>益智</td>
+              <td title="福州市仓山区零六零六网络科技有限公司">福州市仓山区零六零六网络科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>63</td>
+              <td>秘密花园HD<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="深圳天苻科技有限公司">深圳天苻科技有限公司</td>
+              <td><span class="down">↓15</span></td>
+            </tr>
+            <tr>
+              <td>64</td>
+              <td>肥鹅健身房<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="北京豪腾创想科技有限公司">北京豪腾创想科技有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>65</td>
+              <td>百炼英雄<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="深圳市九九互动科技有限公司">深圳市九九互动科技有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>66</td>
+              <td>王者舰队<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="北京赫德时代科技有限公司">北京赫德时代科技有限公司</td>
+              <td><span class="down">↓20</span></td>
+            </tr>
+            <tr>
+              <td>67</td>
+              <td>花札物语<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="深圳彩苻科技有限公司">深圳彩苻科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>68</td>
+              <td>小镇派对<span class="platform-tag wx">微</span></td>
+              <td>消除</td>
+              <td title="上海趣滋滋网络科技有限公司">上海趣滋滋网络科技有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>69</td>
+              <td>御龙主宰<span class="platform-tag wx">微</span></td>
+              <td>MMO</td>
+              <td title="--">--</td>
+              <td><span class="up">↑13</span></td>
+            </tr>
+            <tr>
+              <td>70</td>
+              <td>时尚百货城<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市爱的番茄科技有限公司">深圳市爱的番茄科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>71</td>
+              <td>烽火英雄<span class="platform-tag wx">微</span></td>
+              <td>MMO</td>
+              <td title="杭州桃梵网络科技有限公司">杭州桃梵网络科技有限公司</td>
+              <td><span class="down">↓16</span></td>
+            </tr>
+            <tr>
+              <td>72</td>
+              <td>三国杀<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="杭州游卡网络技术有限公司">杭州游卡网络技术有限公司</td>
+              <td><span class="up">↑7</span></td>
+            </tr>
+            <tr>
+              <td>73</td>
+              <td>地宫大爆破<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="广州任风劲网络科技有限公司">广州任风劲网络科技有限公司</td>
+              <td><span class="down">↓10</span></td>
+            </tr>
+            <tr>
+              <td>74</td>
+              <td>剑侠世界：起源<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="成都西山居世游科技有限公司">成都西山居世游科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>75</td>
+              <td>大王请留步<span class="platform-tag wx">微</span></td>
+              <td>塔防</td>
+              <td title="海南娱创科技有限公司">海南娱创科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>76</td>
+              <td>改装大作战<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市必凡娱乐科技有限公司">深圳市必凡娱乐科技有限公司</td>
+              <td><span class="up">↑10</span></td>
+            </tr>
+            <tr>
+              <td>77</td>
+              <td>一路狂飙<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="世熠网络科技（上海）有限公司">世熠网络科技（上海）有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>78</td>
+              <td>掼蛋<span class="cross-tag">双</span></td>
+              <td>棋牌</td>
+              <td title="杭州边锋网络技术有限公司">杭州边锋网络技术有限公司</td>
+              <td><span class="up">↑15</span></td>
+            </tr>
+            <tr>
+              <td>79</td>
+              <td>王者之弈<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="海南椰路信息科技有限公司">海南椰路信息科技有限公司</td>
+              <td><span class="down">↓5</span></td>
+            </tr>
+            <tr>
+              <td>80</td>
+              <td>英雄没有闪<span class="cross-tag">双</span></td>
+              <td>ARPG</td>
+              <td title="广州盈心网络科技有限公司">广州盈心网络科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>81</td>
+              <td>微乐四川麻将<span class="platform-tag wx">微</span></td>
+              <td>棋牌</td>
+              <td title="家乡互动(厦门)网络科技有限公司">家乡互动(厦门)网络科技有限公司</td>
+              <td><span class="up">↑11</span></td>
+            </tr>
+            <tr>
+              <td>82</td>
+              <td>无限轮回<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="海南易多量科技有限公司">海南易多量科技有限公司</td>
+              <td><span class="down">↓6</span></td>
+            </tr>
+            <tr>
+              <td>83</td>
+              <td>城主别慌张<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="广州冠游信息科技有限公司">广州冠游信息科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>84</td>
+              <td>指尖幻影<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南异界科技有限公司">海南异界科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>85</td>
+              <td>使命召唤手游<span class="platform-tag wx">微</span></td>
+              <td>射击</td>
+              <td title="深圳市腾讯计算机系统有限公司">深圳市腾讯计算机系统有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>86</td>
+              <td>绝世仙王<span class="platform-tag wx">微</span></td>
+              <td>MMO</td>
+              <td title="上海风派网络科技有限公司">上海风派网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>87</td>
+              <td>我的休闲时光<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="广州卓动信息科技有限公司">广州卓动信息科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>88</td>
+              <td>欢乐麻将<span class="platform-tag wx">微</span></td>
+              <td>棋牌</td>
+              <td title="深圳市腾讯计算机系统有限公司">深圳市腾讯计算机系统有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>89</td>
+              <td>生存33天<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="广州三七网络科技有限公司">广州三七网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>90</td>
+              <td>斗罗大陆：传承<span class="cross-tag">双</span></td>
+              <td>ARPG</td>
+              <td title="广州盈心网络科技有限公司">广州盈心网络科技有限公司</td>
+              <td><span class="down">↓7</span></td>
+            </tr>
+            <tr>
+              <td>91</td>
+              <td>这城有良田<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="上海益玩网络科技有限公司">上海益玩网络科技有限公司</td>
+              <td><span class="up">↑5</span></td>
+            </tr>
+            <tr>
+              <td>92</td>
+              <td>羊了个羊：星球<span class="cross-tag">双</span></td>
+              <td>消除</td>
+              <td title="北京简游科技有限公司">北京简游科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>93</td>
+              <td>去有梦的小岛<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市必凡娱乐科技有限公司">深圳市必凡娱乐科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>94</td>
+              <td>冲啊，逗英雄<span class="platform-tag wx">微</span></td>
+              <td>放置RPG</td>
+              <td title="广州巴特网络科技有限公司">广州巴特网络科技有限公司</td>
+              <td><span class="down">↓36</span></td>
+            </tr>
+            <tr>
+              <td>95</td>
+              <td>喵骑战域<span class="cross-tag">双</span></td>
+              <td>射击</td>
+              <td title="北京优路互娱科技有限公司">北京优路互娱科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>96</td>
+              <td>勇者联盟<span class="platform-tag wx">微</span></td>
+              <td>ARPG</td>
+              <td title="广州爱游网络科技有限公司">广州爱游网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>97</td>
+              <td>天境传说<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="海南狐影网络科技有限公司">海南狐影网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>98</td>
+              <td>新弹弹堂<span class="platform-tag wx">微</span></td>
+              <td>卡牌RPG</td>
+              <td title="深圳第七大道科技有限公司">深圳第七大道科技有限公司</td>
+              <td><span class="down">↓8</span></td>
+            </tr>
+            <tr>
+              <td>99</td>
+              <td>九霄仙府<span class="platform-tag wx">微</span></td>
+              <td>模拟经营</td>
+              <td title="点点互动（北京）科技有限公司">点点互动（北京）科技有限公司</td>
+              <td><span class="down">↓30</span></td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>乱世英雄传<span class="platform-tag wx">微</span></td>
+              <td>塔防</td>
+              <td title="--">--</td>
+              <td><span class="down">↓15</span></td>
+            </tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+<div class="modal" id="modal-dy">
+  <div class="modal-content">
+    <div class="modal-header"><h2>抖音畅销榜 Top100</h2><button class="close-modal" onclick="closeModal('dy')">&times;</button></div>
+    <div class="modal-body">
+    <div class="modal-info">
+      <span>共 <strong>100</strong> 款</span>
+      <span>品类 <strong>13</strong> 个</span>
+      <span>跨平台 <strong>47</strong> 款</span>
+      <span style="color:#e74c3c;">↑上升 <strong>38</strong></span>
+      <span style="color:#2ecc71;">↓下降 <strong>47</strong></span>
+      <span style="color:#e67e22;">新进榜 <strong>9</strong></span>
+    </div>
+    <div class="table-scroll" style="max-height:calc(100vh - 280px);">
+      <table>
+        <thead><tr><th>排名</th><th>游戏名称</th><th>品类</th><th>发行公司</th><th>周变化</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td><span class="rank-badge rank-1">1</span></td>
+              <td>疯狂水世界<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="益世界网络科技有限公司">益世界网络科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge rank-2">2</span></td>
+              <td>镇邪人<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="安徽雷虎网络科技有限公司">安徽雷虎网络科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge rank-3">3</span></td>
+              <td>向僵尸开炮<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南盛昌网络科技有限公司">海南盛昌网络科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">4</span></td>
+              <td>灵画师<span class="cross-tag">双</span></td>
+              <td>ARPG</td>
+              <td title="广州光游网络科技有限公司">广州光游网络科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">5</span></td>
+              <td>造化仙府<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="上海沛炫网络科技有限公司">上海沛炫网络科技有限公司</td>
+              <td><span class="up">↑6</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">6</span></td>
+              <td>肥鹅美食街<span class="platform-tag dy">抖</span></td>
+              <td>模拟经营</td>
+              <td title="北京豪腾创想科技有限公司">北京豪腾创想科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">7</span></td>
+              <td>跃动小子<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="柏项网络科技（上海）有限公司">柏项网络科技（上海）有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">8</span></td>
+              <td>浪漫餐厅<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="北京柠檬曲奇科技有限公司">北京柠檬曲奇科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">9</span></td>
+              <td>梦幻消除战<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="广州喜势网络科技有限公司">广州喜势网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-top10">10</span></td>
+              <td>向往的生活<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市必凡娱乐科技有限公司">深圳市必凡娱乐科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>狱国争霸<span class="platform-tag dy">抖</span></td>
+              <td>SLG/策略</td>
+              <td title="北京智诚互娱科技有限公司">北京智诚互娱科技有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>我的花园世界<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="海南途趣科技有限公司">海南途趣科技有限公司</td>
+              <td><span class="up">↑15</span></td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>三国：冰河时代<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="欢游互动（北京）科技有限公司">欢游互动（北京）科技有限公司</td>
+              <td><span class="down">↓6</span></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>梦回甄嬛传<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="广州擎迅网络科技有限公司">广州擎迅网络科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>时尚百货城<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市爱的番茄科技有限公司">深圳市爱的番茄科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>烈焰觉醒<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="杭州悦妙网络科技有限公司">杭州悦妙网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>阿皮大冒险<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="北京豪腾创想科技有限公司">北京豪腾创想科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>不服来通关<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="长沙游品科技有限公司">长沙游品科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>下方了<span class="cross-tag">双</span></td>
+              <td>其他</td>
+              <td title="深圳飞鱼星空科技有限公司">深圳飞鱼星空科技有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>空格之境<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="江西启游互动科技有限公司">江西启游互动科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>甄嬛传：归来<span class="cross-tag">双</span></td>
+              <td>其他</td>
+              <td title="深圳市拾光筑梦文化传媒有限公司">深圳市拾光筑梦文化传媒有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>四季合合<span class="cross-tag">双</span></td>
+              <td>合成消除</td>
+              <td title="青岛蓝飞互娱科技股份有限公司">青岛蓝飞互娱科技股份有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>指尖幻影<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南异界科技有限公司">海南异界科技有限公司</td>
+              <td><span class="up">↑5</span></td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>指尖快消<span class="platform-tag dy">抖</span></td>
+              <td>消除</td>
+              <td title="厦门营火科技有限公司">厦门营火科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>超能下蛋鸭<span class="platform-tag dy">抖</span></td>
+              <td>放置RPG</td>
+              <td title="世熠网络科技（上海）有限公司">世熠网络科技（上海）有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>次神光之觉醒<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="北京雪境科技有限公司">北京雪境科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>王者征途<span class="cross-tag">双</span></td>
+              <td>MMO</td>
+              <td title="上海巨人统平网络科技有限公司">上海巨人统平网络科技有限公司</td>
+              <td><span class="up">↑17</span></td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>羊了个羊：星球<span class="cross-tag">双</span></td>
+              <td>消除</td>
+              <td title="北京简游科技有限公司天津分公司">北京简游科技有限公司天津分公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>神器传说<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="深圳市拾光筑梦文化传媒有限公司">深圳市拾光筑梦文化传媒有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>时光大爆炸<span class="platform-tag dy">抖</span></td>
+              <td>模拟经营</td>
+              <td title="安徽盈趣网络科技有限公司">安徽盈趣网络科技有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td>永夜起源<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="海南书慕网络科技有限公司">海南书慕网络科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>32</td>
+              <td>无尽冬日<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="上海青笛科技有限公司">上海青笛科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td>英雄大对决<span class="platform-tag dy">抖</span></td>
+              <td>塔防</td>
+              <td title="重庆煌秀信息技术有限公司">重庆煌秀信息技术有限公司</td>
+              <td><span class="up">↑9</span></td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td>赵云与阿斗<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="北京蜜獾兄弟科技有限公司">北京蜜獾兄弟科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td>勇者乱斗<span class="cross-tag">双</span></td>
+              <td>益智</td>
+              <td title="杭州电梦网络科技有限公司">杭州电梦网络科技有限公司</td>
+              <td><span class="down">↓16</span></td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td>占城大师<span class="platform-tag dy">抖</span></td>
+              <td>塔防</td>
+              <td title="武汉多趣信息技术有限公司">武汉多趣信息技术有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td>多乐升级<span class="platform-tag dy">抖</span></td>
+              <td>棋牌</td>
+              <td title="北京蓝色创想网络科技有限责任公司">北京蓝色创想网络科技有限责任公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>38</td>
+              <td>斗罗大陆：传承<span class="cross-tag">双</span></td>
+              <td>ARPG</td>
+              <td title="广州盈心网络科技有限公司">广州盈心网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>39</td>
+              <td>就你眼神好<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="北京起跃文化有限公司">北京起跃文化有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td>40</td>
+              <td>欢乐战三国<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="海南哎呦互娱网络科技有限公司">海南哎呦互娱网络科技有限公司</td>
+              <td><span class="up">↑17</span></td>
+            </tr>
+            <tr>
+              <td>41</td>
+              <td>三界降妖录<span class="platform-tag dy">抖</span></td>
+              <td>卡牌RPG</td>
+              <td title="广州联动网络科技有限公司">广州联动网络科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>42</td>
+              <td>俱乐大玩家<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="海南临游科技有限公司">海南临游科技有限公司</td>
+              <td><span class="up">↑7</span></td>
+            </tr>
+            <tr>
+              <td>43</td>
+              <td>保卫向日葵<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="深圳市一起梦游科技有限公司">深圳市一起梦游科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>44</td>
+              <td>手机反恐特别行动<span class="platform-tag dy">抖</span></td>
+              <td>射击</td>
+              <td title="成都疾风劲趣科技有限公司">成都疾风劲趣科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>45</td>
+              <td>三国杀<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="杭州游卡网络技术有限公司">杭州游卡网络技术有限公司</td>
+              <td><span class="up">↑10</span></td>
+            </tr>
+            <tr>
+              <td>46</td>
+              <td>黎明特攻<span class="platform-tag dy">抖</span></td>
+              <td>SLG/策略</td>
+              <td title="海南悦神网络科技有限公司">海南悦神网络科技有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>47</td>
+              <td>永远的蔚蓝星球<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="广州颂悦信息技术有限公司">广州颂悦信息技术有限公司</td>
+              <td><span class="up">↑13</span></td>
+            </tr>
+            <tr>
+              <td>48</td>
+              <td>道友来挖宝<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="深圳雷霆信息技术有限公司">深圳雷霆信息技术有限公司</td>
+              <td><span class="stable">─ 稳定</span></td>
+            </tr>
+            <tr>
+              <td>49</td>
+              <td>悟空别走<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="湖南中昱智云物联科技有限公司">湖南中昱智云物联科技有限公司</td>
+              <td><span class="up">↑5</span></td>
+            </tr>
+            <tr>
+              <td>50</td>
+              <td>美职篮奇迹梦之队<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="深圳市柚游信息技术有限公司">深圳市柚游信息技术有限公司</td>
+              <td><span class="up">↑9</span></td>
+            </tr>
+            <tr>
+              <td>51</td>
+              <td>梦幻西游网页版<span class="cross-tag">双</span></td>
+              <td>放置RPG</td>
+              <td title="广州网易计算机系统有限公司">广州网易计算机系统有限公司</td>
+              <td><span class="down">↓8</span></td>
+            </tr>
+            <tr>
+              <td>52</td>
+              <td>吃碰大消除<span class="platform-tag dy">抖</span></td>
+              <td>消除</td>
+              <td title="厦门登游科技有限公司">厦门登游科技有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>53</td>
+              <td>我的防线<span class="platform-tag dy">抖</span></td>
+              <td>塔防</td>
+              <td title="杭州烈酷科技有限公司">杭州烈酷科技有限公司</td>
+              <td><span class="up">↑30</span></td>
+            </tr>
+            <tr>
+              <td>54</td>
+              <td>大话西游：归来<span class="platform-tag dy">抖</span></td>
+              <td>放置RPG</td>
+              <td title="杭州网易雷火科技有限公司">杭州网易雷火科技有限公司</td>
+              <td><span class="up">↑15</span></td>
+            </tr>
+            <tr>
+              <td>55</td>
+              <td>掼蛋<span class="cross-tag">双</span></td>
+              <td>棋牌</td>
+              <td title="杭州边锋网络技术有限公司">杭州边锋网络技术有限公司</td>
+              <td><span class="up">↑9</span></td>
+            </tr>
+            <tr>
+              <td>56</td>
+              <td>抓大鹅<span class="platform-tag dy">抖</span></td>
+              <td>消除</td>
+              <td title="青岛蓝飞互娱科技股份有限公司">青岛蓝飞互娱科技股份有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>57</td>
+              <td>武侠大明星<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="海南临游科技有限公司">海南临游科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>58</td>
+              <td>王者之弈<span class="cross-tag">双</span></td>
+              <td>卡牌RPG</td>
+              <td title="海南椰路信息科技有限公司">海南椰路信息科技有限公司</td>
+              <td><span class="down">↓17</span></td>
+            </tr>
+            <tr>
+              <td>59</td>
+              <td>三国大冒险<span class="platform-tag dy">抖</span></td>
+              <td>卡牌RPG</td>
+              <td title="广州天纵信息技术有限公司">广州天纵信息技术有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>60</td>
+              <td>幻想仙灵<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="广州熠游网络科技有限公司">广州熠游网络科技有限公司</td>
+              <td><span class="down">↓13</span></td>
+            </tr>
+            <tr>
+              <td>61</td>
+              <td>再闯这一关<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="广州小贝科技有限公司">广州小贝科技有限公司</td>
+              <td><span class="up">↑4</span></td>
+            </tr>
+            <tr>
+              <td>62</td>
+              <td>生存33天<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="广州龙畅网络科技有限公司">广州龙畅网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>63</td>
+              <td>剑侠传奇<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="深圳市小黑龙网络科技有限公司">深圳市小黑龙网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>64</td>
+              <td>喵骑战域<span class="cross-tag">双</span></td>
+              <td>射击</td>
+              <td title="重庆很开心科技有限公司">重庆很开心科技有限公司</td>
+              <td><span class="down">↓28</span></td>
+            </tr>
+            <tr>
+              <td>65</td>
+              <td>妖怪金手指<span class="platform-tag dy">抖</span></td>
+              <td>卡牌RPG</td>
+              <td title="霍尔果斯天翔信息技术有限公司">霍尔果斯天翔信息技术有限公司</td>
+              <td><span class="down">↓15</span></td>
+            </tr>
+            <tr>
+              <td>66</td>
+              <td>奔奔王国<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="福州点点松禾科技有限公司">福州点点松禾科技有限公司</td>
+              <td><span class="down">↓14</span></td>
+            </tr>
+            <tr>
+              <td>67</td>
+              <td>看谁先上车<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="长沙四五互娱网络科技有限公司">长沙四五互娱网络科技有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>68</td>
+              <td>指尖王国<span class="platform-tag dy">抖</span></td>
+              <td>SLG/策略</td>
+              <td title="深圳市掌娱趣科技有限公司">深圳市掌娱趣科技有限公司</td>
+              <td><span class="up">↑23</span></td>
+            </tr>
+            <tr>
+              <td>69</td>
+              <td>战影破穹<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="杭州悦忻网络科技有限公司">杭州悦忻网络科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>70</td>
+              <td>真消不过你<span class="platform-tag dy">抖</span></td>
+              <td>益智</td>
+              <td title="广州小贝科技有限公司">广州小贝科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>71</td>
+              <td>英雄没有闪<span class="cross-tag">双</span></td>
+              <td>ARPG</td>
+              <td title="广州盈心网络科技有限公司">广州盈心网络科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>72</td>
+              <td>工匠小能手<span class="cross-tag">双</span></td>
+              <td>其他</td>
+              <td title="深圳市统掌科技有限公司">深圳市统掌科技有限公司</td>
+              <td><span class="down">↓10</span></td>
+            </tr>
+            <tr>
+              <td>73</td>
+              <td>一路狂飙<span class="cross-tag">双</span></td>
+              <td>塔防</td>
+              <td title="世熠网络科技（上海）有限公司">世熠网络科技（上海）有限公司</td>
+              <td><span class="up">↑1</span></td>
+            </tr>
+            <tr>
+              <td>74</td>
+              <td>楚新钓<span class="platform-tag dy">抖</span></td>
+              <td>放置RPG</td>
+              <td title="海南易多量科技有限公司">海南易多量科技有限公司</td>
+              <td><span class="up">↑10</span></td>
+            </tr>
+            <tr>
+              <td>75</td>
+              <td>家园防御战<span class="platform-tag dy">抖</span></td>
+              <td>塔防</td>
+              <td title="长沙市创艺工场数码技术有限公司">长沙市创艺工场数码技术有限公司</td>
+              <td><span class="down">↓24</span></td>
+            </tr>
+            <tr>
+              <td>76</td>
+              <td>霸途<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="杭州上趣网络科技有限公司">杭州上趣网络科技有限公司</td>
+              <td><span class="up">↑2</span></td>
+            </tr>
+            <tr>
+              <td>77</td>
+              <td>暴走植物园<span class="cross-tag">双</span></td>
+              <td>其他</td>
+              <td title="海南椰路信息科技有限公司">海南椰路信息科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>78</td>
+              <td>勇者突围<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="广州轻游信息科技有限公司">广州轻游信息科技有限公司</td>
+              <td><span class="down">↓8</span></td>
+            </tr>
+            <tr>
+              <td>79</td>
+              <td>花札物语<span class="cross-tag">双</span></td>
+              <td>模拟经营</td>
+              <td title="深圳市灵星网络科技有限公司">深圳市灵星网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>80</td>
+              <td>救救我鸭<span class="platform-tag dy">抖</span></td>
+              <td>益智</td>
+              <td title="北京起跃文化有限公司">北京起跃文化有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>81</td>
+              <td>咸鱼·进化<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="北京豪腾致远科技有限公司">北京豪腾致远科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>82</td>
+              <td>开心找不停<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="广州池骋网络科技有限公司">广州池骋网络科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>83</td>
+              <td>向末日开炮<span class="cross-tag">双</span></td>
+              <td>SLG/策略</td>
+              <td title="海南游椰科技有限公司">海南游椰科技有限公司</td>
+              <td><span class="down">↓12</span></td>
+            </tr>
+            <tr>
+              <td>84</td>
+              <td>这关消一消<span class="platform-tag dy">抖</span></td>
+              <td>益智</td>
+              <td title="福州联创乐游网络科技有限公司">福州联创乐游网络科技有限公司</td>
+              <td><span class="up">↑3</span></td>
+            </tr>
+            <tr>
+              <td>85</td>
+              <td>梦仙灵<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="广州信跃网络技术有限公司">广州信跃网络技术有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>86</td>
+              <td>杜拉拉升职记<span class="platform-tag dy">抖</span></td>
+              <td>模拟经营</td>
+              <td title="苏州沁游网络科技有限公司">苏州沁游网络科技有限公司</td>
+              <td><span class="down">↓14</span></td>
+            </tr>
+            <tr>
+              <td>87</td>
+              <td>遗弃之地<span class="platform-tag dy">抖</span></td>
+              <td>塔防</td>
+              <td title="北京智诚互娱科技有限公司">北京智诚互娱科技有限公司</td>
+              <td><span class="down">↓5</span></td>
+            </tr>
+            <tr>
+              <td>88</td>
+              <td>小人上车<span class="platform-tag dy">抖</span></td>
+              <td>消除</td>
+              <td title="长沙指色科技有限公司">长沙指色科技有限公司</td>
+              <td><span class="down">↓2</span></td>
+            </tr>
+            <tr>
+              <td>89</td>
+              <td>原始征途<span class="cross-tag">双</span></td>
+              <td>MMO</td>
+              <td title="上海巨人统平网络科技有限公司">上海巨人统平网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>90</td>
+              <td>魔法之旅<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="四川天天颖网络科技有限公司">四川天天颖网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>91</td>
+              <td>爆裂守卫<span class="platform-tag dy">抖</span></td>
+              <td>塔防</td>
+              <td title="邯郸太空船信息科技有限公司">邯郸太空船信息科技有限公司</td>
+              <td><span class="down">↓12</span></td>
+            </tr>
+            <tr>
+              <td>92</td>
+              <td>小人大作战<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="重庆云威科技有限公司">重庆云威科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>93</td>
+              <td>蔚蓝远征<span class="platform-tag dy">抖</span></td>
+              <td>益智</td>
+              <td title="广州游伦网络科技有限公司">广州游伦网络科技有限公司</td>
+              <td><span class="down">↓3</span></td>
+            </tr>
+            <tr>
+              <td>94</td>
+              <td>青云诀之伏魔<span class="cross-tag">双</span></td>
+              <td>MMO</td>
+              <td title="海南青时信息技术有限公司">海南青时信息技术有限公司</td>
+              <td><span class="down">↓19</span></td>
+            </tr>
+            <tr>
+              <td>95</td>
+              <td>这局有点秀<span class="platform-tag dy">抖</span></td>
+              <td>其他</td>
+              <td title="广州池骋网络科技有限公司">广州池骋网络科技有限公司</td>
+              <td><span class="down">↓1</span></td>
+            </tr>
+            <tr>
+              <td>96</td>
+              <td>兵器王者<span class="platform-tag dy">抖</span></td>
+              <td>益智</td>
+              <td title="青岛蓝飞互娱科技股份有限公司">青岛蓝飞互娱科技股份有限公司</td>
+              <td><span class="down">↓20</span></td>
+            </tr>
+            <tr>
+              <td>97</td>
+              <td>咻咻勇者<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="深圳市紫晓互动科技有限公司">深圳市紫晓互动科技有限公司</td>
+              <td><span class="down">↓4</span></td>
+            </tr>
+            <tr>
+              <td>98</td>
+              <td>元气蛋蛋王<span class="platform-tag dy">抖</span></td>
+              <td>放置RPG</td>
+              <td title="深圳澎云科技有限公司">深圳澎云科技有限公司</td>
+              <td><span class="down">↓13</span></td>
+            </tr>
+            <tr>
+              <td>99</td>
+              <td>最强斗王<span class="platform-tag dy">抖</span></td>
+              <td>卡牌RPG</td>
+              <td title="广西天牛信息技术有限公司">广西天牛信息技术有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>传奇之业<span class="platform-tag dy">抖</span></td>
+              <td>ARPG</td>
+              <td title="杭州悦昭网络科技有限公司">杭州悦昭网络科技有限公司</td>
+              <td><span class="new">NEW</span></td>
+            </tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- ====== 四、本周大幅上升游戏（≥10位） ====== -->
+<div class="section">
+  <h2>&#9733; 四、本周大幅上升游戏（≥10位）</h2>
+  <div class="table-scroll">
+  
+    <table class="data-table movers-table">
+      <thead><tr><th>游戏</th><th>平台</th><th>品类</th><th>上升</th><th>公司</th><th>看点</th></thead>
+      <tbody>
+        
+          <tr>
+            <td>我的防线</td>
+            <td>抖音</td>
+            <td>塔防</td>
+            <td><span class="up">↑30</span></td>
+            <td class="company">杭州烈酷科技有限公司</td>
+            <td>肉鸽塔防（杭州烈酷），抖音 #66→#53（单日 ↑30、周环比 +13）——<b>本期全榜最大单日升幅</b>，日／周同向</td>
+          </tr>
+          <tr>
+            <td>咸鱼之王</td>
+            <td>微信</td>
+            <td>卡牌RPG</td>
+            <td><span class="up">↑23</span></td>
+            <td class="company">北京豪腾嘉科科技有限公司</td>
+            <td>卡牌（北京豪腾嘉科），微信 #72→#42（单日 ↑23、<b>周环比 +30</b>）——日／周同向，本期微信最大单日升幅</td>
+          </tr>
+          <tr>
+            <td>指尖王国</td>
+            <td>抖音</td>
+            <td>SLG/策略</td>
+            <td><span class="up">↑23</span></td>
+            <td class="company">深圳市掌娱趣科技有限公司</td>
+            <td>塔防开局＋SLG（深圳掌娱趣），抖音 #40→#68（单日 ↑23、<b>周环比 −28</b>）——日涨周跌，反弹不改周线大跌</td>
+          </tr>
+          <tr>
+            <td>王者征途</td>
+            <td>抖音</td>
+            <td>MMO</td>
+            <td><span class="up">↑17</span></td>
+            <td class="company">上海巨人统平网络科技有限公司</td>
+            <td>MMO（上海巨人统平），抖音 #49→#27（单日 ↑17、周环比 +22）／微信 #34→#23（单日 ↑10）——<b>双端同向</b></td>
+          </tr>
+          <tr>
+            <td>欢乐战三国</td>
+            <td>抖音</td>
+            <td>卡牌RPG</td>
+            <td><span class="up">↑17</span></td>
+            <td class="company">海南哎呦互娱网络科技有限公司</td>
+            <td>卡牌（海南哎呦互娱），抖音 #43→#40（单日 ↑17）／微信 #47→#38（单日 ↑11）——双端同向，但两端周环比都只有 +9 左右</td>
+          </tr>
+          <tr>
+            <td>塔塔冒险队</td>
+            <td>微信</td>
+            <td>卡牌RPG</td>
+            <td><span class="up">↑15</span></td>
+            <td class="company">上海莉莉丝计算机技术有限公司</td>
+            <td>卡牌（上海莉莉丝），微信 #78→#60（单日 ↑15、周环比 +18）——同向回升，仍在中腰部</td>
+          </tr>
+          <tr>
+            <td>掼蛋</td>
+            <td>微信</td>
+            <td>棋牌</td>
+            <td><span class="up">↑15</span></td>
+            <td class="company">杭州边锋网络技术有限公司</td>
+            <td>棋牌（杭州边锋），微信 #91→#78（单日 ↑15、周环比 +13）——同向；本期棋牌两款同时上行</td>
+          </tr>
+          <tr>
+            <td>我的花园世界</td>
+            <td>抖音</td>
+            <td>模拟经营</td>
+            <td><span class="up">↑15</span></td>
+            <td class="company">海南途趣科技有限公司</td>
+            <td>模拟经营（海南途趣），抖音 #20→#12（单日 ↑15、周环比 +8）／微信 #17→#13（单日 ↑8）——<b>本期唯一双端同升的模拟经营款</b></td>
+          </tr>
+          <tr>
+            <td>大话西游：归来</td>
+            <td>抖音</td>
+            <td>放置RPG</td>
+            <td><span class="up">↑15</span></td>
+            <td class="company">杭州网易雷火科技有限公司</td>
+            <td>放置RPG（杭州网易雷火），抖音新进榜直接 #54（单日 ↑15）——本周新面孔里位次最高</td>
+          </tr>
+          <tr>
+            <td>海盗来了</td>
+            <td>微信</td>
+            <td>模拟经营</td>
+            <td><span class="up">↑14</span></td>
+            <td class="company">北京豪腾创想科技有限公司</td>
+            <td>模拟经营（北京豪腾创想），微信 #38→#56（单日 ↑14、<b>周环比 −18</b>）——日涨周跌，单日反弹未改周线</td>
+          </tr>
+          <tr>
+            <td>御龙主宰</td>
+            <td>微信</td>
+            <td>MMO</td>
+            <td><span class="up">↑13</span></td>
+            <td class="company">--</td>
+            <td>MMO（发行主体未披露），微信新进榜直接 #69（单日 ↑13）——本周新面孔，无周环比基准</td>
+          </tr>
+          <tr>
+            <td>永远的蔚蓝星球</td>
+            <td>抖音</td>
+            <td>塔防</td>
+            <td><span class="up">↑13</span></td>
+            <td class="company">广州颂悦信息技术有限公司</td>
+            <td>塔防（广州颂悦），抖音 #24→#47（单日 ↑13、<b>周环比 −23</b>）——日涨周跌</td>
+          </tr>
+          <tr>
+            <td>欢乐战三国</td>
+            <td>微信</td>
+            <td>卡牌RPG</td>
+            <td><span class="up">↑11</span></td>
+            <td class="company">深圳市奥创互娱科技有限公司</td>
+            <td>卡牌（海南哎呦互娱），抖音 #43→#40（单日 ↑17）／微信 #47→#38（单日 ↑11）——双端同向，但两端周环比都只有 +9 左右</td>
+          </tr>
+          <tr>
+            <td>微乐四川麻将</td>
+            <td>微信</td>
+            <td>棋牌</td>
+            <td><span class="up">↑11</span></td>
+            <td class="company">家乡互动(厦门)网络科技有限公...</td>
+            <td>棋牌（家乡互动），微信 #90→#81（单日 ↑11、周环比 +9）</td>
+          </tr>
+          <tr>
+            <td>王者征途</td>
+            <td>微信</td>
+            <td>MMO</td>
+            <td><span class="up">↑10</span></td>
+            <td class="company">上海巨人统平网络科技有限公司</td>
+            <td>MMO（上海巨人统平），抖音 #49→#27（单日 ↑17、周环比 +22）／微信 #34→#23（单日 ↑10）——<b>双端同向</b></td>
+          </tr>
+          <tr>
+            <td>改装大作战</td>
+            <td>微信</td>
+            <td>模拟经营</td>
+            <td><span class="up">↑10</span></td>
+            <td class="company">深圳市必凡娱乐科技有限公司</td>
+            <td>模拟经营（深圳必凡），微信 #85→#76（单日 ↑10、周环比 +9）</td>
+          </tr>
+          <tr>
+            <td>三国杀</td>
+            <td>抖音</td>
+            <td>卡牌RPG</td>
+            <td><span class="up">↑10</span></td>
+            <td class="company">杭州游卡网络技术有限公司</td>
+            <td>卡牌（杭州游卡），抖音 #30→#45（单日 ↑10、<b>周环比 −15</b>）／微信 #68→#72（单日 ↑7、周环比 −4）——<b>两端日涨周跌，连续第三周回吐</b></td>
+          </tr>
+          <tr>
+            <td>楚新钓</td>
+            <td>抖音</td>
+            <td>放置RPG</td>
+            <td><span class="up">↑10</span></td>
+            <td class="company">海南易多量科技有限公司</td>
+            <td>放置RPG（海南易多量），抖音 #93→#74（单日 ↑10、周环比 +19）——日／周同向，尾部产品里少见</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="insight-box">
+    <strong>结论：</strong>本期<b>双端「变化」列均正常生成</b>（口径：<b>较昨日</b>，不是周环比）：微信 <b>↑37／↓40／稳定 10／新进榜 12／霸榜 1</b>，抖音 <b>↑38／↓47／稳定 6／新进榜 9</b>；波动 ≥10 位的 <b>微信升 9／降 10、抖音升 9／降 14</b>——<span class="hl">抖音的波动仍更集中在下降端（14 vs 10）</span>。升幅端：微信 <b>《咸鱼之王》↑23（#42）</b>、《塔塔冒险队》↑15（#60）、《掼蛋》↑15（#78）、《海盗来了》↑14（#56）；抖音 <b>《我的防线》↑30（#53）</b>、《指尖王国》↑23（#68）、《王者征途》↑17（#27）、《欢乐战三国》↑17（#40）。<b>本期单日升幅榜最值得注意的是「没有绝对主角」</b>：两端最大单日升幅分别只有 23 和 30，而上期抖音出现过 ↑40、微信 ↑25——<span class="hl">单日脉冲在减弱，本周的涨幅更多来自周维度的持续累积</span>。<br>
+    <b>★ 口径区分（本期必须写清）</b>：平台「新进榜」标签微信 <b>12 款</b>、抖音 <b>9 款</b>；但按两期榜单逐款比对，<b>本周实际新出现在 Top100 的是微信 18 款、抖音 12 款</b>。微信的差额 6 款属「周内进榜、昨日已非新进」。<span class="hl">不可把「新进榜 12 款」说成「本周新增 12 款」</span>。<br>
+    <b>★ 周环比补充（本报告自算，与上面的单日口径不可混用）</b>：微信 <b>20 升／18 降</b>——升幅前列《不服来通关》#99→#53（<b>+46</b>）、《勇者乱斗》#95→#52（<b>+43</b>）、《咸鱼之王》#72→#42（+30）、《雷霆战机：集结》#84→#59（+25）、《塔塔冒险队》#78→#60（+18）；抖音 <b>21 升／23 降</b>——<b>《阿皮大冒险》#83→#17（+66）</b>、《保卫向日葵》#78→#43（+35）、《梦幻西游网页版》#84→#51（+33）、《黎明特攻》#75→#46（+29）、《英雄大对决》#61→#33（+28）。<span class="hl">单日与周环比读数相反的是《青云诀之伏魔》</span>：微信日榜 ↑3、周环比 3→21（<b>−18</b>）；抖音日榜 ↓19、周环比 38→94（<b>−56</b>）——<b>微信端当天在微弹、整周在大跌，引用时必须写明用的是哪一个口径</b>。反过来《咸鱼之王》（日 ↑23、周 +30）与《不服来通关》（日 ↓1、周 +46）是本期「日／周同向」的样本，后者尤其值得记：<span class="hl">单日看是跌的、整周看是大涨，说明它的上行是连续多日累积，不是一次性脉冲</span>。
+  </div>
+</div>
+
+<!-- ====== 四B、本周大幅下降游戏（≤-10位） ====== -->
+<div class="section">
+  <h2>&#9733; 四B、本周大幅下降游戏（≤-10位）</h2>
+  <div class="table-scroll">
+  
+    <table class="data-table movers-table">
+      <thead><tr><th>游戏</th><th>平台</th><th>品类</th><th>下降</th><th>公司</th><th>看点</th></thead>
+      <tbody>
+        
+          <tr>
+            <td>冲啊，逗英雄</td>
+            <td>微信</td>
+            <td>放置RPG</td>
+            <td><span class="down">↓36</span></td>
+            <td class="company">广州巴特网络科技有限公司</td>
+            <td>放置RPG（广州巴特），微信 #55→#94（单日 ↓36、周环比 −39）——<b>本期全榜最大单日跌幅</b>，日／周同向</td>
+          </tr>
+          <tr>
+            <td>九霄仙府</td>
+            <td>微信</td>
+            <td>模拟经营</td>
+            <td><span class="down">↓30</span></td>
+            <td class="company">点点互动（北京）科技有限公司</td>
+            <td>模拟经营（点点互动），微信新进榜即 ↓30 至 #99——<b>本周最差的新面孔</b>，只剩 1 位安全垫</td>
+          </tr>
+          <tr>
+            <td>喵骑战域</td>
+            <td>抖音</td>
+            <td>射击</td>
+            <td><span class="down">↓28</span></td>
+            <td class="company">重庆很开心科技有限公司</td>
+            <td>射击（重庆很开心），抖音 #88→#64（单日 ↓28、<b>周环比 +24</b>）——<b>日跌周涨的极端样本</b>，本周实际是周线大幅回升</td>
+          </tr>
+          <tr>
+            <td>家园防御战</td>
+            <td>抖音</td>
+            <td>塔防</td>
+            <td><span class="down">↓24</span></td>
+            <td class="company">长沙市创艺工场数码技术有限公司</td>
+            <td>塔防（长沙创艺工场），抖音 #85→#75（单日 ↓24、周环比 +10）——同为日跌周涨</td>
+          </tr>
+          <tr>
+            <td>王者舰队</td>
+            <td>微信</td>
+            <td>卡牌RPG</td>
+            <td><span class="down">↓20</span></td>
+            <td class="company">北京赫德时代科技有限公司</td>
+            <td>卡牌（北京赫德时代），微信 #76→#66（单日 ↓20、<b>周环比 +10</b>）——日跌周涨，不可按单日读</td>
+          </tr>
+          <tr>
+            <td>兵器王者</td>
+            <td>抖音</td>
+            <td>益智</td>
+            <td><span class="down">↓20</span></td>
+            <td class="company">青岛蓝飞互娱科技股份有限公司</td>
+            <td>益智（青岛蓝飞互娱），抖音新进榜后 ↓20 至 #96——新面孔里跌幅最深</td>
+          </tr>
+          <tr>
+            <td>青云诀之伏魔</td>
+            <td>抖音</td>
+            <td>MMO</td>
+            <td><span class="down">↓19</span></td>
+            <td class="company">海南青时信息技术有限公司</td>
+            <td>MMO（微信端海南元游／抖音端海南青时），抖音 #38→#94（单日 ↓19、<b>周环比 −56</b>）／微信 #3→#21（单日 ↑3、周环比 −18）——<b>本期双端最大周跌幅，一期往返</b></td>
+          </tr>
+          <tr>
+            <td>王者之弈</td>
+            <td>抖音</td>
+            <td>卡牌RPG</td>
+            <td><span class="down">↓17</span></td>
+            <td class="company">海南椰路信息科技有限公司</td>
+            <td>卡牌RPG（海南椰路），抖音新进榜后 ↓17 至 #58</td>
+          </tr>
+          <tr>
+            <td>烽火英雄</td>
+            <td>微信</td>
+            <td>MMO</td>
+            <td><span class="down">↓16</span></td>
+            <td class="company">杭州桃梵网络科技有限公司</td>
+            <td>MMO（杭州桃梵），微信 #70→#71（单日 ↓16、周环比 −1）——单日抖动，周线基本没动</td>
+          </tr>
+          <tr>
+            <td>勇者乱斗</td>
+            <td>抖音</td>
+            <td>益智</td>
+            <td><span class="down">↓16</span></td>
+            <td class="company">杭州电梦网络科技有限公司</td>
+            <td>益智·合成自走棋（杭州电梦），抖音 #51→#35（单日 ↓16、<b>周环比 +16</b>）——日跌周涨</td>
+          </tr>
+          <tr>
+            <td>秘密花园HD</td>
+            <td>微信</td>
+            <td>模拟经营</td>
+            <td><span class="down">↓15</span></td>
+            <td class="company">深圳天苻科技有限公司</td>
+            <td>模拟经营（深圳天苻），微信 #40→#63（单日 ↓15、周环比 −23）——日／周同向回落</td>
+          </tr>
+          <tr>
+            <td>乱世英雄传</td>
+            <td>微信</td>
+            <td>塔防</td>
+            <td><span class="down">↓15</span></td>
+            <td class="company">--</td>
+            <td>塔防（发行主体未披露），微信新进榜落在 #100（单日 ↓15）——垫底新面孔，随时出榜</td>
+          </tr>
+          <tr>
+            <td>妖怪金手指</td>
+            <td>抖音</td>
+            <td>卡牌RPG</td>
+            <td><span class="down">↓15</span></td>
+            <td class="company">霍尔果斯天翔信息技术有限公司</td>
+            <td>卡牌RPG（霍尔果斯天翔），抖音 #33→#65（单日 ↓15、周环比 −32）——日／周同向，塔防本周跌得最实的一款</td>
+          </tr>
+          <tr>
+            <td>QQ经典农场</td>
+            <td>微信</td>
+            <td>模拟经营</td>
+            <td><span class="down">↓14</span></td>
+            <td class="company">深圳市腾讯计算机系统有限公司</td>
+            <td>模拟经营（腾讯），微信 #43→#27（单日 ↓14、<b>周环比 +16</b>）——日跌周涨的典型，周线仍在上升通道</td>
+          </tr>
+          <tr>
+            <td>奔奔王国</td>
+            <td>抖音</td>
+            <td>塔防</td>
+            <td><span class="down">↓14</span></td>
+            <td class="company">福州点点松禾科技有限公司</td>
+            <td>塔防·融合模拟经营（福州点点松禾），抖音 #46→#66（单日 ↓14、周环比 −20）／微信 #15→#17（单日 ↓5）——<b>双端同向回落</b></td>
+          </tr>
+          <tr>
+            <td>杜拉拉升职记</td>
+            <td>抖音</td>
+            <td>模拟经营</td>
+            <td><span class="down">↓14</span></td>
+            <td class="company">苏州沁游网络科技有限公司</td>
+            <td>模拟经营（苏州沁游网络科技有限公司），本周 #86（↓14）</td>
+          </tr>
+          <tr>
+            <td>幻想仙灵</td>
+            <td>抖音</td>
+            <td>ARPG</td>
+            <td><span class="down">↓13</span></td>
+            <td class="company">广州熠游网络科技有限公司</td>
+            <td>ARPG（广州熠游），抖音 #52→#60（单日 ↓13、周环比 −8）</td>
+          </tr>
+          <tr>
+            <td>元气蛋蛋王</td>
+            <td>抖音</td>
+            <td>放置RPG</td>
+            <td><span class="down">↓13</span></td>
+            <td class="company">深圳澎云科技有限公司</td>
+            <td>放置RPG（深圳澎云），抖音 #77→#98（单日 ↓13、周环比 −21）——日／周同向，接近出榜</td>
+          </tr>
+          <tr>
+            <td>星空神曲</td>
+            <td>微信</td>
+            <td>其他</td>
+            <td><span class="down">↓12</span></td>
+            <td class="company">--</td>
+            <td>其他（发行主体未披露），微信 #27→#55（单日 ↓12、周环比 −28）——日／周同向，本期微信最大周跌幅之一</td>
+          </tr>
+          <tr>
+            <td>向末日开炮</td>
+            <td>抖音</td>
+            <td>SLG/策略</td>
+            <td><span class="down">↓12</span></td>
+            <td class="company">海南游椰科技有限公司</td>
+            <td>末日重建（海南游椰），抖音 #73→#83（单日 ↓12、周环比 −10）／微信 #5（单日 ↓1）——<b>双端同步走弱</b>，微信仍在 Top5；品类按平台标签：微信归模拟经营、抖音归 SLG/策略</td>
+          </tr>
+          <tr>
+            <td>爆裂守卫</td>
+            <td>抖音</td>
+            <td>塔防</td>
+            <td><span class="down">↓12</span></td>
+            <td class="company">邯郸太空船信息科技有限公司</td>
+            <td>塔防（邯郸太空船），抖音新进榜即 ↓12 至 #91</td>
+          </tr>
+          <tr>
+            <td>精英军团</td>
+            <td>微信</td>
+            <td>塔防</td>
+            <td><span class="down">↓10</span></td>
+            <td class="company">杭州叙炽网络科技有限公司</td>
+            <td>塔防（杭州叙炽），微信 #29→#24（单日 ↓10、<b>周环比 +5</b>）——日跌周升，塔防里少数周线还站得住的</td>
+          </tr>
+          <tr>
+            <td>地宫大爆破</td>
+            <td>微信</td>
+            <td>ARPG</td>
+            <td><span class="down">↓10</span></td>
+            <td class="company">广州任风劲网络科技有限公司</td>
+            <td>ARPG（广州任风劲），微信 #58→#73（单日 ↓10、周环比 −15）——同向回落；抖音端《异窟冒险》本周无对应回升</td>
+          </tr>
+          <tr>
+            <td>工匠小能手</td>
+            <td>抖音</td>
+            <td>其他</td>
+            <td><span class="down">↓10</span></td>
+            <td class="company">深圳市统掌科技有限公司</td>
+            <td>发行主体深圳统掌，抖音 #81→#72（单日 ↓10、<b>周环比 +9</b>）——日跌周涨；微信 #20（单日 ↑3）——两端位次分化，但同一款在两端品类标签不同（微信益智／抖音其他）</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="insight-box" style="background:#fef2f2;border-left-color:#dc2626;">
+    <strong>结论：</strong>本期下降取同一口径（<b>较昨日</b>，|位移| ≥10）：<b>微信 10 款／抖音 14 款</b>。微信领跌 <span class="hl">《冲啊，逗英雄》↓36（#94）</span>、《九霄仙府》↓30（#99）、《王者舰队》↓20（#66）、《烽火英雄》↓16（#71）、《秘密花园HD》↓15（#63）；抖音领跌 <span class="hl">《喵骑战域》↓28（#64）</span>、《家园防御战》↓24（#75）、《兵器王者》↓20（#96）、《青云诀之伏魔》↓19（#94）、《王者之弈》↓17（#58）。<b>本期最该记的一条：两端的大幅波动全部发生在 #58 之后，Top20 内部没有任何一款出现 ≥10 位移。</b><span class="hl">微信 Top20 最大日跌是 #18《西游灵兽纪》↓8，抖音 Top20 最大日跌是 #13《三国：冰河时代》↓6</span>——<b>头部异常稳定，洗牌集中在 #58–#100 的中后段</b>。这与上期"抖音已打进头部"完全不同，说明本周没有发生头部级别的换血，只有尾部在摩擦。<br>
+    <b>★ 周环比补充（更能看出真实动能）</b>：<span class="hl">《新弹弹堂》微信 #41→#98（−57）</span>是本周最大周跌幅、《青云诀之伏魔》抖音 #38→#94（−56）紧随；其后微信《冲啊，逗英雄》#55→#94（−39）、《天境传说》#62→#97（−35）、《星空神曲》#27→#55（−28）、《生存33天》#61→#89（−28）；抖音《咻咻勇者》#55→#97（−42）、《遗弃之地》#47→#87（−40）、《蔚蓝远征》#58→#93（−35）、《生存33天》#29→#62（−33）。<b>《生存33天》是本期唯一「双端同时周跌 28 位以上」的产品</b>（微信 #61→#89、抖音 #29→#62），比单端跌幅更值得当趋势引用；反之《青云诀之伏魔》微信日 ↑3、周 −18，是典型的「回抽」，不能写成回升。<br>
+    <b>★ 跌出百强（vs 11/13 名单）：微信 18 款、抖音 12 款</b>，与"新面孔"数量一一对应。<span class="hl">本周的进榜／出榜基本是同一批边缘产品在 #80–#100 区间来回换位</span>——这也解释了为什么"本周新出现 18 款"看起来热闹、真正进 Top20 的却只有 1 款（《仙临九界》#10）。判断新品成败不能看"是否进过榜"，要看"能否在 #50 以内站住两周"。
+  </div>
+</div>
+
+<!-- ====== 五、平台政策与市场动态 ====== -->
+<div class="section">
+  <h2>&#9733; 五、平台政策与市场动态</h2>
+
+  <div class="policy-box wx" style="border-left-color:#1e3a8a;">
+    <h4 style="margin:0 0 4px;font-size:15px;color:#1e3a8a;">微信小游戏平台</h4>
+
+    <div style="margin:14px 0 4px;">
+      <span style="display:inline-block;padding:1px 8px;border-radius:3px;background:#eceff1;color:#455a64;border:1px solid #cfd8dc;font-size:11px;font-weight:700;margin-right:8px;">无新增文件</span>
+      <span style="font-weight:700;font-size:14px;color:#212121;">结算政策本周无修订；新增的是两项"工具"，不是钱</span>
+    </div>
+    <div style="font-size:13px;line-height:1.95;color:#37474f;">
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">状态</b>虚拟支付激励政策<b>最后编辑仍为 2026-11-05</b>，本周无新文件、条款无变化</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">口径</b>现金激励 <b>60%</b>、基础激励金 <b>10%</b>、首发新游阶段一＋阶段二合计上限 <b>2000 万</b>，均未改动</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">新增①</b><b>红包拉新组件</b>：分享路径优化，支持游戏内自定义入口与自定义分享卡片，后台可查看 <b>ROI 数据</b>（11-19 更新）</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">新增②</b><b>智能内容运营</b>：节日贴、红包活动贴可自动生成，新增「抽奖」，用户参与帖子互动可获游戏礼包与平台补贴代金券</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">影响</b>两项都作用于拉新与留存，<b>不改变分成比例</b>；对 IAA 与低付费产品的边际帮助大于 IAP 头部</div>
+    </div>
+    <div style="font-size:11px;color:#78909c;margin-top:6px;">来源：<a href="https://developers.weixin.qq.com/minigame/introduction/release" target="_blank">微信开放文档 · 小游戏功能服务更新日志（2026-11-19 更新）</a>／<a href="https://developers.weixin.qq.com/minigame/introduction/commercialization/guide/virtual-payment.html" target="_blank">虚拟支付激励政策（2026-11-05）</a></div>
+  </div>
+
+  <div class="policy-box dy" style="border-left-color:#f59e0b;">
+    <h4 style="margin:0 0 4px;font-size:15px;color:#e65100;">抖音小游戏平台</h4>
+
+    <div style="margin:14px 0 4px;">
+      <span style="display:inline-block;padding:1px 8px;border-radius:3px;background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7;font-size:11px;font-weight:700;margin-right:8px;">在行</span>
+      <span style="font-weight:700;font-size:14px;color:#212121;">投放金／任务金 11/01–12/31 一期继续在行，本周无新增</span>
+    </div>
+    <div style="font-size:13px;line-height:1.95;color:#37474f;">
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">状态</b>本周为该施行期的<b>第三个完整周</b>，无新文件、条款未调整</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">现金</b>投广 <b>90%</b>／非投广 <b>80%</b>／一般版 <b>60%</b>，可与投放金、任务金叠加</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">基数</b>结算基数＝<b>扣除支付渠道费后的内购消费总额</b>（苹果 12%、其他 1%）；11 月结算单已按此口径出账</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">影响</b><b>无新增可执行动作</b>，按既有排期与对账口径走；条款稳定性本身是本周唯一可确认的信息</div>
+    </div>
+    <div style="font-size:11px;color:#78909c;margin-top:6px;">来源：<a href="https://partner.open-douyin.com/docs/resource/zh-CN/mini-game/guide/contactus/game-settlement-policy" target="_blank">抖音开放平台 · 小游戏结算政策导览（2026-11-01 生效）</a></div>
+  </div>
+
+  <div class="policy-box" style="border-left-color:#4CAF50;">
+    <h4 style="margin:0 0 4px;font-size:15px;color:#2e7d32;">版号批次</h4>
+
+    <div style="margin:14px 0 4px;">
+      <span style="display:inline-block;padding:1px 8px;border-radius:3px;background:#eceff1;color:#455a64;border:1px solid #cfd8dc;font-size:11px;font-weight:700;margin-right:8px;">暂无</span>
+      <span style="font-weight:700;font-size:14px;color:#212121;">11 月批次仍未发布，本期无新增审批信息</span>
+    </div>
+    <div style="font-size:13px;line-height:1.95;color:#37474f;">
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">现状</b>截至 11/20，新闻出版署审批结果页<b>最新仍是 10 月批次</b>（10-29 公布，183 款国产＋12 款进口）</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">影响</b>11 月已过三分之二，新品只能用 10 月及更早版号，<b>首发档窗口继续收窄，本月剩余 10 天是最后窗口</b></div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">观察</b>与微信 Top20 只有 1 张新面孔（#10《仙临九界》）互相印证：<b>新品供给是"少而尖"，不是普涨</b></div>
+    </div>
+    <div style="font-size:11px;color:#78909c;margin-top:6px;">来源：<a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/" target="_blank">国家新闻出版署 · 游戏审批结果（截至 2026-11-20）</a></div>
+  </div>
+
+  <div class="policy-box industry" style="border-left-color:#ec4899;">
+    <h4 style="margin:0 0 4px;font-size:15px;color:#ad1457;">行业动向（第三方，非政策）</h4>
+
+    <div style="margin:14px 0 4px;">
+      <span style="display:inline-block;padding:1px 8px;border-radius:3px;background:#fce4ec;color:#ad1457;border:1px solid #f48fb1;font-size:11px;font-weight:700;margin-right:8px;">媒体独家</span>
+      <span style="font-weight:700;font-size:14px;color:#212121;">腾讯 11/18 推出 WeFund（游可盈）：一次集成适配双端</span>
+    </div>
+    <div style="font-size:13px;line-height:1.95;color:#37474f;">
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">内容</b>腾讯互娱流量生态部旗下小游戏一站式发行赋能平台，凭 <b>OSDK 一次集成同时适配微信与抖音</b>；含数据采集、埋点校验、A/B 实验、营销看板</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">模式</b>①<b>全渠道代理发行</b>（腾讯包揽投放、运营、素材、社区）；②<b>出资定制开发</b>（风险共担、收益共享）</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">选品</b>融合类玩法、已验证数值、差异化画风</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">口径</b><b>截至 11/20 未见官方公告页</b>，按媒体独家转述处理，不作政策条款引用</div>
+      <div><b style="display:inline-block;width:66px;color:#546e7a;">含义</b>跨平台发行的中间层由平台方自己做掉，"双端各接一遍"的成本下降，<b>但发行环节话语权进一步向腾讯集中</b></div>
+    </div>
+    <div style="font-size:11px;color:#78909c;margin-top:6px;">来源：<a href="https://www.36kr.com/p/4074592225990276" target="_blank">36氪 · 腾讯推出"WeFund"，抢占微信、抖音小游戏发行话语权（2026-11-18）</a></div>
+  </div>
+</div>
+
+<!-- ====== 六、本周趋势观察 ====== -->
+<div class="section">
+  <h2>&#9733; 六、本周趋势观察</h2>
+  <ol class="trend-list">
+    <li><strong>抖音 #1 进入"周更"，王座已经不是季度资产。</strong><span class="hl">造化仙府上期登顶、本期就退到 #5（1→5）；疯狂水世界从 #3 拿回 #1</span>。近五期 #1 序列为 <b>疯狂水世界 ×5 → 造化仙府 ×1 → 疯狂水世界</b>，连任期在持续缩短，且这次是"一周就换回去"。<b>对排期的含义很直接</b>：投放回收模型按「2–3 周一换手」做，比按季度做更稳；若按"一季度一换"建模，会把回收周期估长、把预算压在错误的窗口上。</li>
+    <li><strong>抖音端的爆发会溢出到微信，但滞后约一周——这是本期最重要的新发现。</strong>《造化仙府》上期抖音 +7 登顶、<span class="hl">微信只从 #15 挪到 #14</span>；本期抖音退到 #5（−4），<span class="hl">微信反而涨到 #11（+3）</span>。两端不是同步共振，而是"抖音先起、微信后补"。<b>含义</b>：单端榜单不能判断全渠道势能；<span class="hl">抖音起量后预留一周观察微信，是更可靠的验证方式</span>——如果一周内微信没跟上，那它大概率只是投放买量，不是产品势能。</li>
+    <li><strong>上期三张重点卡全部"一期往返"，冲量窗口就是 1–2 周。</strong>《青云诀之伏魔》微信 21→3→21、抖音 81→38→94；《占城大师》抖音 57→14→36、微信 86→掉出百强；《造化仙府》抖音 8→1→5。三款形态不同、回收速度却高度一致。<b>含义</b>：靠版本＋付费活动冲量可以做，但<span class="hl">预算要按"两周有效"排，不能按季度摊</span>；两周后仍要投，就要准备第二套素材和活动，否则边际收益会直接转负。</li>
+    <li><strong>本周最大的单点上升仍是"单端爆款"，而它来自一个已经跑通的主体。</strong>《阿皮大冒险》抖音 <span class="hl">83→17（+66）</span>、微信未上榜，与抖音 #6《肥鹅美食街》<b>同属北京豪腾创想</b>。<span class="hl">同一主体在抖音端并行两条产品线、两条都进 Top20</span>，这是"单主体多产品"最直接的证据。<b>含义</b>：抖音的发行人/内容场景能力可以在主体内部复用，评估竞品时要看主体、不要只看单款——一个跑通的主体，随时可能再推第二条线进来。</li>
+    <li><strong>新品供给"少而尖"：数量降、位次升，头部只进一张脸。</strong>微信本周新面孔 <span class="hl">18 款（上期 22）</span>，但最高位次从 #19 提到 <span class="hl">#10（《仙临九界》）</span>，其余 17 款全部落在 #20 之后（次高 #44）。叠加 11 月版号批次仍未发布，<span class="hl">11 月的新品供给是"每月一两款尖货＋大量换尾巴"，不是普涨</span>。<b>排期含义</b>：抢首发位的窗口只剩月末 10 天，且要与已拿到 10 月版号的存量新品竞争；<b>判断新品成败不能看"是否进过榜"，要看"能否在 #50 以内站住两周"</b>——本周 18 款新面孔里有 17 款做不到这一点。</li>
+  </ol>
+</div>
+
+<!-- ====== 页脚 ====== -->
+<footer>
+  <!-- 底部留空 -->
+  市场资讯观察周报 · 数据来源：<b>引力引擎（IAP 畅销榜 · 日榜口径）</b> · 品类统一划分<br>
+  ⚠️ 口径提示：本期榜单按<b>日榜</b>取数；<b>双端平台「变化」列本期均正常生成</b>，可直接采用，但它表示的是<b>较昨日</b>、不是周环比——本期《三国杀》日榜微信 ↑15／抖音 ↑29，周环比却是微信 27→68（<b>−41</b>）、抖音 5→30（<b>−25</b>），两种口径会给出相反方向，引用时必须写明用的是哪一种。相反《黎明特攻》日榜 ↓24、周环比 −50 是同向，可以合并表述。本报告在升跌章节另附<b>自算的周环比口径</b>（11/06 榜 vs 11/13 榜），两者不可混用。<br>
+  ⚠️ 品类口径：<b>《疯狂水世界》官方定位"模拟经营+SLG"</b>，本报告按 SLG 层归入 SLG/策略；若按商店主标签计入模拟经营，则双端 Top20 模拟经营由 <b>13 席升至 15 席</b>（微信 7／抖音 8）、且抖音 #3 落在其中——"席位第一"不变，但"13 席里没有一款进前三"这句会反转。 <b>《镇邪人》平台标签"冒险"，按其渠道页标注"卡牌战略／抽卡养成 RPG"归入卡牌RPG</b>（抖音 #6）；<b>《喵骑战域》平台标签"模拟经营"，按玩法归入射击</b>。<b>《地宫大爆破》（微信）＝《异窟冒险》（抖音）</b>，已归一计数（跨平台 <b>48</b> 款，未归一 47 款）；本期该作微信端已跌出百强、抖音端 #77，不计入"双端同时在榜"。<br>
+  ⚠️ 数据口径：<b>汇总数据为非去重人数</b>（同一用户可能多渠道、多次充值）；微信端 <b>3 款</b>（#25《西游灵兽纪》、#27《星空神曲》、#94《云霄秘境》）平台未披露发行主体，表中保留"--"，未做推测填写；抖音端 0 款。<br>
+  报告生成时间：2026年11月20日 | 品类标准：SLG/策略、模拟经营、塔防、ARPG、卡牌RPG、放置RPG、MMO、消除、棋牌、合成消除、射击、动作、益智
+</footer>
+
+</div>
+
+<!-- ====== Chart.js 图表 ====== -->
+<script>
+// ===== 弹窗控制 =====
+function openModal(type) {
+  document.getElementById('modal-' + type).style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(type) {
+  document.getElementById('modal-' + type).style.display = 'none';
+  document.body.style.overflow = '';
+}
+// 点击遮罩关闭
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal')) {
+    e.target.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+
+// ===== Chart.js 图表 =====
+
+// 自定义插件：饼图数据标签（百分比+数量）
+const pieLabelsPlugin = {
+  id: 'pieLabels',
+  afterDraw(chart) {
+    const { ctx, chartArea: { width, height } } = chart;
+    const meta = chart.getDatasetMeta(0);
+    if (!meta || meta.hidden) return;
+    const total = meta.total;
+    meta.data.forEach((arc, i) => {
+      const angle = (arc.startAngle + arc.endAngle) / 2;
+      const r = (arc.outerRadius + arc.innerRadius) / 2 * 1.15;
+      const x = arc.x + Math.cos(angle) * r;
+      const y = arc.y + Math.sin(angle) * r;
+      const pct = ((chart.data.datasets[0].data[i] / total) * 100).toFixed(1);
+      ctx.save();
+      ctx.font = 'bold 9px -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillStyle = '#333';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(pct + '%', x, y);
+      ctx.restore();
+    });
+  }
+};
+
+// 自定义插件：柱状图数值标签
+const barLabelsPlugin = {
+  id: 'barLabels',
+  afterDraw(chart) {
+    const { ctx } = chart;
+    chart.data.datasets.forEach((dataset, dsIdx) => {
+      const meta = chart.getDatasetMeta(dsIdx);
+      if (!meta || meta.hidden) return;
+      ctx.save();
+      ctx.font = 'bold 10px -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.fillStyle = dsIdx === 0 ? '#667eea' : '#27ae60';
+      meta.data.forEach((bar, i) => {
+        const val = dataset.data[i];
+        if (val === 0) return;
+        ctx.fillText(val, bar.x, bar.y - 4);
+      });
+      ctx.restore();
+    });
+  }
+};
+
+// 微信品类饼图
+new Chart(document.getElementById('wxPie'), {
+  type: 'pie',
+  plugins: [pieLabelsPlugin],
+  data: {
+    labels: ["塔防","SLG/策略","ARPG","模拟经营","卡牌RPG","放置RPG","MMO","棋牌","益智","消除","其他","合成消除","射击"],
+    datasets: [{
+      data: [13,4,11,19,16,8,8,5,7,3,2,1,3],
+      backgroundColor: ['#667eea','#27ae60','#e67e22','#e74c3c','#8e44ad','#e91e63','#00bcd4','#ff9800','#8bc34a','#3f51b5','#009688','#9c27b0','#03a9f4','#f44336','#cddc39','#7c4dff']
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { animateScale: true, animateRotate: true, duration: 800 },
+    plugins: {
+      legend: { position: 'right', labels: { boxWidth: 12, font: { size: 12 }, padding: 14, usePointStyle: true } },
+      tooltip: {
+        callbacks: {
+          label(ctx) {
+            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+            const pct = ((ctx.raw / total) * 100).toFixed(1);
+            return ' ' + ctx.label + ': ' + ctx.raw + '款 (' + pct + '%)';
+          }
+        }
+      }
+    }
+  }
+});
+
+// 抖音品类饼图
+new Chart(document.getElementById('dyPie'), {
+  type: 'pie',
+  plugins: [pieLabelsPlugin],
+  data: {
+    labels: ["SLG/策略","卡牌RPG","塔防","ARPG","放置RPG","模拟经营","其他","益智","合成消除","消除","MMO","棋牌","射击"],
+    datasets: [{
+      data: [8,10,13,10,10,10,19,7,1,5,3,2,2],
+      backgroundColor: ['#667eea','#27ae60','#e67e22','#e74c3c','#8e44ad','#e91e63','#00bcd4','#ff9800','#8bc34a','#3f51b5','#009688','#9c27b0','#03a9f4','#f44336','#cddc39','#7c4dff']
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { animateScale: true, animateRotate: true, duration: 800 },
+    plugins: {
+      legend: { position: 'right', labels: { boxWidth: 12, font: { size: 12 }, padding: 14, usePointStyle: true } },
+      tooltip: {
+        callbacks: {
+          label(ctx) {
+            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+            const pct = ((ctx.raw / total) * 100).toFixed(1);
+            return ' ' + ctx.label + ': ' + ctx.raw + '款 (' + pct + '%)';
+          }
+        }
+      }
+    }
+  }
+});
+
+// 双平台品类对比柱状图
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  plugins: [barLabelsPlugin],
+  data: {
+    labels: ["模拟经营","塔防","卡牌RPG","ARPG","其他","放置RPG","益智","SLG/策略","MMO","消除","棋牌","射击","合成消除"],
+    datasets: [
+      { label: '微信', data: [19,13,16,11,2,8,7,4,8,3,5,3,1], backgroundColor: '#667eea', borderRadius: 4, maxBarThickness: 36 },
+      { label: '抖音', data: [10,13,10,10,19,10,7,8,3,5,2,2,1], backgroundColor: '#27ae60', borderRadius: 4, maxBarThickness: 36 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { duration: 800 },
+    plugins: {
+      legend: { position: 'top', labels: { usePointStyle: true, font: { size: 12 }, padding: 16 } },
+      tooltip: {
+        callbacks: {
+          label(ctx) { return ' ' + ctx.dataset.label + ': ' + ctx.raw + '款'; }
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { font: { size: 11 } }, grid: { display: false } },
+      y: { beginAtZero: true, title: { display: true, text: '上榜数量（款）', font: { size: 12 } }, ticks: { stepSize: 2, font: { size: 11 } } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
